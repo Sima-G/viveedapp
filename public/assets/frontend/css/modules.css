@@ -1,0 +1,8 @@
+.vvd_time{
+	align-items: right;
+	display: flex;
+}
+
+.vvd_date{
+	float: left;
+}
