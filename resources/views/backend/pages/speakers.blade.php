@@ -83,7 +83,7 @@
 
                     <div class="form-group form-actions">
                         <div class="col-xs-9 col-xs-offset-3">
-                            <button type="submit" class="btn btn-sm btn-primary send-btn"><i class="fa fa-plus"></i> Add Contact</button>
+                            <button type="submit" class="btn btn-sm btn-primary send-btn">@lang('schedule/speakers.speaker_new_save')</button>
                         </div>
                     </div>
                 </form>
@@ -99,7 +99,11 @@
 
 @section('footer')
 
-
+    <script type="text/javascript">
+        CKEDITOR.replace('speaker_description', {
+            customConfig:'{{ asset('assets/backend/js/pages/speakers/ckeditor-config.js') }}'
+        })
+    </script>
 
     <script type="text/javascript">
 
@@ -136,6 +140,16 @@
                     }
 
                 });
+            });
+
+            $(document).on("click", '.speaker_edit', function(event) {
+                event.preventDefault();
+                var id = event.target.id;
+                $('#session_title').val($('#title_'+id).html());
+                $('#session_starts').val($('#start_time_'+id).html());
+                $('#session_ends').val($('#end_time_'+id).html());
+                $('#session_date').val($('#date_'+id).html());
+                $('#session_description').textContent($('#description_'+id).html());
             });
 
 

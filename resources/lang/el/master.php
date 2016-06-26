@@ -18,5 +18,6 @@ return [
     'speakers'                          => 'Ομιλητές',
     'settings'                          => 'Ρυθμίσεις',
     'latest_activities'                 => 'Τελευταίες Ενέργειες',
+    'datetime'                          => 'ΗΜΕΡΟΜΗΝΙΑ',
 
 ];
