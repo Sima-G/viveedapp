@@ -43,10 +43,46 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/css/themes.css') }}">
     <!-- END Stylesheets -->
 
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('vvd_time').innerHTML =
+                    h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+
+        function viveed_date(offset){
+            if (offset === undefined){
+                offset = 0;
+            }
+            var monthNames = [ "Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
+                "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου" ];
+            var dayNames= ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"]
+
+            var newDate = new Date();
+
+            newDate.setDate(newDate.getDate() + offset);
+            document.getElementById('vvd_date').innerHTML = '<p>' + dayNames[newDate.getDay()] + "</h2><h1>" + newDate.getDate() + '</h1><h2>' + monthNames[newDate.getMonth()] + '</p>';
+
+        }
+    </script>
+
     <!-- Modernizr (browser feature detection library) & Respond.js (enables responsive CSS code on browsers that don't support it, eg IE8) -->
     <script src="{{ asset('assets/backend/js/vendor/modernizr-respond.min.js') }}"></script>
+
+
+
 </head>
-<body class="page-loading">
+<body class="page-loading" onload="startTime(); viveed_date();">
 <!-- Page Wrapper -->
 <!-- In the PHP version you can set the following options from inc/config file -->
 <!--
@@ -334,32 +370,52 @@
                     </ul>
                     <!-- END Sidebar Navigation -->
 
+                    {{--<!-- Sidebar Notifications -->--}}
+                    {{--<div class="sidebar-header sidebar-nav-mini-hide">--}}
+                                {{--<span class="sidebar-header-options clearfix">--}}
+                                    {{--<a href="javascript:void(0)" data-toggle="tooltip" title="Refresh"><i class="gi gi-refresh"></i></a>--}}
+                                {{--</span>--}}
+                        {{--<span class="sidebar-header-title">@lang('master.latest_activities')</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="sidebar-section sidebar-nav-mini-hide">--}}
+                        {{--<div class="alert alert-success alert-alt">--}}
+                            {{--<small>5 min ago</small><br>--}}
+                            {{--<i class="fa fa-thumbs-up fa-fw"></i> You had a new sale ($10)--}}
+                        {{--</div>--}}
+                        {{--<div class="alert alert-info alert-alt">--}}
+                            {{--<small>10 min ago</small><br>--}}
+                            {{--<i class="fa fa-arrow-up fa-fw"></i> Upgraded to Pro plan--}}
+                        {{--</div>--}}
+                        {{--<div class="alert alert-warning alert-alt">--}}
+                            {{--<small>3 hours ago</small><br>--}}
+                            {{--<i class="fa fa-exclamation fa-fw"></i> Running low on space<br><strong>18GB in use</strong> 2GB left--}}
+                        {{--</div>--}}
+                        {{--<div class="alert alert-danger alert-alt">--}}
+                            {{--<small>Yesterday</small><br>--}}
+                            {{--<i class="fa fa-bug fa-fw"></i> <a href="javascript:void(0)"><strong>New bug submitted</strong></a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<!-- END Sidebar Notifications -->--}}
+
                     <!-- Sidebar Notifications -->
-                    <div class="sidebar-header sidebar-nav-mini-hide">
+                    <div class="sidebar-header">
                                 <span class="sidebar-header-options clearfix">
-                                    <a href="javascript:void(0)" data-toggle="tooltip" title="Refresh"><i class="gi gi-refresh"></i></a>
+                                    <a href="javascript:void(0)" title="@lang('master.datetime')"><i class="gi gi-calendar"></i></a>
                                 </span>
-                        <span class="sidebar-header-title">@lang('master.latest_activities')</span>
+                        <span class="sidebar-header-title">@lang('master.datetime')</span>
                     </div>
-                    <div class="sidebar-section sidebar-nav-mini-hide">
-                        <div class="alert alert-success alert-alt">
-                            <small>5 min ago</small><br>
-                            <i class="fa fa-thumbs-up fa-fw"></i> You had a new sale ($10)
+                    <div class="sidebar-section">
+                        <div class="vvd_date">
+                            <h2 id="vvd_date" class="text-center"></h2>
                         </div>
-                        <div class="alert alert-info alert-alt">
-                            <small>10 min ago</small><br>
-                            <i class="fa fa-arrow-up fa-fw"></i> Upgraded to Pro plan
-                        </div>
-                        <div class="alert alert-warning alert-alt">
-                            <small>3 hours ago</small><br>
-                            <i class="fa fa-exclamation fa-fw"></i> Running low on space<br><strong>18GB in use</strong> 2GB left
-                        </div>
-                        <div class="alert alert-danger alert-alt">
-                            <small>Yesterday</small><br>
-                            <i class="fa fa-bug fa-fw"></i> <a href="javascript:void(0)"><strong>New bug submitted</strong></a>
+                        <div class="vvd_time">
+                            <h2 id="vvd_time" class="text-center vvd_time"></h2>
                         </div>
                     </div>
                     <!-- END Sidebar Notifications -->
+
+
+
                 </div>
                 <!-- END Sidebar Content -->
             </div>
@@ -502,6 +558,8 @@
         headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
     });
 </script>
+
+
 
 @yield('footer')
 

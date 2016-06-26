@@ -43,26 +43,27 @@ class SpeakerController extends Controller
         // Getting all table data
         $speakers = Speaker::select('*')->get();
 
-        foreach($speakers AS $speaker){
-            echo "<div class=\"col-sm-6 col-lg-4\">";
-            echo "<div class=\"widget\">";
-            echo "<div class=\"widget-simple\">";
-            echo "<h4 class=\"widget-content text-left\"><strong>" . $speaker->firstname . " " . $speaker->lastname . "</strong></h4>";
-            echo "<div class=\"row\">";
-            echo "<div class=\"col-md-12\">";
-            echo $speaker->description;
-            echo "<h4 class=\"widget-content text-right\">";
-            echo "<span class=\"btn-group\">";
-            echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\" data-toggle=\"tooltip\" title=\"" . trans('schedule/speakers.speaker_email') . "\">" . $speaker->email . "</a>";
-            echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-primary\" data-toggle=\"tooltip\" title=\"@\"><i class=\"fa fa-at\"></i></a>";
-            echo "</span>";
-            echo "</h4>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-        }
+
+            foreach ($speakers AS $speaker) {
+                echo "<div class=\"col-sm-6 col-lg-4\">";
+                echo "<div class=\"widget\">";
+                echo "<div class=\"widget-simple\">";
+                echo "<h4 class=\"widget-content text-left\"><strong>" . $speaker->firstname . " " . $speaker->lastname . "</strong></h4>";
+                echo "<div class=\"row\">";
+                echo "<div class=\"col-md-12\">";
+                echo $speaker->description;
+                echo "<h4 class=\"widget-content text-right\">";
+                echo "<span class=\"btn-group\">";
+                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\" data-toggle=\"tooltip\" title=\"" . trans('schedule/speakers.speaker_email') . "\">" . $speaker->email . "</a>";
+                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-primary\" data-toggle=\"tooltip\" title=\"@\"><i class=\"fa fa-at\"></i></a>";
+                echo "</span>";
+                echo "</h4>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
 
     }
 
@@ -71,24 +72,39 @@ class SpeakerController extends Controller
 
         // Getting all table data
         $speakers = Speaker::select('*')->get();
+        if ($speakers->count()) {
+            foreach($speakers AS $speaker){
+                echo "<div class=\"col-sm-6 col-lg-4\">";
+                echo "<div class=\"widget\">";
+                echo "<div class=\"widget-simple\">";
+                echo "<h4 class=\"widget-content text-right\">";
+                echo "<span class=\"btn-group\">";
+                echo "<a href=\"javascript:void(0)\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_edit') . "\"><i class=\"fa fa-pencil\"></i></a>";
+                echo "<a href=\"javascript:void(0)\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_delete') . "\"><i class=\"fa fa-times\"></i></a>";
+                echo "</span>";
+                echo "</h4>";
+                echo "<h4 class=\"widget-content text-left\"><strong>" . $speaker->firstname . " " . $speaker->lastname . "</strong></h4>";
 
-        foreach($speakers AS $speaker){
-            echo "<div class=\"col-sm-6 col-lg-4\">";
-            echo "<div class=\"widget\">";
-            echo "<div class=\"widget-simple\">";
-            echo "<h4 class=\"widget-content text-left\"><strong>" . $speaker->firstname . " " . $speaker->lastname . "</strong></h4>";
+
+
+                echo "<div class=\"row\">";
+                echo "<div class=\"col-md-12\">";
+                echo $speaker->description;
+                echo "<h4 class=\"widget-content text-right\">";
+                echo "<span class=\"btn-group\">";
+                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\" data-toggle=\"tooltip\" title=\"" . trans('schedule/speakers.speaker_email') . "\">" . $speaker->email . "</a>";
+                echo "</span>";
+                echo "</h4>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+        } else {
             echo "<div class=\"row\">";
             echo "<div class=\"col-md-12\">";
-            echo $speaker->description;
-            echo "<h4 class=\"widget-content text-right\">";
-            echo "<span class=\"btn-group\">";
-            echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\" data-toggle=\"tooltip\" title=\"" . trans('schedule/speakers.speaker_email') . "\">" . $speaker->email . "</a>";
-            echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-primary\" data-toggle=\"tooltip\" title=\"@\"><i class=\"fa fa-at\"></i></a>";
-            echo "</span>";
-            echo "</h4>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
+            echo "<h3 class=\"text-center\">" . @trans('schedule/speakers.speakers_list_is_empty') . "</h3>";
             echo "</div>";
             echo "</div>";
         }
