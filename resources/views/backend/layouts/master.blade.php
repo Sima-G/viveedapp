@@ -357,13 +357,13 @@
                             <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.sessions')</span></a>
                             <ul>
                                 <li>
-                                    <a href="{{URL::route('sessions')}}">@lang('master.sessions')</a>
+                                    <a href="{{URL::route('sessions')}}" @if(Route::current()->getName() == 'sessions') class="active" @endif>@lang('master.sessions')</a>
                                 </li>
                                 <li>
-                                    <a href="{{URL::route('speakers')}}">@lang('master.speakers')</a>
+                                    <a href="{{URL::route('speakers')}}" @if(Route::current()->getName() == 'speakers') class="active" @endif>@lang('master.speakers')</a>
                                 </li>
                                 <li>
-                                    <a href="{{URL::route('settings')}}">@lang('master.settings')</a>
+                                    <a href="{{URL::route('settings')}}" @if(Route::current()->getName() == 'settings') class="active" @endif>@lang('master.settings')</a>
                                 </li>
                             </ul>
                         </li>

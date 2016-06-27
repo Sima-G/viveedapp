@@ -77,6 +77,10 @@ Route::get('/backend/schedule/speakers/show', 'SpeakerController@show');
 Route::post('/backend/schedule/speakers/store', 'SpeakerController@store');
 Route::get('/backend/schedule/speakers/data', 'SpeakerController@data');
 
+Route::post('/backend/schedule/speakers/data', 'SpeakerController@data');
+Route::post('/backend/schedule/speakers/delete', 'SpeakerController@delete');
+
+
 
 
 //Routes for settings
