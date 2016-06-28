@@ -16,11 +16,13 @@
 //});
 
 Route::get('/', function () {
-    return view('backend.pages.sessions');
+    return view('frontend.master');
 });
 
+
+
 Route::get('/backend', function () {
-    return view('backend.master');
+    return view('backend.pages.login');
 });
 
 Route::post('/store', 'SessionController@store');
