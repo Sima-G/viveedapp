@@ -53,7 +53,7 @@
             <div id="login-alt-container">
                 <!-- Title -->
                 <h1 class="push-top-bottom">
-                    <strong>Viveed</strong><br>
+                    <strong>Viveedgit </strong><br>
                     <small>@lang('login.login_welcome')</small>
                 </h1>
                 <!-- END Title -->
