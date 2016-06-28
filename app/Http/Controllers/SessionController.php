@@ -20,6 +20,8 @@ use App\Setting;
 use DateInterval;
 use DatePeriod;
 
+use Carbon;
+
 class SessionController extends Controller
 {
     public function store()
@@ -28,15 +30,40 @@ class SessionController extends Controller
         if (Request::ajax()) {
             $data = Input::all();
 
-            $session = Session::Create(array(
-                'title'	            => Input::get('session_title'),
-                'description'		=> Input::get('session_description'),
-                'start_time'		=> Input::get('session_starts'),
-                'end_time'	        => Input::get('session_ends'),
-                'date'	            => Input::get('session_date'),
-            ));
+            if(Input::has('$session_action_id')){
 
-            $session->speakers()->attach(Input::get('session_speakers'));
+                // find the bear
+                $session = Session::find(Input::get('session_action_id'));
+
+                // change the attribute
+                $session->title = Input::get('session_title');
+                $session->description = Input::get('session_description');
+                $session->start_time = Input::get('session_starts');
+                $session->end_time = Input::get('session_ends');
+                $session->date = Carbon\Carbon::createFromFormat('d/m/Y', Input::get('session_date'));
+
+                // save to our database
+                $session->save();
+
+                $session->speakers()->detach();
+                $session->speakers()->attach(Input::get('session_speakers'));
+                return $session->id;
+
+            } else {
+
+                $session = Session::Create(array(
+                    'title' => Input::get('session_title'),
+                    'description' => Input::get('session_description'),
+                    'start_time' => Input::get('session_starts'),
+                    'end_time' => Input::get('session_ends'),
+                    'date' => Carbon\Carbon::createFromFormat('d/m/Y', Input::get('session_date')),
+                ));
+
+                $session->speakers()->attach(Input::get('session_speakers'));
+
+                $last_inserted_id = $session->id;
+                return $last_inserted_id;
+            }
 
             print_r($data);
             die;
@@ -46,22 +73,13 @@ class SessionController extends Controller
     public function data()
     {
         // Getting all table data
-        $sessions = Session::select('*')->get();
-
-
-            foreach($sessions AS $session){
-//                $start_time = new DateTime($session->start_time);
-//                $end_time = new DateTime($session->end_time);
-//                $duration = $start_time->diff($end_time);
+        $session = Session::find(Input::get('session_action_id'));
 
                 $start_time = strtotime($session->start_time);
-
-
                 $end_time = strtotime($session->end_time);
-
                 $duration = $end_time - $start_time;
 
-                echo "<li>";
+                echo "<li id=\"session_" . $session->id . "\">";
                 echo "<div class=\"timeline-icon\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-inverse fa-stack-1x\">" . abs($duration/60) . "'</i></div>";
                 echo "<div class=\"timeline-time\">&nbsp;" . date('H:i', $start_time) . "-" . date('H:i', $end_time) . "</div>";
                 echo "<div class=\"timeline-content\">";
@@ -75,8 +93,6 @@ class SessionController extends Controller
                 echo "</p>";
                 echo "</div>";
                 echo "</li>";
-            }
-
     }
 
     public function show()
@@ -99,12 +115,12 @@ class SessionController extends Controller
             echo "<ul class=\"timeline-list timeline-hover\" id=\"" . $dt->format("Y-m-d") . "\">";
 
             // Getting all table data
-            $sessions = Session::where('date', '=', $dt->format("Y-m-d"))->get();
+            $sessions = Session::where('date', '=', $dt->format("Y-m-d"))->orderBy('start_time', 'ASC')->get();
             foreach($sessions AS $session){
                 $start_time = strtotime($session->start_time);
                 $end_time = strtotime($session->end_time);
                 $duration = $end_time - $start_time;
-                echo "<li>";
+                echo "<li id=\"session_" . $session->id . "\">";
                 echo "<div id=\"title_" . $session->id . "\" style=\"display: none;\">" . $session->title . "</div>";
                 echo "<div id=\"start_time_" . $session->id . "\" style=\"display: none;\">" . $session->start_time . "</div>";
                 echo "<div id=\"end_time_" . $session->id . "\" style=\"display: none;\">" . $session->end_time . "</div>";
@@ -115,8 +131,12 @@ class SessionController extends Controller
                 echo "<div class=\"timeline-content\">";
                 echo "<p class=\"push-bit\"><h3>$session->title</h3></p>";
                 echo "<p class=\"push-bit\">$session->description</p>";
-                echo "<p class=\"push-bit\"><strong>" . trans('schedule/sessions.session_speakers') . ":</strong></p>";
-                echo "<p>";
+                echo "<p class=\"push-bit\"><strong>" . trans('schedule/sessions.session_speakers') . ":</strong> ";
+                    foreach($session->speakers as $speaker){
+                            echo $speaker->full_name;
+                    }
+
+                echo "</p><p>";
                 echo "<a href=\"#\" id='" . $session->id . "' class=\"btn btn-xs btn-default session_edit\"><i class=\"fa fa-pencil-square-o\"></i> " . trans('schedule/sessions.session_edit') . "</a>&nbsp;";
                 echo "<a href=\"javascript:void(0)\" id='" . $session->id . "' class=\"btn btn-xs btn-default session_delete\"><i class=\"fa fa-times-circle-o\"></i> " . trans('schedule/sessions.session_delete') . "</a>";
                 echo "</p>";

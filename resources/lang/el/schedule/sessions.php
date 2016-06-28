@@ -31,7 +31,9 @@ return [
     'session_speakers'              => 'Ομιλητές Ομιλίας',
     'session_speakers_desc'         => 'Επιλογή των Ομιλητών...',
     'session_description'           => 'Περιεχόμενο Ομιλίας',
-    'session_store'                 => 'Αποθήκευση Ομιλίας',
+    'session_new_save'              => 'Αποθήκευση Νέας',
+    'session_change_save'           => 'Αποθήκευση Αλλαγών',
+    'session_action_undo'           => 'Αναίρεση και Νέα',
     'session_edit'                  => 'Επεξεργασία',
     'session_delete'                => 'Διαγραφή',
 

@@ -129,7 +129,7 @@
                     <!-- END Feed Style Title -->
 
                     <!-- Feed Style Content -->
-                    <form action="/store" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
+                    <form action="/backend/schedule/sessions/store" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
                     <div class="block-content-full">
 
 
@@ -190,7 +190,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="session_date">@lang('schedule/sessions.date')</label>
                                         <div class="col-md-6 col-md-offset-4">
-                                            <input type="text" id="session_date" name="session_date" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="@lang('schedule/sessions.session_date_placeholder')">
+                                            <input type="text" id="session_date" name="session_date" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" data-date-start-date="10/06/2016" readonly="readonly" placeholder="@lang('schedule/sessions.session_date_placeholder')">
                                         </div>
                                     </div>
                                 </fieldset>
@@ -235,8 +235,9 @@
                                 <p></p>
                             </li>
                             <li style="padding: 20px 20px 0px">
-                                <div class="form-group form-actions text-center">
-                                    <button type="submit" class="btn btn-sm btn-success send-btn">.:: @lang('schedule/sessions.session_store') ::.</button>
+                                <div id="session_actions" class="form-group form-actions text-center">
+                                    <input type="hidden" name="session_action_id" id="session_action_id">
+                                    <button type="submit" id="send-btn" class="btn btn-sm btn-primary send-btn">@lang('schedule/sessions.session_new_save')</button>
                                     {{--{!! Form::button('Login', array('class'=>'send-btn')) !!}--}}
                                 </div>
                             </li>
@@ -336,11 +337,31 @@
             $(document).on("click", '.session_edit', function(event) {
                 event.preventDefault();
                 var id = event.target.id;
+                $('#session_action_id').val(id);
                 $('#session_title').val($('#title_'+id).html());
                 $('#session_starts').val($('#start_time_'+id).html());
                 $('#session_ends').val($('#end_time_'+id).html());
                 $('#session_date').val($('#date_'+id).html());
-                $('#session_description').textContent($('#description_'+id).html());
+                CKEDITOR.instances.session_description.setData($('#description_'+id).html());
+//                $('#session_description').textContent($('#description_'+id).html());
+                $('#send-btn').html("@lang("schedule/sessions.session_change_save")");
+                if($('#undo-btn').length == 0) {
+                    $('#session_actions').append("<button type=\"submit\" id=\"undo-btn\" class=\"btn btn-sm btn-success send-btn\">@lang("schedule/sessions.session_action_undo")</button>");
+                }
+            });
+
+            $("#session_actions").on('click', '#undo-btn', function(event){
+                event.preventDefault();
+
+                $('#session_title').val("");
+                $('#session_starts').val("");
+                $('#session_ends').val("");
+                $('#session_date').val("");
+                $("#session_speakers").select2("val", "");
+                CKEDITOR.instances.session_description.setData("");
+                $('#send-btn').html("@lang("schedule/sessions.session_new_save")");
+                $('#undo-btn').remove();
+
             });
 
             $(document).on("click", '.session_delete', function(event) {
@@ -371,7 +392,7 @@
 
             $('.send-btn').click(function(){
                 $.ajax({
-                    url: 'store',
+                    url: '/backend/schedule/sessions/store',
                     type: "post",
                     data: { 'session_title':$('input[name=session_title]').val(),
                             'session_starts':$('input[name=session_starts]').val(),
@@ -379,20 +400,42 @@
                             'session_date':$('input[name=session_date]').val(),
                             'session_speakers[]':$("#session_speakers").select2("val"),
                             'session_description':CKEDITOR.instances.session_description.getData(),
+                            'session_action_id':$('input[name=session_action_id]').val(),
                             '_token': $('input[name=_token]').val()},
 //                    success: function(data){
 //                        alert(data);
 //                    }
 
                     success: function getcontent(session_title) {
-                        alert(session_speakers);
-                    $('#2016-06-20').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
-                        jQuery.ajax({
-                            url: "data",
-                            data: session_title,
-                            type: "POST",
-                            success:function(data){$('#2016-06-20').html(data);}
-                        });
+                        $('#session_title').val("");
+                        $('#session_starts').val("");
+                        $('#session_ends').val("");
+                        $('#session_date').val("");
+                        $("#session_speakers").select2("val", "");
+                        CKEDITOR.instances.session_description.setData("");
+
+                        if(!$('input[name=session_action_id]').val()){
+                            $('#sessions').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+                            jQuery.ajax({
+                                url: "/backend/schedule/sessions/show",
+                                type: "GET",
+                                success:function(data){
+                                    $('#sessions').html(data);
+                                }
+                            });
+                        } else {
+                            $('#session_action_id').val("");
+//                            $('#2016-06-20').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+                            jQuery.ajax({
+                                url: "/backend/schedule/sessions/data",
+//                                data: session_title,
+//                                type: "POST",
+                                type: "GET",
+                                success:function(data){
+                                    $('#session_'+$('input[name=session_action_id]').val()).html(data);
+                                }
+                            });
+                        }
                     }
 
                 });

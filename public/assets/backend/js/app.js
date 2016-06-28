@@ -103,6 +103,7 @@ var App = function() {
         $('.input-tags').tagsInput({ width: 'auto', height: 'auto'});
 
         // Initialize Datepicker
+        //$('.input-datepicker, .input-daterange').datepicker({weekStart: 1});
         $('.input-datepicker, .input-daterange').datepicker({weekStart: 1});
         $('.input-datepicker-close').datepicker({weekStart: 1}).on('changeDate', function(e){ $(this).datepicker('hide'); });
 
