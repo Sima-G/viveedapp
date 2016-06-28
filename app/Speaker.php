@@ -18,4 +18,33 @@ class Speaker extends Model
     protected $fillable = ['firstname', 'lastname', 'description', 'email'];
     protected $guarded = ['id'];
 
+//    protected $appends = ['is_value', 'is_text'];
+
+    protected $appends = array('value', 'full_name', 'text');
+
+    public function getFullNameAttribute()
+    {
+        return $this->firstname . " " . $this->lastname;
+    }
+
+    public function getValueAttribute()
+    {
+        return $this->id;
+    }
+
+    public function getTextAttribute()
+    {
+        return $this->firstname . " " . $this->lastname;
+    }
+
+//    public function getIsValueAttribute()
+//    {
+//        return $this->attributes['value'] == 'yes';
+//    }
+//
+//    public function getIsTextAttribute()
+//    {
+//        return $this->attributes['text'] == 'yes';
+//    }
+
 }

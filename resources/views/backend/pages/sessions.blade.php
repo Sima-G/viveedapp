@@ -207,11 +207,11 @@
                                         <label class="col-md-4 control-label" for="example-chosen-multiple">@lang('schedule/sessions.session_speakers')</label>
                                         <div class="col-md-6">
                                             <select id="session_speakers" name="session_speakers" class="select-chosen" data-placeholder="@lang('schedule/sessions.session_speakers_desc')" style="width: 250px;" multiple>
-                                                <option value="United States">United States</option>
+                                                {{--<option value="United States">United States</option>
                                                 <option value="United Kingdom">United Kingdom</option>
                                                 <option value="Afghanistan">Afghanistan</option>
                                                 <option value="Aland Islands">Aland Islands</option>
-                                                <option value="Albania">Albania</option>
+                                                <option value="Albania">Albania</option>--}}
                                             </select>
                                         </div>
                                     </div>
@@ -263,9 +263,48 @@
 
     <script type="text/javascript">
 
+//        $('.session_speakers input').autocomplete({
+//            source: function( request, response ) {
+//                $.ajax({
+//                    url: "/backend/schedule/sessions/speakers",
+//                    beforeSend: function(){$('ul.session_speakers').empty();},
+//                    success: function( data ) {
+//                        $("#session_speakers").append(data);
+//                    }
+//                });
+//            }
+//        });
+
+//        jQuery.ajax({
+//            url: "/backend/schedule/sessions/speakers",
+//            type: "GET",
+//            success:function(data){
+////                $("#session_speakers").empty();
+////                $("#session_speakers").append(data);
+//                $("#session_speakers").append(data);
+//            }
+//        });
+
+            $("#session_speakers").ajaxChosen({
+                type: 'GET',
+                url: '/backend/schedule/sessions/speakers',
+                dataType: 'json'
+            }, function (data) {
+                var results = [];
+
+                $.each(data, function (i, val) {
+                    results.push({ value: val.value, text: val.text });
+                });
+
+                return results;
+            });
 
 
         jQuery(document).ready(function(){
+
+
+
+
 
             $('#sessions').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
             jQuery.ajax({

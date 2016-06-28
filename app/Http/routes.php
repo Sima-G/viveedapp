@@ -54,6 +54,8 @@ Route::post('/backend/schedule/sessions/store', 'SessionController@store');
 Route::get('/backend/schedule/sessions/data', 'SessionController@data');
 Route::post('/backend/schedule/sessions/data', 'SessionController@data');
 
+Route::get('/backend/schedule/sessions/speakers', 'SessionController@speakers');
+
 
 
 

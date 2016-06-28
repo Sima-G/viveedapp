@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 // Viveed;
 
+use App\Speaker;
 use Input;
 use Request;
 
@@ -129,6 +130,34 @@ class SessionController extends Controller
 
 
 
+    }
+
+    public function speakers()
+    {
+//        $speakers = Speaker::Select('id')->get();
+        $speakers = Speaker::all()->lists('full_name', 'id');
+        $speakers = Speaker::select(array('id' , 'firstname'))->get(['id AS value']);
+//        $speakers = Speaker::select('')->get();
+        $speakers = Speaker::select('*')->get();
+
+        $speakarray = array();
+
+        foreach($speakers AS $speaker){
+            $speakarray[] = $speaker->firstname;
+        }
+
+
+//        $speakers = Speaker::find(1);
+
+//        foreach ( $speakers as $speaker ){
+//            echo "<option value=\"" . $speaker->id . "\">" . $speaker->lastname . " " . $speaker->firstname . "</option>";
+//        }
+/*        Speaker::all()->each(function($row){
+            $row->setHidden(array('id' , 'firstname'));
+        });
+        return json_encode($row);*/
+//        return $speakers->full_name;
+        return json_encode($speakarray);
     }
 
 }
