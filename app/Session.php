@@ -18,4 +18,9 @@ class Session extends Model
     protected $fillable = ['title', 'description', 'start_time', 'end_time', 'date'];
     protected $guarded = ['id'];
 
+    public function speakers()
+    {
+        return $this->belongsToMany('App\Speaker')->withTimestamps();
+    }
+
 }

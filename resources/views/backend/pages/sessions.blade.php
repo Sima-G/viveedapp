@@ -206,12 +206,8 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="example-chosen-multiple">@lang('schedule/sessions.session_speakers')</label>
                                         <div class="col-md-6">
-                                            <select id="session_speakers" name="session_speakers" class="select-chosen" data-placeholder="@lang('schedule/sessions.session_speakers_desc')" style="width: 250px;" multiple>
-                                                {{--<option value="United States">United States</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="Afghanistan">Afghanistan</option>
-                                                <option value="Aland Islands">Aland Islands</option>
-                                                <option value="Albania">Albania</option>--}}
+                                            <select id="session_speakers" name="session_speakers[]" class="select-select2" style="width: 100%;" data-placeholder="@lang('schedule/sessions.session_speakers_desc')" style="width: 250px;" multiple>
+                                                <option></option>
                                             </select>
                                         </div>
                                     </div>
@@ -263,6 +259,9 @@
 
     <script type="text/javascript">
 
+
+
+
 //        $('.session_speakers input').autocomplete({
 //            source: function( request, response ) {
 //                $.ajax({
@@ -285,24 +284,30 @@
 //            }
 //        });
 
-            $("#session_speakers").ajaxChosen({
-                type: 'GET',
-                url: '/backend/schedule/sessions/speakers',
-                dataType: 'json'
-            }, function (data) {
-                var results = [];
 
-                $.each(data, function (i, val) {
-                    results.push({ value: val.value, text: val.text });
-                });
-
-                return results;
-            });
 
 
         jQuery(document).ready(function(){
 
 
+            $('#session_speakers').select2({
+                placeholder: 'Enter a tag',
+                ajax: {
+                    dataType: 'json',
+                    url: '/backend/schedule/sessions/speakers',
+                    delay: 400,
+                    data: function(params) {
+                        return {
+                            term: params.term
+                        }
+                    },
+                    processResults: function (data, page) {
+                        return {
+                            results: data
+                        };
+                    },
+                }
+            });
 
 
 
@@ -372,6 +377,7 @@
                             'session_starts':$('input[name=session_starts]').val(),
                             'session_ends':$('input[name=session_ends]').val(),
                             'session_date':$('input[name=session_date]').val(),
+                            'session_speakers[]':$("#session_speakers").select2("val"),
                             'session_description':CKEDITOR.instances.session_description.getData(),
                             '_token': $('input[name=_token]').val()},
 //                    success: function(data){
@@ -379,6 +385,7 @@
 //                    }
 
                     success: function getcontent(session_title) {
+                        alert(session_speakers);
                     $('#2016-06-20').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
                         jQuery.ajax({
                             url: "data",

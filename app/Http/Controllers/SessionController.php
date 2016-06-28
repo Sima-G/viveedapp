@@ -36,6 +36,8 @@ class SessionController extends Controller
                 'date'	            => Input::get('session_date'),
             ));
 
+            $session->speakers()->attach(Input::get('session_speakers'));
+
             print_r($data);
             die;
         }
@@ -143,7 +145,7 @@ class SessionController extends Controller
         $speakarray = array();
 
         foreach($speakers AS $speaker){
-            $speakarray[] = $speaker->firstname;
+            $speakarray[] = array('id'=>$speaker->id, 'text'=>$speaker->full_name);
         }
 
 
@@ -157,6 +159,9 @@ class SessionController extends Controller
         });
         return json_encode($row);*/
 //        return $speakers->full_name;
+
+
+
         return json_encode($speakarray);
     }
 

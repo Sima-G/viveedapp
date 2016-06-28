@@ -47,4 +47,9 @@ class Speaker extends Model
 //        return $this->attributes['text'] == 'yes';
 //    }
 
+    public function sessions()
+    {
+        return $this->belongsToMany('App\Session');
+    }
+
 }
