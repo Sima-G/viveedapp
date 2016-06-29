@@ -15,15 +15,19 @@
 //    return view('welcome');
 //});
 
-Route::get('/', function () {
+Route::get('/', array('as' => 'preview', function () {
     return view('frontend.master');
-});
+}));
 
 
 
-Route::get('/backend', function () {
+Route::get('/backend', array('as' => 'login', function () {
     return view('backend.pages.login');
-});
+}));
+
+Route::get('/backend/home', array('as' => 'home', function () {
+    return view('backend.pages.home');
+}));
 
 Route::post('/store', 'SessionController@store');
 
@@ -56,8 +60,10 @@ Route::post('/backend/schedule/sessions/store', 'SessionController@store');
 Route::get('/backend/schedule/sessions/data', 'SessionController@data');
 Route::post('/backend/schedule/sessions/data', 'SessionController@data');
 
-Route::get('/backend/schedule/sessions/speakers', 'SessionController@speakers');
+Route::get('/backend/schedule/sessions/speaker_list', 'SessionController@speaker_list');
 
+Route::get('/backend/schedule/sessions/speakers', 'SessionController@speakers');
+Route::post('/backend/schedule/sessions/delete', 'SessionController@delete');
 
 
 

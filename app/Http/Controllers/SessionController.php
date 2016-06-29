@@ -30,7 +30,7 @@ class SessionController extends Controller
         if (Request::ajax()) {
             $data = Input::all();
 
-            if(Input::has('$session_action_id')){
+//            if(Input::has('$session_action_id')){
 
                 // find the bear
                 $session = Session::find(Input::get('session_action_id'));
@@ -49,7 +49,13 @@ class SessionController extends Controller
                 $session->speakers()->attach(Input::get('session_speakers'));
                 return $session->id;
 
-            } else {
+//                $session_resparray = array();
+//                $session_resparray[] = array('last_inserted_id'=>$session->id, 'action'=>'new');
+//                return json_encode($session_resparray[]);
+
+//                return "session_added";
+
+            /*} else {
 
                 $session = Session::Create(array(
                     'title' => Input::get('session_title'),
@@ -63,7 +69,7 @@ class SessionController extends Controller
 
                 $last_inserted_id = $session->id;
                 return $last_inserted_id;
-            }
+            }*/
 
             print_r($data);
             die;
@@ -72,27 +78,47 @@ class SessionController extends Controller
 
     public function data()
     {
-        // Getting all table data
-        $session = Session::find(Input::get('session_action_id'));
 
-                $start_time = strtotime($session->start_time);
-                $end_time = strtotime($session->end_time);
-                $duration = $end_time - $start_time;
+            // Getting all table data
+            $data = Input::all();
 
-                echo "<li id=\"session_" . $session->id . "\">";
-                echo "<div class=\"timeline-icon\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-inverse fa-stack-1x\">" . abs($duration/60) . "'</i></div>";
-                echo "<div class=\"timeline-time\">&nbsp;" . date('H:i', $start_time) . "-" . date('H:i', $end_time) . "</div>";
-                echo "<div class=\"timeline-content\">";
-                echo "<p class=\"push-bit\"><h3>$session->title</h3></p>";
-                echo "<p class=\"push-bit\">$session->description</p>";
-                echo "<p class=\"push-bit\"><strong>Ομιλητές:</strong></p>";
-                echo "<p>";
-                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\"><i class=\"fa fa-pencil-square-o\"></i> Επεξεργασία</a>";
-                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\"><i class=\"fa fa-times-circle-o\"></i> Διαγραφή</a>";
-                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\"><i class=\"fa fa-share-square-o\"></i> Share</a>";
-                echo "</p>";
-                echo "</div>";
-                echo "</li>";
+            $session = Session::find(Input::get('session_id'));
+
+            $start_time = strtotime($session->start_time);
+            $end_time = strtotime($session->end_time);
+            $duration = $end_time - $start_time;
+
+            $speakarray = array();
+            foreach ($session->speakers AS $speaker) {
+                $speakarray[] = array('id' => $speaker->id, 'text' => $speaker->full_name);
+            }
+
+
+            echo "<div id=\"something\" data-json=\"encodeURIComponent(JSON.stringify({\"name\":\"John\"}))\"></div>";
+
+            echo "<li id=\"session_" . $session->id . "\">";
+            echo "<span id=\"speakers\" value=\"\"></span>";
+            echo "<div class=\"timeline-icon\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-inverse fa-stack-1x\">" . abs($duration / 60) . "'</i></div>";
+            echo "<div class=\"timeline-time\">&nbsp;" . date('H:i', $start_time) . "-" . date('H:i', $end_time) . "</div>";
+            echo "<div class=\"timeline-content\">";
+            echo "<p class=\"push-bit\"><h3>$session->title</h3></p>";
+            echo "<p class=\"push-bit\">$session->description</p>";
+            echo "<p class=\"push-bit\"><strong>Ομιλητές:</strong> ";
+            foreach ($session->speakers as $key => $speaker) {
+                if ($key > 0) {
+                    echo ", ";
+                }
+                echo "<span id=\"" . $speaker->id . "\" class=\"speaker_" . $session->id . "\" value=\"" . $speaker->full_name . "\">";
+                echo $speaker->full_name;
+                echo "</span>";
+            }
+            echo "</p><p>";
+            echo "<a href=\"#\" id='" . $session->id . "' class=\"btn btn-xs btn-default session_edit\"><i class=\"fa fa-pencil-square-o\"></i> " . trans('schedule/sessions.session_edit') . "</a>&nbsp;";
+            echo "<a href=\"javascript:void(0)\" id='" . $session->id . "' class=\"btn btn-xs btn-default session_delete\"><i class=\"fa fa-times-circle-o\"></i> " . trans('schedule/sessions.session_delete') . "</a>";
+            echo "</p>";
+            echo "</div>";
+            echo "</li>";
+
     }
 
     public function show()
@@ -132,9 +158,18 @@ class SessionController extends Controller
                 echo "<p class=\"push-bit\"><h3>$session->title</h3></p>";
                 echo "<p class=\"push-bit\">$session->description</p>";
                 echo "<p class=\"push-bit\"><strong>" . trans('schedule/sessions.session_speakers') . ":</strong> ";
-                    foreach($session->speakers as $speaker){
+                    /*foreach($session->speakers as $speaker){
                             echo $speaker->full_name;
+                    }*/
+
+                foreach ($session->speakers as $key => $speaker) {
+                    if ($key > 0) {
+                        echo ", ";
                     }
+                    echo "<span id=\"" . $speaker->id . "\" class=\"speaker_" . $session->id . "\" value=\"" . $speaker->full_name . "\">";
+                    echo $speaker->full_name;
+                    echo "</span>";
+                }
 
                 echo "</p><p>";
                 echo "<a href=\"#\" id='" . $session->id . "' class=\"btn btn-xs btn-default session_edit\"><i class=\"fa fa-pencil-square-o\"></i> " . trans('schedule/sessions.session_edit') . "</a>&nbsp;";
@@ -183,6 +218,27 @@ class SessionController extends Controller
 
 
         return json_encode($speakarray);
+    }
+
+    public function speaker_list()
+    {
+
+        $speakers = Speaker::select('*')->get();
+        foreach($speakers AS $speaker){
+            echo "<option value=\"" . $speaker->id . "\">" . $speaker->full_name . "</option>";
+        }
+
+    }
+
+    public function delete()
+    {
+        if (Request::ajax()) {
+            $data = Input::all();
+            if(Input::has('session_action_id')) {
+                Session::destroy(Input::get('session_action_id'));
+                return Input::get('session_action_id');
+            }
+        }
     }
 
 }

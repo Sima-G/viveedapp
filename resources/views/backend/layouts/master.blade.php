@@ -40,7 +40,8 @@
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="{{ asset('assets/backend/css/themes.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('assets/backend/css/themes.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/themes/night.css') }}">
     <!-- END Stylesheets -->
 
     <script>
@@ -82,7 +83,9 @@
 
 
 </head>
-<body class="page-loading" onload="startTime(); viveed_date();">
+{{--<body class="page-loading" onload="startTime(); viveed_date();">--}}
+
+<body class="">
 <!-- Page Wrapper -->
 <!-- In the PHP version you can set the following options from inc/config file -->
 <!--
@@ -134,7 +137,9 @@
 
         'enable-cookies'                                enables cookies for remembering active color theme when changed from the sidebar links
     -->
-    <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+
+    {{--<div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">--}}
+    <div id="page-container" class="sidebar-mini sidebar-visible-lg-mini sidebar-no-animations">
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt">
             <!-- Wrapper for scrolling functionality -->
@@ -398,7 +403,7 @@
                     {{--<!-- END Sidebar Notifications -->--}}
 
                     <!-- Sidebar Notifications -->
-                    <div class="sidebar-header">
+                    {{--<div class="sidebar-header">
                                 <span class="sidebar-header-options clearfix">
                                     <a href="javascript:void(0)" title="@lang('master.datetime')"><i class="gi gi-calendar"></i></a>
                                 </span>
@@ -411,7 +416,7 @@
                         <div class="vvd_time">
                             <h2 id="vvd_time" class="text-center vvd_time"></h2>
                         </div>
-                    </div>
+                    </div>--}}
                     <!-- END Sidebar Notifications -->
 
 
@@ -439,7 +444,52 @@
                 'navbar-fixed-bottom'       for a bottom fixed header (fixed sidebars with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
                     'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
             -->
-            <header class="navbar navbar-default">
+            <header class="navbar navbar-inverse">
+
+                <!-- Left Header Navigation -->
+                <ul class="nav navbar-nav-custom">
+                    <!-- Main Sidebar Toggle Button -->
+                    <li>
+                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
+                            <i class="fa fa-bars fa-fw"></i>
+                        </a>
+                    </li>
+                    <!-- END Main Sidebar Toggle Button -->
+
+                    <!-- Template Options -->
+                    <!-- Change Options functionality can be found in js/app.js - templateOptions() -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="gi gi-settings"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-custom dropdown-options">
+                            <li class="dropdown-header text-center">Header Style</li>
+                            <li>
+                                <div class="btn-group btn-group-justified btn-group-sm">
+                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-header-default">Light</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-header-inverse">Dark</a>
+                                </div>
+                            </li>
+                            <li class="dropdown-header text-center">Page Style</li>
+                            <li>
+                                <div class="btn-group btn-group-justified btn-group-sm">
+                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-main-style">Default</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-main-style-alt">Alternative</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END Template Options -->
+
+                    <li>
+                        <a href="javascript:void(0)" style="text-decoration: none;">
+                            <i class="fa fa-calendar fa-fw"></i> <strong>Τρίτη 14 Ιουνίου 2016</strong>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- END Left Header Navigation -->
 
             </header>
             <!-- END Header -->

@@ -36,6 +36,7 @@ return [
     'session_action_undo'           => 'Αναίρεση και Νέα',
     'session_edit'                  => 'Επεξεργασία',
     'session_delete'                => 'Διαγραφή',
+    'session_del_msg'               => 'Η ομιλία διεγράφη.',
 
 
 ];
