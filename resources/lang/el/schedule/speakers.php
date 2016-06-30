@@ -13,13 +13,14 @@ return [
     |
     */
 
-    'speaker'                        => 'Ομιλιτής',
+    'speaker'                       => 'Ομιλιτής',
     'speakers_list'                 => 'Λίστα',
-    'speakers_list_is_empty'       => 'Η λίστα είναι κενή!',
+    'speakers_list_is_empty'        => 'Η λίστα είναι κενή!',
     'of_speakers'                   => 'Ομιλιτών',
+    'speaker_sessions'              => 'Ομιλίες',
     'speakers'                      => 'Ομιλητές',
-    'speaker_edit'                      => 'Επεξεργασία Ομιλητή',
-    'speaker_delete'                      => 'Διαγραφή Ομιλητή',
+    'speaker_edit'                  => 'Επεξεργασία Ομιλητή',
+    'speaker_delete'                => 'Διαγραφή Ομιλητή',
     'speaker_firstname'             => 'Επώνυμο',
     'speaker_firstname_desc'        => 'Επώνυμο Ομιλητή...',
     'speaker_lastname'              => 'Όνομα',

@@ -48,12 +48,6 @@
                             {!!  $settings->description !!}
                         </div>
                     </div>
-
-
-                    {{--<div class="block-title">--}}
-                        {{--<hr>--}}
-                    {{--</div>--}}
-
                 </div>
                 <!-- END Timeline Style Block -->
             </div>
@@ -100,13 +94,13 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="schedule_date_starts">@lang('schedule/settings.schedule_date_starts')</label>
                                         <div class="col-md-6 col-md-offset-4">
-                                            <input type="text" id="schedule_date_starts" name="schedule_date_starts" value="{{ $settings->start_date }}" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ">
+                                            <input type="text" id="schedule_date_starts" name="schedule_date_starts" value="{{ $settings->start_date }}" class="form-control input-datepicker" readonly="readonly" data-date-format="dd/mm/yyyy" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="schedule_date_ends">@lang('schedule/settings.schedule_date_ends')</label>
                                         <div class="col-md-6 col-md-offset-4">
-                                            <input type="text" id="schedule_date_ends" name="schedule_date_ends" value="{{ $settings->end_date }}" class="form-control input-datepicker" data-date-format="dd/mm/yyyy" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ">
+                                            <input type="text" id="schedule_date_ends" name="schedule_date_ends" value="{{ $settings->end_date }}" class="form-control input-datepicker" readonly="readonly" language="el" data-date-format="dd/mm/yyyy" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ">
                                         </div>
                                     </div>
                                 </fieldset>
@@ -151,47 +145,14 @@
 @stop
 
 @section('footer')
+        <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
+    <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/pages/settings/viveed.js') }}"></script>
+    {{--@if( Lang::locale() === 'el' )--}}
+        {{--<script src="{{ asset('assets/backend/js/viveed/datepicker-el.js') }}"></script>--}}
+        {{--<script type="text/javascript">--}}
+            {{--$("#schedule_date_starts").datepicker($.datepicker.regional["el"]);--}}
+        {{--</script>--}}
+    {{--@endif--}}
 
-
-
-    <script type="text/javascript">
-        jQuery(document).ready(function(){
-
-
-            $('.send-btn').click(function(){
-                $.ajax({
-                    url: '/backend/schedule/settings/store',
-                    type: "post",
-                    data: { 'schedule_title':$('input[name=schedule_title]').val(),
-                            'schedule_date_starts':$('input[name=schedule_date_starts]').val(),
-                            'schedule_date_ends':$('input[name=schedule_date_ends]').val(),
-                            'schedule_description':CKEDITOR.instances.schedule_description.getData(),
-                            '_token': $('input[name=_token]').val()},
-
-                    success: function getcontent(session_title) {
-//                    $('#schedule_reload').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
-                        jQuery.ajax({
-                            url: "/backend/schedule/settings/data",
-                            data: {'_token': $('input[name=_token]').val()},
-                            dataType: 'JSON',
-                            type: "POST",
-                            success:function(data){
-                                var start_dateAr = data.start_date.split('-');
-                                var end_dateAr = data.end_date.split('-');
-                                var start_date = start_dateAr[2] + '/' + start_dateAr[1] + '/' + start_dateAr[0];
-                                var end_date = end_dateAr[2] + '/' + end_dateAr[1] + '/' + end_dateAr[0];
-                                var date = '<p class="lead">'+start_date+' - '+end_date+'</p>';
-
-                                $('#title').html(data.title);
-                                $("#date").html(data.start_date +"-"+data.end_date);
-                                $('#description').html(date+data.description);
-                            }
-                        });
-                    }
-
-                });
-            });
-
-        });
-    </script>
 @stop

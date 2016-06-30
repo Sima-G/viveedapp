@@ -13,6 +13,10 @@ return [
     |
     */
 
+    'viveed'                            => 'Viveed',
+    'backend'                           => 'Διαχείριση',
+    'home'                              => 'Αρχική',
+    'preview'                           => 'Προεπισκόπηση',
     'schedule'                          => 'ΠΡΟΓΡΑΜΜΑ',
     'sessions'                          => 'Ομιλίες',
     'speakers'                          => 'Ομιλητές',

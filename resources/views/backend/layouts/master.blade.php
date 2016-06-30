@@ -328,7 +328,7 @@
                 <div class="sidebar-content">
                     <!-- Brand -->
                     <a href="index.html" class="sidebar-brand">
-                        <span class="sidebar-nav-mini-hide"><strong>Viveed</strong> - backend</span>
+                        <span class="sidebar-nav-mini-hide"><strong>@lang('master.viveed')</strong> - @lang('master.backend')</span>
                     </a>
                     <!-- END Brand -->
 
@@ -356,9 +356,20 @@
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
                         <li class="sidebar-header">
+                            <span class="sidebar-header-title">@lang('master.viveed')</span>
+                        </li>
+                        <li>
+                            <a href="{{URL::route('home')}}" class="sidebar-nav-menu"><i class="gi gi-home sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.home')</span></a>
+                            <a href="{{URL::route('preview')}}" target="_blank" class="sidebar-nav-menu"><i class="gi gi-eye_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.preview')</span></a>
+                        </li>
+                    </ul>
+
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-header">
                             <span class="sidebar-header-title">@lang('master.schedule')</span>
                         </li>
-                        <li class="active">
+
+                        <li @if((Route::current()->getName() == 'sessions') || (Route::current()->getName() == 'speakers') || (Route::current()->getName() == 'settings'))  class="active" @endif>
                             <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.sessions')</span></a>
                             <ul>
                                 <li>
@@ -592,8 +603,7 @@
 
 
 
-<!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
-<script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+
 
 
 

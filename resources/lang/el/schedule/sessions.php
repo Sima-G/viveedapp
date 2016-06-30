@@ -14,6 +14,7 @@ return [
     */
 
     'session'                       => 'Ομιλία',
+    'sessions'                      => 'Ομιλίες',
     'session_date_placeholder'      => 'ΗΗ/ΜΜ/ΕΕΕΕ',
     'timeline'                      => 'Ωρολόγιο',
     'of_schedule'                   => 'Προγράμματος',
@@ -37,6 +38,7 @@ return [
     'session_edit'                  => 'Επεξεργασία',
     'session_delete'                => 'Διαγραφή',
     'session_del_msg'               => 'Η ομιλία διεγράφη.',
+    'session_help'                  => 'Στην περιοχή αυτή μπορείτε να επεξεργαστείτε τις ομιλίες.',
 
 
 ];
