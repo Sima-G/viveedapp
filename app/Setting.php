@@ -3,6 +3,11 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+//Viveed
+use Carbon;
+
+
+
 class Setting extends Model
 {
 
@@ -17,5 +22,35 @@ class Setting extends Model
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
     protected $fillable = ['type', 'title', 'logo', 'description', 'start_date', 'end_date'];
     protected $guarded = ['id'];
+
+    protected $appends = array('config_start_date', 'config_end_date');
+
+    /*public function formattedStartDate()
+    {
+        return strtotime($this->start_date);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return $value->format('M d Y');
+    }*/
+
+    private function getStartDateValue() {
+//        return date('m/d/Y', strtotime($this->attributes['start_date']));
+//        return Carbon\Carbon::createFromFormat('YYYY-MM-DD', $this->attributes['start_date']);
+        return Carbon::parse($this->attributes['start_date']);
+    }
+
+    /*public function getStartDateAttribute($date) {
+        return Carbon\Carbon::parse($date)->format('d/m/Y');
+    }*/
+
+    public function getConfigStartDateAttribute() {
+        return Carbon\Carbon::parse($this->start_date)->format('d/m/Y');
+    }
+
+    public function getConfigEndDateAttribute() {
+        return Carbon\Carbon::parse($this->end_date)->format('d/m/Y');
+    }
 
 }

@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
         customConfig: "../../pages/speakers/ckeditor-config.js"
     });
 
-    $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i><br/></div>');
+    $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i><br/><br/></div>');
     jQuery.ajax({
         url: "/backend/schedule/speakers/show",
         type: "GET",
@@ -26,7 +26,7 @@ jQuery(document).ready(function () {
         $('#send-btn').html(send_btn_alt_txt);
         if ($('#undo-btn').length == 0) {
             var alt_button_alt_txt = $('#alt-btn-txt-alt').val();
-            $('#speaker_actions').append('<button type=\"submit\" id=\"undo-btn\" class=\"btn btn-sm btn-success send-btn\">' + alt_button_alt_txt + '</button>');
+            $('#speaker_actions').append('<button type=\"submit\" id=\"undo-btn\" class=\"btn btn-sm btn-warning send-btn\"><i class=\"fa fa-repeat\"></i>  ' + alt_button_alt_txt + '</button>');
         }
 
     });
@@ -62,39 +62,97 @@ jQuery(document).ready(function () {
 
     });
 
-    $('.send-btn').click(function () {
-        $.ajax({
-            url: '/backend/schedule/speakers/store',
-            type: "post",
-            data: {
-                'speaker_firstname': $('input[name=speaker_firstname]').val(),
-                'speaker_lastname': $('input[name=speaker_lastname]').val(),
-                'speaker_email': $('input[name=speaker_email]').val(),
-                'speaker_description': CKEDITOR.instances.speaker_description.getData(),
-                'speaker_action_id': $('input[name=speaker_action_id]').val(),
-                '_token': $('input[name=_token]').val()
+    $('#form_speakers').validate({
+
+        ignore: [],
+        errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+        errorElement: 'div',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can use the following if you would like to highlight with green color the input after successful validation!
+            e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+            speaker_firstname: {
+                required: true
             },
-
-            success: function getcontent(data) {
-                if ($('#widget_' + data).length >> 0) {
-                    $('#widget_' + data).remove();
+            speaker_lastname: {
+                required: true
+            },
+            speaker_email: {
+                email: true
+            },
+            speaker_description: {
+                required: function()
+                {
+                    CKEDITOR.instances.speaker_description.updateElement();
                 }
-                $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
-                jQuery.ajax({
-                    url: "/backend/schedule/speakers/data",
-                    type: "post",
-                    widget_id: data,
-                    data: {
-                        'speaker_action_id': data,
-                        '_token': $('input[name=_token]').val()
-                    },
-                    success: function (data) {
-                        $('#speaker-list').append(data);
-                    }
-                });
             }
+        },
+        messages: {
+            speaker_firstname: 'Εισάγετε το επώνυμο του ομιλητή',
+            speaker_lastname: 'Εισάγετε το όνομα του ομιλητή',
+            speaker_email: 'Εισάγετε ένα έγκυρο email ή αφήστε το κενό',
+            speaker_description: 'Εισάγετε μια περιγραφή'
+        },
 
-        });
+        submitHandler: function(form) {
+            //$('.send-btn').click(function () {
+            $.ajax({
+                url: '/backend/schedule/speakers/store',
+                type: "post",
+                data: {
+                    'speaker_firstname': $('input[name=speaker_firstname]').val(),
+                    'speaker_lastname': $('input[name=speaker_lastname]').val(),
+                    'speaker_email': $('input[name=speaker_email]').val(),
+                    'speaker_description': CKEDITOR.instances.speaker_description.getData(),
+                    'speaker_action_id': $('input[name=speaker_action_id]').val(),
+                    '_token': $('input[name=_token]').val()
+                },
+
+                beforeSend: function () {
+                    $("<div id='content_loader' style='text-align: center'><i style='position: relative; top: calc(50% - 10px)' class='fa fa-asterisk fa-4x fa-spin'></i></div>").css({
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        opacity: 0.7,
+                        background: "#ccc"
+                    }).appendTo($(".speakers_content").css("position", "relative"));
+                },
+
+                success: function getcontent(data) {
+                    if ($('#widget_' + data).length >> 0) {
+                        $('#widget_' + data).remove();
+                    }
+                    $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+                    jQuery.ajax({
+                        url: "/backend/schedule/speakers/data",
+                        type: "post",
+                        widget_id: data,
+                        data: {
+                            'speaker_action_id': data,
+                            '_token': $('input[name=_token]').val()
+                        },
+                        success: function (data) {
+                            $('#speaker-list').append(data);
+                            $('#content_loader').remove();
+                        }
+                    });
+                }
+
+            });
+        }
     });
+
+
 
 });

@@ -137,7 +137,7 @@
                                             <div class="col-md-6 col-md-offset-4">
                                                 <input type="text" id="session_date" name="session_date"
                                                        class="form-control input-datepicker"
-                                                       data-date-format="dd/mm/yyyy" data-date-start-date="10/06/2016"
+                                                       data-date-format="dd/mm/yyyy" data-date-start-date="{{ $config->config_start_date }}" data-date-end-date="{{ $config->config_end_date }}"
                                                        readonly="readonly"
                                                        placeholder="@lang('schedule/sessions.session_date_placeholder')">
                                             </div>
@@ -175,6 +175,9 @@
                                     <div class="media-body">
                                         <fieldset>
                                             <legend>
+                                                {{--{{ gettype($config->start_date) }}--}}
+                                                {{--{{ $config->config_start_date }}--}}
+                                                {{--{{ dd($config->start_date) }}--}}
                                                 <i class="fa fa-angle-right"></i> @lang('schedule/sessions.session_description')
                                             </legend>
                                             <div class="form-group">

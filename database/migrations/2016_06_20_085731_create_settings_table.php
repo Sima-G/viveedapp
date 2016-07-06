@@ -15,11 +15,12 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
-            $table->text('title');
-            $table->string('logo');
-            $table->text('description');
-            $table->time('start_date');
-            $table->time('end_date');
+            $table->text('title')->nullable();
+            $table->string('logo')->nullable();
+            $table->text('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->tinyInteger('init');
             $table->softDeletes();
             $table->timestamps();
         });

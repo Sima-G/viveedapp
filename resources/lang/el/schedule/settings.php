@@ -17,13 +17,15 @@ return [
     'of_schedule'                               => 'Προγράμματος',
     'schedule'                                  => 'Πρόγραμμα',
     'settings'                                  => 'Αρχικοποίηση',
+    'msg_setting_init'                          => 'Αρχικές ρυθμίσεις',
+
     'schedule_title'                            => 'Τίτλος Προγράμματος',
     'schedule_title_desc'                       => 'Ο Τίτλος Του Προγράμματος...',
     'schedule_title_help'                       => 'Εισάγετε Τον Τίτλο Του Προγράμματος',
     'schedule_description'                      => 'Περίληψη Προγράμματος',
     'schedule_date'                             => 'Ημερομηνίες Προγράμματος',
-    'schedule_date_starts'                      => 'Ημερομηνία Έναρξης',
-    'schedule_date_ends'                        => 'Ημερομηνία Λήξης',
+    'schedule_date_starts'                      => 'Ημερομηνία Έναρξης (ΗΗ/ΜΜ/ΕΕΕΕ)',
+    'schedule_date_ends'                        => 'Ημερομηνία Λήξης (ΗΗ/ΜΜ/ΕΕΕΕ)',
     'schedule_store'                            => 'Αποθήκευση Προγράμματος',
     'schedule_help'                             => 'Στην περιοχή αυτή θα εισάγετε τις αρχικές ρυθμίσεις του προγράμματος.',
 

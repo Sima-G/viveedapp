@@ -4,7 +4,7 @@
     <meta name="_token" content="{!! csrf_token() !!}"/>
     @stop
 
-    @section('content')
+@section('content')
             <!-- Page content -->
     <div id="page-content">
         <!-- Contacts Header -->
@@ -38,7 +38,7 @@
                     <!-- END Contacts Title -->
 
                     <!-- Contacts Content -->
-                    <div id="speaker-list" class="row style-alt">
+                    <div id="speaker-list" class="row style-alt speakers_content">
                         <!-- Contact Widget -->
                         <div id="contact-list"></div>
                         <!-- END Contact Widget -->
@@ -58,11 +58,11 @@
                     <!-- END Add Contact Title -->
 
                     <!-- Add Contact Content -->
-                    <form action="/backend/schedule/speakers/store" enctype="multipart/form-data" method="post"
+                    <form id="form_speakers" action="/backend/schedule/speakers/store" enctype="multipart/form-data" method="post"
                           class="form-horizontal form-bordered" onsubmit="return false;">
                         <div class="form-group">
                             <label class="col-xs-3 control-label"
-                                   for="speaker_firstname">@lang('schedule/speakers.speaker_firstname')</label>
+                                   for="speaker_firstname">@lang('schedule/speakers.speaker_firstname') <span class="text-danger">*</span></label>
                             <div class="col-xs-9">
                                 <input type="text" id="speaker_firstname" name="speaker_firstname" class="form-control"
                                        placeholder="@lang('schedule/speakers.speaker_firstname_desc')">
@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label"
-                                   for="speaker_lastname">@lang('schedule/speakers.speaker_lastname')</label>
+                                   for="speaker_lastname">@lang('schedule/speakers.speaker_lastname') <span class="text-danger">*</span></label>
                             <div class="col-xs-9">
                                 <input type="text" id="speaker_lastname" name="speaker_lastname" class="form-control"
                                        placeholder="@lang('schedule/speakers.speaker_lastname_desc')">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label"
-                                   for="speaker_description">@lang('schedule/speakers.speaker_description')</label>
+                                   for="speaker_description">@lang('schedule/speakers.speaker_description') <span class="text-danger">*</span></label>
                             <div class="col-xs-9">
                                 <textarea id="speaker_description" name="speaker_description"
                                           class="ckeditor"></textarea>
@@ -96,14 +96,14 @@
                         <div class="form-group form-actions">
                             <div id="speaker_actions" class="col-xs-9 col-xs-offset-3">
                                 <input type="hidden" name="speaker_action_id" id="speaker_action_id">
+                                <input type="hidden" name="send-btn-txt" id="send-btn-txt"
+                                       value="<i class='fa fa-arrow-right'></i> @lang('schedule/speakers.speaker_new_save')">
                                 <input type="hidden" name="send-btn-txt-alt" id="send-btn-txt-alt"
-                                       value="@lang('schedule/speakers.speaker_change_save')">
-                                <input type="hidden" name="send-btn-txt-alt" id="send-btn-txt-alt"
-                                       value="@lang('schedule/speakers.speaker_change_save')">
+                                       value="<i class='fa fa-arrow-right'></i> @lang('schedule/speakers.speaker_change_save')">
                                 <input type="hidden" name="alt-btn-txt-alt" id="alt-btn-txt-alt"
                                        value="@lang('schedule/speakers.speaker_action_undo')">
                                 <button type="submit" id="send-btn"
-                                        class="btn btn-sm btn-primary send-btn">@lang('schedule/speakers.speaker_new_save')</button>
+                                        class="btn btn-sm btn-primary send-btn"><i class="fa fa-arrow-right"></i> @lang('schedule/speakers.speaker_new_save')</button>
                             </div>
                         </div>
                     </form>

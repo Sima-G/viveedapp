@@ -14,9 +14,9 @@ class CreateSessionSpeakerTable extends Migration
     {
         Schema::create('session_speaker', function (Blueprint $table) {
             $table->integer('session_id')->unsigned()->index();
-            $table->foreign('session_id')->references('id')->on('session')->onDelete('cascade');
+            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->integer('speaker_id')->unsigned()->index();
-            $table->foreign('speaker_id')->references('id')->on('speaker')->onDelete('cascade');
+            $table->foreign('speaker_id')->references('id')->on('speakers')->onDelete('cascade');
             $table->timestamps();
         });
     }

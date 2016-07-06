@@ -1,6 +1,8 @@
 @extends('backend.layouts.master')
 
-{{--@section('title', 'Page Title')--}}
+@section('title')
+    @lang('schedule/settings.msg_setting_init')
+@stop
 
 
 @section('header')
@@ -19,7 +21,7 @@
         <!-- Timeline Header -->
         <div class="content-header">
             <div class="header-section">
-                <h1><i class="fa fa-rss"></i> @lang('schedule/settings.settings') @lang('schedule/settings.of_schedule')<br><small>@lang('schedule/settings.schedule_help')</small></h1>
+                <h1><i class="fa fa-gear"></i> @lang('schedule/settings.settings') @lang('schedule/settings.of_schedule') @if($settings->init == 0) <span class="notice_init"><small>(@lang('schedule/settings.msg_setting_init'))</small></span> @endif <br><small>@lang('schedule/settings.schedule_help')</small></h1>
             </div>
         </div>
         <ul class="breadcrumb breadcrumb-top">
@@ -29,7 +31,7 @@
         <!-- END Timeline Header -->
 
         <!-- Timeline Content Row -->
-        <div class="row">
+        <div class="row settings_content">
             <div class="col-sm-6">
                 <!-- Timeline Style Block -->
                 <div id="schedule" class="block full">
@@ -44,8 +46,10 @@
 
                     <div class="row">
                         <div id="description" class="col-md-12">
-                            <p class="lead">{{ $settings->start_date . " - " . $settings->end_date}}</p>
-                            {!!  $settings->description !!}
+                            @if($settings->init != 0)
+                                <p class="lead">{{ $settings->start_date . " - " . $settings->end_date}}</p>
+                                {!!  $settings->description !!}
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -61,7 +65,7 @@
                     <!-- END Feed Style Title -->
 
                     <!-- Feed Style Content -->
-                    <form action="/backend/schedule/settings/store" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
+                    <form id="form_settings" action="/backend/schedule/settings/store" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
                     <div class="block-content-full">
 
 
@@ -73,7 +77,7 @@
                                 <div class="media-body">
 
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="schedule_title">@lang('schedule/settings.schedule_title')</label>
+                                            <label class="col-md-3 control-label" for="schedule_title">@lang('schedule/settings.schedule_title') <span class="text-danger">*</span></label>
                                             <div class="col-md-9">
                                                 <input type="text" id="schedule_title" name="schedule_title" value="{{ $settings->title }}" class="form-control" placeholder="@lang('schedule/settings.schedule_title_desc')">
                                                 <span class="help-block">@lang('schedule/settings.schedule_title_help')</span>
@@ -92,13 +96,13 @@
                                 <fieldset>
                                     <legend><i class="fa fa-angle-right"></i> @lang('schedule/settings.schedule_date')</legend>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="schedule_date_starts">@lang('schedule/settings.schedule_date_starts')</label>
+                                        <label class="col-md-4 control-label" for="schedule_date_starts">@lang('schedule/settings.schedule_date_starts') <span class="text-danger">*</span></label>
                                         <div class="col-md-6 col-md-offset-4">
                                             <input type="text" id="schedule_date_starts" name="schedule_date_starts" value="{{ $settings->start_date }}" class="form-control input-datepicker" readonly="readonly" data-date-format="dd/mm/yyyy" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="schedule_date_ends">@lang('schedule/settings.schedule_date_ends')</label>
+                                        <label class="col-md-4 control-label" for="schedule_date_ends">@lang('schedule/settings.schedule_date_ends') <span class="text-danger">*</span></label>
                                         <div class="col-md-6 col-md-offset-4">
                                             <input type="text" id="schedule_date_ends" name="schedule_date_ends" value="{{ $settings->end_date }}" class="form-control input-datepicker" readonly="readonly" language="el" data-date-format="dd/mm/yyyy" placeholder="ΗΗ/ΜΜ/ΕΕΕΕ">
                                         </div>
@@ -113,9 +117,10 @@
 
                                 <div class="media-body">
                                     <fieldset>
-                                        <legend><i class="fa fa-angle-right"></i> @lang('schedule/settings.schedule_description')</legend>
+                                        <legend><i class="fa fa-angle-right"></i> @lang('schedule/settings.schedule_description') <span class="text-danger">*</span></legend>
                                         <div class="form-group">
                                             <div class="col-xs-12">
+                                                <input type="hidden" name="schedule_init_status" id="schedule_init_status" value="{{ $settings->init }}">
                                                 <textarea id="schedule_description" name="schedule_description" class="ckeditor">{{ $settings->description }}</textarea>
                                             </div>
                                         </div>
@@ -128,7 +133,7 @@
                             </li>
                             <li style="padding: 20px 20px 0px">
                                 <div class="form-group form-actions text-center">
-                                    <button type="submit" class="btn btn-sm btn-success send-btn">.:: @lang('schedule/settings.schedule_store') ::.</button>
+                                    <button type="submit" class="btn btn-sm btn-primary send-btn"><i class="fa fa-arrow-right"></i> @lang('schedule/settings.schedule_store')</button>
                                 </div>
                             </li>
                         </ul>
@@ -145,6 +150,8 @@
 @stop
 
 @section('footer')
+    {{--<script src="{{ asset('assets/backend/js/pages/settings/formsValidation.js') }}"></script>--}}
+    {{--<script>$(function(){ FormsValidation.init(); });</script>--}}
         <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
     <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('assets/backend/js/pages/settings/viveed.js') }}"></script>

@@ -15,6 +15,13 @@
 //    return view('welcome');
 //});
 
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
+
+
 Route::get('/', array('as' => 'preview', function () {
     return view('frontend.master');
 }));

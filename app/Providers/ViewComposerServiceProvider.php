@@ -4,6 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+//Viveed
+use App\Setting;
+use App\Session;
+use App\Speaker;
+
 class ViewComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -13,9 +18,12 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('partials.umessages', function($view){
-
+        view()->composer('backend/partials.nav', function($view){
+            $view -> with('settings', Setting::where('type', '=', 'schedule')->first())
+                    -> with('session_count', Session::count())
+                    -> with('speaker_count', Speaker::count());
         });
+        view()->share('config', Setting::where('type', '=', 'schedule')->first());
     }
 
     /**

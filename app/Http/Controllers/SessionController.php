@@ -126,6 +126,7 @@ class SessionController extends Controller
         $settings = Setting::where('type', '=', 'schedule')->firstOrFail();
 
         $begin = new DateTime($settings->start_date);
+//        $begin = $settings->start_date;
         $end = new DateTime($settings->end_date);
         $end->modify('+1 day');
 
