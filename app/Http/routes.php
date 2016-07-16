@@ -11,6 +11,51 @@
 |
 */
 
+Route::get('/frontend/speakers', array('as' => 'speakerfeed', 'uses' => 'FrontendController@speakers'));
+Route::get('/frontend/speakers2', array('as' => 'speakerfeed', 'uses' => 'FrontendController@speakers2'));
+Route::get('/frontend/speakers3', array('as' => 'speakerfeed', 'uses' => 'FrontendController@speakers3'));
+
+Route::get('/frontend/about', array('as' => 'about', function () {
+    return view('frontend.pages.about');
+}));
+
+Route::get('/frontend/sessions', array('as' => 'sessionfeed', 'uses' => 'FrontendController@sessions'));
+
+Route::get('/frontend/speaker_list', array('as' => 'speaker_list', function () {
+    return view('frontend.pages.speakers');
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});
@@ -23,7 +68,7 @@ Route::controllers([
 
 
 Route::get('/', array('as' => 'preview', function () {
-    return view('frontend.master');
+    return view('frontend.pages.home');
 }));
 
 

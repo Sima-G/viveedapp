@@ -58,7 +58,7 @@
                     <!-- END Feed Style Title -->
 
                     <!-- Feed Style Content -->
-                    <form action="/backend/schedule/sessions/store" method="post" enctype="multipart/form-data"
+                    <form id="form_sessions" action="/backend/schedule/sessions/store" method="post" enctype="multipart/form-data"
                           class="form-horizontal form-bordered" onsubmit="return false;">
                         <div class="block-content-full">
 
@@ -71,7 +71,7 @@
 
                                         <div class="form-group">
                                             <label class="col-md-3 control-label"
-                                                   for="session_title">@lang('schedule/sessions.session_title')</label>
+                                                   for="session_title">@lang('schedule/sessions.session_title') <span class="text-danger">*</span></label>
                                             <div class="col-md-9">
                                                 <input type="text" id="session_title" name="session_title"
                                                        class="form-control"
@@ -92,7 +92,7 @@
                                         </legend>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"
-                                                   for="session_starts">@lang('schedule/sessions.session_starts')</label>
+                                                   for="session_starts">@lang('schedule/sessions.session_starts') <span class="text-danger">*</span></label>
                                             <div class="col-md-6">
                                                 <div class="input-group bootstrap-timepicker">
                                                     <input type="text" id="session_starts" name="session_starts"
@@ -107,7 +107,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"
-                                                   for="session_ends">@lang('schedule/sessions.session_ends')</label>
+                                                   for="session_ends">@lang('schedule/sessions.session_ends') <span class="text-danger">*</span></label>
                                             <div class="col-md-6">
                                                 <div class="input-group bootstrap-timepicker">
                                                     <input type="text" id="session_ends" name="session_ends"
@@ -133,7 +133,7 @@
                                         </legend>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"
-                                                   for="session_date">@lang('schedule/sessions.date')</label>
+                                                   for="session_date">@lang('schedule/sessions.date') <span class="text-danger">*</span></label>
                                             <div class="col-md-6 col-md-offset-4">
                                                 <input type="text" id="session_date" name="session_date"
                                                        class="form-control input-datepicker"
@@ -154,7 +154,7 @@
                                         </legend>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"
-                                                   for="example-chosen-multiple">@lang('schedule/sessions.session_speakers')</label>
+                                                   for="example-chosen-multiple">@lang('schedule/sessions.session_speakers') <span class="text-danger">*</span></label>
                                             <div class="col-md-6">
                                                 <select id="session_speakers" name="session_speakers[]"
                                                         class="chosen-select chosen-select-width chosen-select-no-results"

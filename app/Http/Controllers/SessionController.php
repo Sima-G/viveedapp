@@ -32,6 +32,7 @@ class SessionController extends Controller
 
 //            if(Input::has('$session_action_id')){
 
+            if(Input::has('speaker_action_id')) {
                 // find the bear
                 $session = Session::find(Input::get('session_action_id'));
 
@@ -48,6 +49,20 @@ class SessionController extends Controller
                 $session->speakers()->detach();
                 $session->speakers()->attach(Input::get('session_speakers'));
                 return $session->id;
+            } else {
+                $session = Session::Create(array(
+                    'title'         => Input::get('session_title'),
+                    'description'   => Input::get('session_description'),
+                    'start_time'    => Input::get('session_starts'),
+                    'end_time'      => Input::get('session_ends'),
+                    'date'          => Carbon\Carbon::createFromFormat('d/m/Y', Input::get('session_date')),
+                ));
+
+                $session->speakers()->attach(Input::get('session_speakers'));
+
+                $last_inserted_id = $session->id;
+                return $last_inserted_id;
+            }
 
 //                $session_resparray = array();
 //                $session_resparray[] = array('last_inserted_id'=>$session->id, 'action'=>'new');

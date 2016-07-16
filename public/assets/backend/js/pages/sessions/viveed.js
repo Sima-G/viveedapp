@@ -94,7 +94,52 @@ jQuery(document).ready(function () {
         $('#field2').val($('#field1').val());
     });
 
-    $('.send-btn').click(function () {
+
+    //-------------- Send Form------------------------------------------------------------------------------------------
+    $('#form_sessions').validate({
+
+        ignore: [],
+        errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+        errorElement: 'div',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can use the following if you would like to highlight with green color the input after successful validation!
+            e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+            session_title: {
+                required: true
+            },
+            /*session_speakers: {
+                required: true
+            },*/
+            session_description: {
+                required: function()
+                {
+                    CKEDITOR.instances.session_description.updateElement();
+                }
+            }
+        },
+        messages: {
+            session_title: 'Πρέπει να εισάγετε ένα τίτλο',
+            session_starts: 'Εισάγετε την ώρα έναρξης της ομιλίας',
+            session_ends: 'Εισάγετε την ώρα λήξης της ομιλίας',
+            session_date: 'Εισάγετε την ημερομηνία διεξαγωγής της ομιλίας',
+            session_speakers: 'Εισάγετε τους ομιλητές της ομιλίας',
+            session_description: 'Εισάγετε την περιγραφή της ομιλίας'
+        },
+
+    submitHandler: function(form) {
+        //$('.send-btn').click(function () {
+
+
         $.ajax({
             url: '/backend/schedule/sessions/store',
             type: "post",
@@ -146,7 +191,13 @@ jQuery(document).ready(function () {
             }
 
         });
+
+        }
+
     });
+    //------------------------------------------------------------------------------------------------------------------
+
+
 
 
 });
