@@ -11,31 +11,86 @@
 |
 */
 
-Route::get('/frontend/speakers', array('as' => 'speakerfeed', 'uses' => 'FrontendController@speakers'));
-Route::get('/frontend/speakers2', array('as' => 'speakerfeed', 'uses' => 'FrontendController@speakers2'));
-Route::get('/frontend/speakers3', array('as' => 'speakerfeed', 'uses' => 'FrontendController@speakers3'));
 
-Route::get('/frontend/about', array('as' => 'about', function () {
-    return view('frontend.pages.about');
+
+# Frontend Regular Responses
+Route::group(array('prefix' => 'frontend'), function () {
+
+    #Response for home
+    Route::get('/home', array('as' => 'home', function(){
+        return view('frontend.pages.home');
+    }));
+    #Response for timeline
+    Route::get('/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
+    #Response for timeline
+    Route::get('/sessions', array('as' => 'sessions', 'uses' => 'FrontendController@sessions'));
+    #Response for about section
+    Route::get('/about', array('as' => 'about', function () {
+        return view('frontend.pages.about');
+    }));
+    #Response for speaker_list
+    Route::get('/speaker_list', array('as' => 'speaker_list', function () {
+        return view('frontend.pages.speakers');
+    }));
+
+});
+
+
+# Frontend JSON Responses
+Route::group(array('prefix' => 'frontend/json'), function () {
+
+    #Returns a list with sessions
+    Route::get('/timeline_custom/{date}', array('as' => 'timeline_custom', 'uses' => 'FrontendController@timeline_custom'));
+    #Returns a list with sessions
+    Route::get('/sessions_simple', array('as' => 'sessions', 'uses' => 'FrontendController@sessions_simple'));
+    #Returns a list with sessions
+    Route::get('/sessions_formated', array('as' => 'sessions_formated', 'uses' => 'FrontendController@sessions_formated'));
+    #Returns a list with speakers
+    Route::get('/speakers_simple', array('as' => 'speakers_simple', 'uses' => 'FrontendController@speakers_simple'));
+    #Returns a list with speakers with fullnames
+    Route::get('/speakers_full', array('as' => 'speakers_full', 'uses' => 'FrontendController@speakers_full'));
+    #Returns a lite list with only speakers name
+    Route::get('/speakers_lite', array('as' => 'speakers_lite', 'uses' => 'FrontendController@speakers_lite'));
+
+    #Returns a list with speakers with fullnames
+    Route::get('/about_sessions', array('as' => 'about_sessions', 'uses' => 'FrontendController@about_sessions'));
+
+    Route::get('/sessions_list', array('as' => 'sessions_list', 'uses' => 'FrontendController@sessions_list'));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/frontend/session_list', array('as' => 'session_list', function () {
+    return view('frontend.pages.sessions');
 }));
 
-Route::get('/frontend/sessions', array('as' => 'sessionfeed', 'uses' => 'FrontendController@sessions'));
+/*Route::get('frontend/timeline/{date}', function ($date) {
+    return view($name_view);
+});*/
 
-Route::get('/frontend/speaker_list', array('as' => 'speaker_list', function () {
-    return view('frontend.pages.speakers');
+//Route::get('/frontend/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
+
+
+
+Route::get('/', array('as' => 'dashboard', function(){
+    return view('frontend.pages.home');
 }));
 
+/*# JSON Responses */
 
 
 
 
-
-
-
-
-
-
-
+/*# Regular Responses */
 
 
 

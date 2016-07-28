@@ -1,0 +1,16 @@
+.vvd_content{
+	min-height: 800px;
+}
+
+div .no-padding {
+  padding:0;
+}
+
+button .full-width{
+  width:100% !important;
+  //display:block; //only if you're having issues
+}
+
+.date_change_btn{
+    width:100%;
+}

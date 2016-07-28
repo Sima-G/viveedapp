@@ -24,6 +24,13 @@ class ViewComposerServiceProvider extends ServiceProvider
                     -> with('speaker_count', Speaker::count());
         });
         view()->share('config', Setting::where('type', '=', 'schedule')->first());
+        view()->share('speakers', Speaker::get());
+
+        /*view()->composer('frontend/partials.timeline', function($view){
+//            $date = Input::get('date');
+            $view -> with('sessions', Session::where('date', '=', '2016-07-18')->get());
+        });*/
+
     }
 
     /**

@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Home Language Lines
+    | Partial Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines contain the default error messages used by
@@ -13,9 +13,8 @@ return [
     |
     */
 
-    'desc_change_date_action'                       => 'Προβολή προγράμματος για',
-    'desc_alt_text_session_title'                   => 'Τίτλος συνεδρίου',
-    'desc_alt_text_session_date'                    => 'Ημερομηνίες συνεδρίου',
-    'desc_running_session_date'                     => 'Τρέχουσα ημέρα συνεδρίου',
+    'read_more'                     => 'ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ',
+    'calendar'                      => 'Ημερολόγιο',
+
 
 ];
