@@ -57,24 +57,41 @@ jQuery(document).ready(function () {
         CKEDITOR.instances.session_description.setData($('#description_' + id).html());
         $('#send-btn').html(send_btn_alt_txt);
         if ($('#undo-btn').length == 0) {
-            $('#session_actions').append('<button type=\"submit\" id=\"undo-btn\" class=\"btn btn-sm btn-success send-btn\">' + alt_button_alt_txt + '</button>');
+            $('#session_actions').append('<button type=\"submit\" id=\"undo-btn\" class=\"btn btn-sm btn-warning send-btn\"><i class=\"fa fa-repeat\"></i> ' + alt_button_alt_txt + '</button>');
         }
     });
 
     $(document).on("click", '.session_delete', function (event) {
         event.preventDefault();
-        $.ajax({
-            url: '/backend/schedule/sessions/delete',
-            type: "post",
-            data: {
-                'session_action_id': $(this).attr('id'),
-                '_token': $('input[name=_token]').val()
+
+
+        swal({
+                title: "Είσαστε σίγουρος;",
+                text: "Η ομιλία θα διαγραφεί οριστικά!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ναι, προχώρα!",
+                cancelButtonText: "Άκυρο",
+                closeOnConfirm: false
             },
-            success: function getcontent(data) {
-                alert(del_msg_txt);
-                $('#session_' + data).remove();
-            }
-        });
+            function(){
+                $.ajax({
+                    url: '/backend/schedule/sessions/delete',
+                    type: "post",
+                    data: {
+                        'session_action_id': $(this).attr('id'),
+                        '_token': $('input[name=_token]').val()
+                    },
+                    success: function getcontent(data) {
+                        swal("Ενημέρωση", "Η ομιλία διεγράφη!", "success");
+                        /*alert(del_msg_txt);*/
+                        $('#session_' + data).remove();
+                    }
+                });
+            });
+
+
     });
 
     $("#session_actions").on('click', '#undo-btn', function (event) {

@@ -171,8 +171,8 @@ class SessionController extends Controller
                 echo "<div class=\"timeline-icon\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-inverse fa-stack-1x\">" . abs($duration/60) . "'</i></div>";
                 echo "<div class=\"timeline-time\">&nbsp;" . date('H:i', $start_time) . "-" . date('H:i', $end_time) . "</div>";
                 echo "<div class=\"timeline-content\">";
-                echo "<p class=\"push-bit\"><h3>$session->title</h3></p>";
-                echo "<p class=\"push-bit\">$session->description</p>";
+                echo "<h3 class=\"push-bit\">$session->title</h3>";
+                echo "<span class=\"push-bit\">$session->description</span>";
                 echo "<p class=\"push-bit\"><strong>" . trans('schedule/sessions.session_speakers') . ":</strong> ";
                     /*foreach($session->speakers as $speaker){
                             echo $speaker->full_name;

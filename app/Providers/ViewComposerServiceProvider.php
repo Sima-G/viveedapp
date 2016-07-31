@@ -19,11 +19,12 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('backend/partials.nav', function($view){
-            $view -> with('settings', Setting::where('type', '=', 'schedule')->first())
+            $view -> with('schedule_settings', Setting::where('type', '=', 'schedule')->first())
                     -> with('session_count', Session::count())
                     -> with('speaker_count', Speaker::count());
         });
         view()->share('config', Setting::where('type', '=', 'schedule')->first());
+        view()->share('schedule_config', Setting::where('type', '=', 'schedule')->first());
         view()->share('speakers', Speaker::get());
 
         /*view()->composer('frontend/partials.timeline', function($view){

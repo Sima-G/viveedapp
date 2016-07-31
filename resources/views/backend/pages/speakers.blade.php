@@ -120,5 +120,6 @@
     @section('footer')
             <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
     <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/pages/speakers/viveed.js') }}"></script>
 @stop

@@ -71,7 +71,9 @@ class SpeakerController extends Controller
                 echo "<h4 class=\"widget-content text-right\">";
                 echo "<span class=\"btn-group\">";
                 echo "<a href=\"#\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary speaker_edit\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_edit') . "\"><i class=\"fa fa-pencil\"></i></a>";
-                echo "<a href=\"javascript:void(0)\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary speaker_delete\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_delete') . "\"><i class=\"fa fa-times\"></i></a>";
+                if( empty($speaker->sessions)){
+                    echo "<a href=\"javascript:void(0)\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary speaker_delete\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_delete') . "\"><i class=\"fa fa-times\"></i></a>";
+                }
                 echo "</span>";
                 echo "</h4>";
                 echo "<h4 class=\"widget-content text-left\"><strong><span id=\"firstname_" . $speaker->id . "\">" . $speaker->firstname . "</span> <span id=\"lastname_" . $speaker->id . "\">" . $speaker->lastname . "</span></strong></h4>";
@@ -80,7 +82,7 @@ class SpeakerController extends Controller
                 echo $speaker->description;
                 echo "<h4 class=\"widget-content text-right\">";
                 echo "<span class=\"btn-group\">";
-                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\" data-toggle=\"tooltip\" title=\"" . trans('schedule/speakers.speaker_email') . "\">" . $speaker->email . "</a>";
+                echo "<a href=\"javascript:void(0)\" class=\"btn btn-xs btn-default\" data-toggle=\"tooltip\" title=\"" . trans('schedule/speakers.speaker_email') . "\"><span id=\"email_" . $speaker->id . "\">" . $speaker->email . "</a>";
                 echo "</span>";
                 echo "</h4>";
                 echo "</div>";
@@ -105,7 +107,9 @@ class SpeakerController extends Controller
                 echo "<h4 class=\"widget-content text-right\">";
                 echo "<span class=\"btn-group\">";
                 echo "<a href=\"#\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary speaker_edit\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_edit') . "\"><i class=\"fa fa-pencil\"></i></a>";
-                echo "<a href=\"javascript:void(0)\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary speaker_delete\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_delete') . "\"><i class=\"fa fa-times\"></i></a>";
+                if( empty($speaker->sessions)){
+                    echo "<a href=\"javascript:void(0)\" id=" . $speaker->id . " class=\"btn btn-xs btn-primary speaker_delete\" data-toggle=\"tooltip\" title=\"" . @trans('schedule/speakers.speaker_delete') . "\"><i class=\"fa fa-times\"></i></a>";
+                }
                 echo "</span>";
                 echo "</h4>";
                 echo "<h4 class=\"widget-content text-left\"><strong><span id=\"firstname_" . $speaker->id . "\">" . $speaker->firstname . "</span> <span id=\"lastname_" . $speaker->id . "\">" . $speaker->lastname . "</span></strong></h4>";

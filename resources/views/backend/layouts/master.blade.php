@@ -42,6 +42,8 @@
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
     {{--<link rel="stylesheet" href="{{ asset('assets/backend/css/themes.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('assets/backend/css/themes/night.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/viveed/sweetalert.css') }}">
     <!-- END Stylesheets -->
 
     <script>

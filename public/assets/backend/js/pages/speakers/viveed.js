@@ -34,18 +34,30 @@ jQuery(document).ready(function () {
 
     $("#speaker-list").on('click', '.speaker_delete', function (event) {
         event.preventDefault();
-        $.ajax({
-            url: '/backend/schedule/speakers/delete',
-            type: "post",
-            data: {
-                'speaker_action_id': $(this).attr('id'),
-                '_token': $('input[name=_token]').val()
+        swal({
+                title: "Είσαστε σίγουρος;",
+                text: "Ο ομιλιτής θα διαγραφεί οριστικά!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ναι, προχώρα!",
+                cancelButtonText: "Άκυρο",
+                closeOnConfirm: false
             },
-            success: function getcontent(data) {
-                $('#widget_' + data).remove();
-                $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
-            }
-        });
+            function(){
+                $.ajax({
+                    url: '/backend/schedule/speakers/delete',
+                    type: "post",
+                    data: {
+                        'speaker_action_id': $(this).attr('id'),
+                        '_token': $('input[name=_token]').val()
+                    },
+                    success: function getcontent(data) {
+                        $('#widget_' + data).remove();
+                        $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+                    }
+                });
+            });
     });
 
 
@@ -143,6 +155,7 @@ jQuery(document).ready(function () {
                             '_token': $('input[name=_token]').val()
                         },
                         success: function (data) {
+                            swal("Ενημέρωση", "Η ομιλιτής αποθηκεύτηκε!", "success");
                             $('#speaker-list').append(data);
                             $('#content_loader').remove();
                         }

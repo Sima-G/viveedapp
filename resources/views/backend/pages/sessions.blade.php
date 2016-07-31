@@ -19,7 +19,7 @@
         <!-- Timeline Header -->
         <div class="content-header">
             <div class="header-section">
-                <h1><i class="fa fa-rss"></i> @lang('schedule/sessions.sessions')<br>
+                <h1><i class="gi gi-notes_2"></i> @lang('schedule/sessions.sessions')<br>
                     <small>@lang('schedule/sessions.session_help')</small>
                 </h1>
             </div>
@@ -205,7 +205,7 @@
                                         <input type="hidden" name="alt-btn-txt-alt" id="alt-btn-txt-alt"
                                                value="@lang('schedule/sessions.session_action_undo')">
                                         <button type="submit" id="send-btn"
-                                                class="btn btn-sm btn-primary send-btn">@lang('schedule/sessions.session_new_save')</button>
+                                                class="btn btn-sm btn-primary send-btn"><i class="fa fa-arrow-right"></i> @lang('schedule/sessions.session_new_save')</button>
                                     </div>
                                 </li>
                             </ul>
@@ -223,5 +223,6 @@
     @section('footer')
             <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
     <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/pages/sessions/viveed.js') }}"></script>
 @stop
