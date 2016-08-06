@@ -63,7 +63,7 @@ jQuery(document).ready(function () {
 
     $(document).on("click", '.session_delete', function (event) {
         event.preventDefault();
-
+        var id = $(this).attr('id');
 
         swal({
                 title: "Είσαστε σίγουρος;",
@@ -80,13 +80,15 @@ jQuery(document).ready(function () {
                     url: '/backend/schedule/sessions/delete',
                     type: "post",
                     data: {
-                        'session_action_id': $(this).attr('id'),
+                        // 'session_action_id': $(this).attr('id'),
+                        'session_action_id': id,
                         '_token': $('input[name=_token]').val()
                     },
                     success: function getcontent(data) {
-                        swal("Ενημέρωση", "Η ομιλία διεγράφη!", "success");
+                        // swal("Ενημέρωση", "Η ομιλία διεγράφη!", "success");
                         /*alert(del_msg_txt);*/
                         $('#session_' + data).remove();
+                        swal("Ενημέρωση", "Η ομιλία διεγράφη!", "success");
                     }
                 });
             });
@@ -100,7 +102,11 @@ jQuery(document).ready(function () {
         $('#session_starts').val("");
         $('#session_ends').val("");
         $('#session_date').val("");
-        $("#session_speakers").val("");
+        // $("#session_speakers").val("");
+        // $('#session_speakers').select2('data', null);
+        // $('#session_speakers').select2("val", "");
+        // $("#session_speakers").trigger("liszt:updated");
+        $("#session_speakers").val('').trigger("chosen:updated");
         CKEDITOR.instances.session_description.setData("");
         $('#send-btn').html(send_btn_txt);
         $('#undo-btn').remove();
@@ -134,9 +140,9 @@ jQuery(document).ready(function () {
             session_title: {
                 required: true
             },
-            /*session_speakers: {
+            session_speakers: {
                 required: true
-            },*/
+            },
             session_description: {
                 required: function()
                 {
@@ -177,7 +183,9 @@ jQuery(document).ready(function () {
                 $('#session_starts').val("");
                 $('#session_ends').val("");
                 $('#session_date').val("");
-                $("#session_speakers").val("");
+                // $("#session_speakers").val("");
+                // $('#session_speakers').select2("val", "");
+                $("#session_speakers").val('').trigger("chosen:updated");
                 CKEDITOR.instances.session_description.setData("");
                 alert(session_title);
 

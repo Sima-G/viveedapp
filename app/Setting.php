@@ -20,8 +20,12 @@ class Setting extends Model
     protected $table = 'settings';
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
-    protected $fillable = ['type', 'title', 'logo', 'description', 'start_date', 'end_date'];
+    protected $fillable = ['type', 'title', 'logo', 'description', 'start_date', 'end_date', 'date_range'];
     protected $guarded = ['id'];
+
+    /*protected $casts = [
+        'date_range' => 'array', // Will convarted to (Array)
+    ];*/
 
     protected $appends = array('config_start_date', 'config_end_date');
 
@@ -52,5 +56,13 @@ class Setting extends Model
     public function getConfigEndDateAttribute() {
         return Carbon\Carbon::parse($this->end_date)->format('d/m/Y');
     }
+
+    /*public function getStartDateFormattedAttribute() {
+        return Carbon\Carbon::parse($this->start_date)->format('d/m/Y');
+    }
+
+    public function getEndDateFormattedAttribute() {
+        return Carbon\Carbon::parse($this->end_date)->format('d/m/Y');
+    }*/
 
 }

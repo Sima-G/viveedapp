@@ -88,10 +88,12 @@
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
+            @if( ! empty($schedule_config))
             <a class="mdl-navigation__link" href="{{URL::route('preview')}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>@lang("frontend/master.home")</a>
             <a class="mdl-navigation__link" href="{{URL::route('session_list')}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">speaker_notes</i>@lang("frontend/master.sessions")</a>
             <a class="mdl-navigation__link" href="{{URL::route('speaker_list')}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>@lang("frontend/master.speakers")</a>
             <a class="mdl-navigation__link" href="{{URL::route('about')}}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">feedback</i>@lang("frontend/master.about")</a>
+            @endif
 
             <div class="mdl-layout-spacer"></div>
             <footer id="copyright">
@@ -105,10 +107,7 @@
     </main>
 </div>
 
-
-
 <script src="{{ asset('assets/frontend/js/material.min.js') }}"></script>
-
 @yield('footer')
 </body>
 </html>

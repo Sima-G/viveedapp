@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>ProUI - Responsive Bootstrap Admin Template</title>
+    <title>Viveed - @lang('login.login')</title>
 
     <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
     <meta name="author" content="pixelcave">
@@ -60,7 +60,7 @@
 
                 <!-- Key Features -->
                 <ul class="fa-ul text-muted">
-                    <li><h4>@lang('login.viveed_schedule')</h4></li>
+                    <li><h4>@lang('login.viveed_schedule_module')</h4></li>
                     <li><i class="fa fa-check fa-li text-success"></i> @lang('login.viveed_add_session')</li>
                     <li><i class="fa fa-check fa-li text-success"></i> @lang('login.viveed_add_speaker')</li>
                     <li><i class="fa fa-check fa-li text-success"></i> @lang('login.viveed_edit_config')</li>

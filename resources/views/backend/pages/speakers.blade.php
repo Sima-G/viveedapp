@@ -1,5 +1,9 @@
 @extends('backend.layouts.master')
 
+@section('title')
+    @lang('schedule/speakers.speakers')
+@stop
+
 @section('header')
     <meta name="_token" content="{!! csrf_token() !!}"/>
     @stop

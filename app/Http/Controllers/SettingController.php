@@ -18,6 +18,12 @@ use Carbon;
 use Validator;
 use Redirect;
 
+use DatePeriod;
+use DateTime;
+use DateInterval;
+
+
+
 class SettingController extends Controller
 {
     public function store()
@@ -62,6 +68,40 @@ class SettingController extends Controller
             $setting->description       = Input::get('schedule_description');
             $setting->start_date        = Carbon\Carbon::createFromFormat('d/m/Y', Input::get('schedule_date_starts'));
             $setting->end_date          = Carbon\Carbon::createFromFormat('d/m/Y', Input::get('schedule_date_ends'));
+
+
+                $date_range_format = "d/m/Y";
+                $begin = new DateTime($setting->start_date);
+                $end = new DateTime($setting->end_date);
+                $end->modify('+1 day');
+                $interval = new DateInterval('P1D'); // 1 Day
+                $dateRange = new DatePeriod($begin, $interval, $end);
+                $date_range = [];
+                foreach ($dateRange as $key=>$date) {
+
+                    $date_range[] =
+                                            array(
+                                             'id' => $key,
+                                             'date' =>  $date->format($date_range_format)
+                    );
+
+//                    $date_range[] = $date->format($date_range_format);
+                }
+
+//            $setting->date_range = serialize($date_range);
+
+//                dd(json_encode(array_values($date_range)));
+//                dd($date_range);
+                $setting->date_range = json_encode($date_range);
+
+
+
+            /*$setting->period = new DatePeriod(
+                    new DateTime('2010-10-01'),
+                    new DateInterval('P1D'),
+                    new DateTime('2010-10-05')
+                );*/
+
             switch (Input::get('schedule_init_status')){
                 case '0':
                 $setting->init          = 1;
@@ -96,8 +136,22 @@ class SettingController extends Controller
 
 //        $settings = Setting::select('*')->firstOrFail();
         $settings = Setting::where('type', '=', 'schedule')->firstOrFail();
+//        $settings = Setting::where('type', '=', 'schedule')->firstOrFail(['id', 'type', 'title', 'logo', 'description', 'start_date', 'end_date', 'init']);
+//        $settings = Select(id, type, title, logo, description, start_date, end_date, init)->where('type', '=', 'schedule')->firstOrFail();
 
         return json_encode($settings);
+//        dd($settings);
+
+        /*try {
+            json_encode($settings);
+        } catch (Exception $e) {
+            if ($e->getPrevious()) {
+                print $e->getPrevious()->getMessage() . "\n";
+            } else {
+                print $e->getMessage() . "\n";
+            }
+        }*/
+
 
     }
 

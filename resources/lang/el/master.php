@@ -16,6 +16,7 @@ return [
     'viveed'                            => 'Viveed',
     'backend'                           => 'Διαχείριση',
     'home'                              => 'Αρχική',
+    'users'                             => 'Χρήστες',
     'preview'                           => 'Προεπισκόπηση',
     'schedule'                          => 'ΠΡΟΓΡΑΜΜΑ',
     'sessions'                          => 'Ομιλίες',

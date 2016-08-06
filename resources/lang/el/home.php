@@ -19,4 +19,5 @@ return [
     'viveed_speakers'              => 'Ομιλητές',
     'viveed_settings'              => 'Ρυθμίσεις',
 
+
 ];

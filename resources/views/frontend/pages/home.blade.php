@@ -1,27 +1,33 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-<div class="mdl-grid demo-content">
+<div class="mdl-grid demo-content" xmlns="http://www.w3.org/1999/html">
     <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
         <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i><span class="mdl-layout-title">&nbsp;&nbsp;@lang("frontend/master.home")</span>
-        {{--<div class="vvd_date">
-            <h2 id="vvd_date" class="mdl-card__title-text"></h2>
+    </div>
+
+    @if( ! empty($schedule_config))
+        <div id="timeline" class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"></div>
+        <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            @include('frontend/partials.dateselection')
+            <div class="demo-separator mdl-cell--1-col"></div>
+            @include('frontend/partials.calendar')
         </div>
-        <div class="vvd_time">
-            <h2 id="vvd_time" class="mdl-card__title-text vvd_time"></h2>
-        </div>--}}
-    </div>
-    <div id="timeline" class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+    @else
+        <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+            <div style="margin: 0 auto;" class="session_description mdl-card__title mdl-card--expand">
+                <span><h2 class="mdl-card__title-text">Καλωσήρθατε στο Viveed</h2></span>
+            </div>
+            <div class="demo-separator mdl-cell--1-col"></div>
+            <div class="demo-separator mdl-cell--1-col"></div>
+            <div style="text-align: center;">
+                <img src="{{ asset('assets/frontend/images/logo/Viveed_Logo_Inverted.png') }}" style="width: 40%; margin: 0 auto;">
+            </div>
 
-        {{--@include('frontend/partials.timeline')--}}
+            <div style="text-align: center;" class="mdl-card__actions"><span style="text-align: center;">Αυτή την στιγμή δεν υπάρχει κάποιο ενεργοποιημένο πρόσθετο.</span></div>
+        </div>
+    @endif
 
-    </div>
-    <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-        @include('frontend/partials.dateselection')
-        <div class="demo-separator mdl-cell--1-col"></div>
-        @include('frontend/partials.calendar')
-
-    </div>
 </div>
     @stop
 

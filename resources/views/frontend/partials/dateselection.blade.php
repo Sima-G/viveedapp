@@ -1,6 +1,6 @@
 <div class="viveed-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
     <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-        <p title="@lang('frontend/home.desc_alt_text_session_title')"><h2 class="mdl-card__title-text">{{ $config->title }}</h2></p>
+        <p title="@lang('frontend/home.desc_alt_text_session_title')"><h2 class="mdl-card__title-text">{{ $schedule_config->title }}</h2></p>
     </div>
     <div class="mdl-card__supporting-text mdl-color-text--grey-600">
         <h2 class="mdl-card__title-text"><span id="startDt">{{ $config->config_start_date }}</span> - <span id="endDt">{{ $config->config_end_date }}</span></h2>

@@ -148,7 +148,26 @@ class SessionController extends Controller
         $interval = DateInterval::createFromDateString('1 day');
         $period = new DatePeriod($begin, $interval, $end);
 
-        foreach ( $period as $dt ){
+
+        // Block Tabs Title
+        /*echo "<div class=\"block-title\">";
+        echo "<ul class=\"nav nav-tabs\" data-toggle=\"tabs\">";
+            foreach ( $period as $key=>$dt ){
+                echo "<li " . (($key=='0')?'class="active"':"") . "><a href=\"#tab_" . $dt->format("Y-m-d") . "\">" . $dt->format("d/m/Y") . "</a></li>";
+            }
+            echo "</ul>";
+        echo "</div>";*/
+
+
+        // Tabs Content
+        echo "<div class=\"tab-content\">";
+        foreach ( $period as $key=>$dt ){
+
+
+        echo "<div id=\"tab_" . $dt->format("Y-m-d") . "\"" .  (($key=='0')?'class="tab-pane active"':'class="tab-pane"') . ">";
+
+
+
 
 //            echo $dt->format( "l Y-m-d H:i:s\n" );
 
@@ -199,7 +218,15 @@ class SessionController extends Controller
             echo "</div>";
             echo "<div class='block-title'><hr></div>";
 
+
+
+            echo "</div>";
+
+
         }
+
+        echo "</div>";
+        // END Tabs Content
 
 
 

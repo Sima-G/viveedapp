@@ -16,7 +16,7 @@ return [
     'login'                         => 'Σύνδεση',
     'enter'                         => 'Είσοδος',
     'login_welcome'                 => 'Καλωσήρθατε στην διαχείριση της εφαρμογής!',
-    'viveed_schedule'               => 'Schedule module',
+    'viveed_schedule_module'        => 'Πρόσθετο ομιλιών',
     'viveed_add_session'            => 'Προσθήκη ομιλιών',
     'viveed_add_speaker'            => 'Προσθήκη ομιλητών',
     'viveed_edit_config'            => 'Επεξεργασία ρυθμίσεων',

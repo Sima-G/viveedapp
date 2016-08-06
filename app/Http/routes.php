@@ -212,3 +212,8 @@ Route::post('/backend/schedule/settings/data', 'SettingController@data');
 
 Route::get('/backend/schedule/settings/data', 'SettingController@data');
 Route::get('/backend/schedule/sessions/show', 'SessionController@show');
+
+Route::get('/backend/users/', array('as' => 'users', function()
+{
+    return view('backend.pages.users');
+}));
