@@ -32,7 +32,7 @@ class SessionController extends Controller
 
 //            if(Input::has('$session_action_id')){
 
-            if(Input::has('speaker_action_id')) {
+            if(Input::has('session_action_id')) {
                 // find the bear
                 $session = Session::find(Input::get('session_action_id'));
 
@@ -101,6 +101,7 @@ class SessionController extends Controller
 
             $start_time = strtotime($session->start_time);
             $end_time = strtotime($session->end_time);
+            $date = strtotime($session->date);
             $duration = $end_time - $start_time;
 
             $speakarray = array();
@@ -111,8 +112,16 @@ class SessionController extends Controller
 
             echo "<div id=\"something\" data-json=\"encodeURIComponent(JSON.stringify({\"name\":\"John\"}))\"></div>";
 
+//            echo "<li id=\"session_" . $session->id . "\">";
+//            echo "<span id=\"speakers\" value=\"\"></span>";
+
             echo "<li id=\"session_" . $session->id . "\">";
-            echo "<span id=\"speakers\" value=\"\"></span>";
+            echo "<div id=\"title_" . $session->id . "\" style=\"display: none;\">" . $session->title . "</div>";
+            echo "<div id=\"start_time_" . $session->id . "\" style=\"display: none;\">" . $session->start_time . "</div>";
+            echo "<div id=\"end_time_" . $session->id . "\" style=\"display: none;\">" . $session->end_time . "</div>";
+            echo "<div id=\"date_" . $session->id . "\" style=\"display: none;\">" . date('d/m/Y', $date) . "</div>";
+            echo "<div id=\"description_" . $session->id . "\" style=\"display: none;\">" . $session->description . "</div>";
+
             echo "<div class=\"timeline-icon\"><i class=\"fa fa-circle fa-stack-2x\"></i><i class=\"fa fa-inverse fa-stack-1x\">" . abs($duration / 60) . "'</i></div>";
             echo "<div class=\"timeline-time\">&nbsp;" . date('H:i', $start_time) . "-" . date('H:i', $end_time) . "</div>";
             echo "<div class=\"timeline-content\">";
@@ -164,7 +173,7 @@ class SessionController extends Controller
         foreach ( $period as $key=>$dt ){
 
 
-        echo "<div id=\"tab_" . $dt->format("Y-m-d") . "\"" .  (($key=='0')?'class="tab-pane active"':'class="tab-pane"') . ">";
+        echo "<div id=\"tab_" . $dt->format("d-m-Y") . "\"" .  (($key=='0')?'class="tab-pane active"':'class="tab-pane"') . ">";
 
 
 
@@ -172,7 +181,9 @@ class SessionController extends Controller
 //            echo $dt->format( "l Y-m-d H:i:s\n" );
 
             echo "<div class=\"timeline block-content-full\">";
-            echo "<h3 class=\"timeline-header\">$settings->title <small><strong>" . $dt->format("d/m/Y") . "</strong></small></h3>";
+//            <h2><strong>@lang('schedule/sessions.timeline')</strong> @lang('schedule/sessions.schedule')</h2>
+            echo "<h3 class=\"timeline-header\">" . trans('schedule/sessions.timeline') . " " . trans('schedule/sessions.schedule') . "</h3>";
+//            echo "<h3 class=\"timeline-header\">$settings->title <small><strong>" . $dt->format("d/m/Y") . "</strong></small></h3>";
             echo "<ul class=\"timeline-list timeline-hover\" id=\"" . $dt->format("Y-m-d") . "\">";
 
             // Getting all table data
@@ -216,7 +227,7 @@ class SessionController extends Controller
 
             echo "</ul>";
             echo "</div>";
-            echo "<div class='block-title'><hr></div>";
+//            echo "<div class='block-title'><hr></div>";
 
 
 

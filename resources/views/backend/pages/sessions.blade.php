@@ -40,20 +40,22 @@
                 <div class="block full">
                     <!-- Timeline Style Title -->
                     <div class="block-title">
-                        <h2><strong>@lang('schedule/sessions.timeline')</strong> @lang('schedule/sessions.schedule')</h2>
-                        {{ $schedule_config->start_date_formatted }}
-                        {{ $schedule_config->end_date_formatted }}
-                        {{ gettype($schedule_config->date_range) }}
-                        {{ var_dump(json_decode($schedule_config->date_range, true)) }}
-                        {{ gettype(json_decode($schedule_config->date_range, true)) }}
+                        <h2>{{ $schedule_config->title }}</h2>
+                        <!-- Debug Mode -->
+                        {{--{{ $schedule_config->start_date_formatted }}--}}
+                        {{--{{ $schedule_config->end_date_formatted }}--}}
+                        {{--{{ gettype($schedule_config->date_range) }}--}}
+                        {{--{{ var_dump(json_decode($schedule_config->date_range, true)) }}--}}
+                        {{--{{ gettype(json_decode($schedule_config->date_range, true)) }}--}}
+                        <!---------------->
                         {{--{{ json_decode($schedule_config->date_range) }}--}}
-                        @foreach (json_decode($schedule_config->date_range, true) as $item)
-                            {{--@foreach($item as $item_entity)
+                        {{--@foreach (json_decode($schedule_config->date_range, true) as $item)
+                            --}}{{--@foreach($item as $item_entity)
                             {{ gettype($item_entity) }}
                                 {{ $item_entity }}
-                            @endforeach--}}
+                            @endforeach--}}{{--
                             {{ $item['date'] }}
-                        @endforeach
+                        @endforeach--}}
                         {{--<ul>
                         @for ($date=$schedule_config->start_date_formatted; $date->diffInDays($schedule_config->end_date_formatted)>0; $date->addDay())
                             <li>{{$date->toDateString()}}</li>
@@ -66,8 +68,9 @@
                     <!-- Working Tabs Content -->
                     <div class="row">
                         <div class="col-md-12">
-
-                            {{ $schedule_config->date_range }}
+                            <!-- Debug Mode -->
+                            {{--{{ $schedule_config->date_range }}--}}
+                            <!---------------->
                             {{--@foreach($schedule_config->date_range as $date_range)
                                 {{ $date_range->date }}
                             @endforeach--}}
@@ -81,8 +84,13 @@
 
                             <div class="block-title">
                                 <ul class="nav nav-tabs" data-toggle="tabs">
-                                    <li class="active"><a href="#tab_2016-07-18">18/07/2016</a></li>
-                                    <li class=""><a href="#tab_2016-07-19">19/07/2016</a></li>
+                                    @foreach (json_decode($schedule_config->date_range, true) as $key => $item)
+                                        <li {{ (($key=='0')?'class=active':"") }}><a href="#tab_{{ str_replace('/', '-', $item['date']) }}">{{ $item['date'] }}</a></li>
+                                    @endforeach
+                                    {{--<li class="active"><a href="#tab_2016-07-18">18/07/2016</a></li>--}}
+                                    {{--<li class=""><a href="#tab_2016-07-19">19/07/2016</a></li>--}}
+                                        {{--<li class=""><a href="#tab_18-07-2016">18/07/2016</a></li>--}}
+                                        {{--<li class=""><a href="#tab_19-07-2016">19/07/2016</a></li>--}}
                                 </ul>
                             </div>
 
@@ -103,7 +111,7 @@
                     </div>--}}
 
                 <!-- Working Tabs Content -->
-                    <div class="row">
+                    {{--<div class="row">
                         <div class="col-md-6">
                             <!-- Block Tabs -->
                             <div class="block full">
@@ -131,7 +139,7 @@
                             </div>
                             <!-- END Block Tabs -->
                         </div>
-                    </div>
+                    </div>--}}
                     <!-- END Working Tabs Content -->
 
 
@@ -177,7 +185,7 @@
                                 <!-- END Check in -->
 
                                 <!-- Story Published -->
-                                <li style="padding: 20px 20px 0px">
+                                <li style="padding: 0px 20px 0px">
                                     <fieldset>
                                         <legend>
                                             <i class="fa fa-angle-right"></i> @lang('schedule/sessions.session_duration')
@@ -217,7 +225,7 @@
                                 <!-- END Story Published -->
 
                                 <!-- Photos Uploaded -->
-                                <li style="padding: 20px 20px 0px">
+                                <li style="padding: 0px 20px 0px">
                                     <!-- <div class="media-body"> -->
                                     <fieldset>
                                         <legend>
@@ -239,7 +247,7 @@
                                 </li>
                                 <!-- END Photos Uploaded -->
 
-                                <li style="padding: 20px 20px 0px">
+                                <li style="padding: 0px 20px 0px">
                                     <!-- Chosen plugin (class is initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://harvesthq.github.io/chosen/ -->
                                     <fieldset>
                                         <legend><i class="fa fa-angle-right"></i> @lang('schedule/sessions.speakers')
@@ -282,9 +290,9 @@
                                     </div>
                                 </li>
                                 <!-- END Status Updated -->
-                                <li>
+                                {{--<li>
                                     <p></p>
-                                </li>
+                                </li>--}}
                                 <li style="padding: 20px 20px 0px">
                                     <div id="session_actions" class="form-group form-actions text-center">
                                         <input type="hidden" name="del-msg-txt" id="del-msg-txt"

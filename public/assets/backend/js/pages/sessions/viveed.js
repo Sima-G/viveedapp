@@ -87,6 +87,14 @@ jQuery(document).ready(function () {
                     success: function getcontent(data) {
                         // swal("Ενημέρωση", "Η ομιλία διεγράφη!", "success");
                         /*alert(del_msg_txt);*/
+
+                        $('#session_title').val("");
+                        $('#session_starts').val("");
+                        $('#session_ends').val("");
+                        $('#session_date').val("");
+                        $("#session_speakers").val('').trigger("chosen:updated");
+                        CKEDITOR.instances.session_description.setData("");
+
                         $('#session_' + data).remove();
                         swal("Ενημέρωση", "Η ομιλία διεγράφη!", "success");
                     }
@@ -179,6 +187,7 @@ jQuery(document).ready(function () {
 
 
             success: function getcontent(session_title) {
+
                 $('#session_title').val("");
                 $('#session_starts').val("");
                 $('#session_ends').val("");
@@ -188,8 +197,10 @@ jQuery(document).ready(function () {
                 $("#session_speakers").val('').trigger("chosen:updated");
                 CKEDITOR.instances.session_description.setData("");
                 alert(session_title);
+                alert("Get Content");
 
                 if (!$('input[name=session_action_id]').val()) {
+                    alert("There is no session_action_id!!!");
                     $('#sessions').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
                     jQuery.ajax({
                         url: "/backend/schedule/sessions/show",
@@ -200,6 +211,7 @@ jQuery(document).ready(function () {
                     });
                 } else {
                     alert(session_title);
+                    alert("There is an id for a session to edit!!!");
                     jQuery.ajax({
                         url: "/backend/schedule/sessions/data",
                         data: {
