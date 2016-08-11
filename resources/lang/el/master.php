@@ -14,6 +14,8 @@ return [
     */
 
     'viveed'                            => 'Viveed',
+    'admin'                             => 'Admin',
+    'modules'                           => 'Πρόσθετα',
     'backend'                           => 'Διαχείριση',
     'home'                              => 'Αρχική',
     'users'                             => 'Χρήστες',

@@ -18,7 +18,7 @@ return [
     'schedule'                                  => 'Πρόγραμμα',
     'settings'                                  => 'Αρχικοποίηση',
     'msg_setting_init'                          => 'Αρχικές ρυθμίσεις',
-
+    'sessions'                                  => 'Ομιλίες',
     'schedule_title'                            => 'Τίτλος Προγράμματος',
     'schedule_title_desc'                       => 'Ο Τίτλος Του Προγράμματος...',
     'schedule_title_help'                       => 'Εισάγετε Τον Τίτλο Του Προγράμματος',

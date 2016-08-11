@@ -19,7 +19,7 @@ class FrontendController extends Controller
     public function sessions_formated()
     {
         /*$sessions = Speaker::select('*')->get();*/
-        $sessions = Session::select('*')->get();
+        $sessions = Session::select('*')->orderBy('start_time', 'ASC')->get();
         $sessarray = array();
 
         foreach($sessions AS $session){
@@ -38,7 +38,7 @@ class FrontendController extends Controller
 
     public function sessions_simple()
     {
-        $sessions = Session::select('*')->with('speakers')->get();
+        $sessions = Session::select('*')->with('speakers')->orderBy('start_time', 'ASC')->get();
         return json_encode($sessions);
     }
 
@@ -69,7 +69,7 @@ class FrontendController extends Controller
 
     public function timeline($date = ''){
         if ($date) {
-            $sessions = Session::where('date', '=', $date)->get();
+            $sessions = Session::where('date', '=', $date)->orderBy('start_time', 'ASC')->get();
             $sessions_cnt = $sessions->count();
 //            return View::make('frontend/partials.timeline', $sessions);
             return View::make('frontend/partials.timeline', compact('sessions', 'date', 'sessions_cnt'));
@@ -83,13 +83,13 @@ class FrontendController extends Controller
     }
 
     public function sessions(){
-        $sessions = Session::Select('*')->get();
+        $sessions = Session::Select('*')->orderBy('start_time', 'ASC')->get();
         $sessions_cnt = $sessions->count();
         return View::make('frontend/partials.sessionlist', compact('sessions', 'sessions_cnt'));
     }
 
     public function sessions_list(){
-            $sessions = Session::Select('*')->get();
+            $sessions = Session::Select('*')->orderBy('start_time', 'ASC')->get();
             return json_encode($sessions);
     }
 

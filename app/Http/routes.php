@@ -217,3 +217,5 @@ Route::get('/backend/users/', array('as' => 'users', function()
 {
     return view('backend.pages.users');
 }));
+
+Route::get('/backend/modules/', array('as' => 'modules', 'uses' => 'ModuleController@modulist'));

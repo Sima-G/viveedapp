@@ -25,7 +25,7 @@
             </div>
         </div>
         <ul class="breadcrumb breadcrumb-top">
-            <li>@lang('schedule/settings.schedule')</li>
+            <li><i class="gi gi-notes_2 sidebar-nav-icon"></i> @lang('schedule/settings.sessions')</li>
             <li>@lang('schedule/settings.settings')</li>
         </ul>
         <!-- END Timeline Header -->

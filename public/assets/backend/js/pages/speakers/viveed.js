@@ -34,6 +34,7 @@ jQuery(document).ready(function () {
 
     $("#speaker-list").on('click', '.speaker_delete', function (event) {
         event.preventDefault();
+        var id = $(this).attr('id');
         swal({
                 title: "Είσαστε σίγουρος;",
                 text: "Ο ομιλιτής θα διαγραφεί οριστικά!",
@@ -49,12 +50,14 @@ jQuery(document).ready(function () {
                     url: '/backend/schedule/speakers/delete',
                     type: "post",
                     data: {
-                        'speaker_action_id': $(this).attr('id'),
+                        'speaker_action_id': id,
                         '_token': $('input[name=_token]').val()
                     },
                     success: function getcontent(data) {
+
                         $('#widget_' + data).remove();
                         $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+                        swal("Ενημέρωση", "Ο ομιλιτής διεγράφη!", "success");
                     }
                 });
             });
@@ -155,7 +158,7 @@ jQuery(document).ready(function () {
                             '_token': $('input[name=_token]').val()
                         },
                         success: function (data) {
-                            swal("Ενημέρωση", "Η ομιλιτής αποθηκεύτηκε!", "success");
+                            swal("Ενημέρωση", "Ο ομιλιτής αποθηκεύτηκε!", "success");
                             $('#speaker-list').append(data);
                             $('#content_loader').remove();
                         }
