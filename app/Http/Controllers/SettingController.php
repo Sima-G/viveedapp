@@ -22,6 +22,8 @@ use DatePeriod;
 use DateTime;
 use DateInterval;
 
+use Sentinel;
+
 
 
 class SettingController extends Controller
@@ -164,6 +166,12 @@ class SettingController extends Controller
         if (!empty($settings->end_date)) {
             $settings->end_date = Carbon\Carbon::createFromFormat('Y-m-d', $settings->end_date)->format('d/m/Y');
         }
-        return View('backend.pages.settings', compact('settings'));
+        if(Sentinel::check()){
+
+            $userRoles = Sentinel::getRoles()->lists('name', 'id')->all();
+            return View('backend.pages.settings', compact('settings', 'userRoles'));
+        } else {
+            return Redirect::to('backend/');
+        }
     }
 }

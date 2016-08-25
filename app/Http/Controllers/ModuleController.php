@@ -9,11 +9,18 @@ use App\Http\Controllers\Controller;
 
 // Viveed
 use App\Setting;
+use Sentinel;
 
 class ModuleController extends Controller
 {
     public function modulist(){
-        $modules = Setting::Select('*')->get();
-        return view('backend.pages.modules', compact('modules'));
+
+        if(Sentinel::check()){
+            $userRoles = Sentinel::getRoles()->lists('name', 'id')->all();
+            $modules = Setting::Select('*')->get();
+            return view('backend.pages.modules', compact('modules', 'userRoles'));
+        } else {
+            return Redirect::to('backend/');
+        }
     }
 }

@@ -20,7 +20,7 @@ class Setting extends Model
     protected $table = 'settings';
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
-    protected $fillable = ['type', 'title', 'logo', 'description', 'start_date', 'end_date', 'date_range'];
+    protected $fillable = ['type', 'title', 'logo', 'description', 'start_date', 'end_date', 'date_range', 'init', 'status'];
     protected $guarded = ['id'];
 
     /*protected $casts = [

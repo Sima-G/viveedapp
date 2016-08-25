@@ -2,6 +2,10 @@
 
 {{--@section('title', 'Page Title')--}}
 
+@section('title')
+    @lang('home.home')
+@stop
+
 
 @section('header')
     <meta name="_token" content="{!! csrf_token() !!}"/>
@@ -24,7 +28,7 @@
                 <a href="{{URL::route('home')}}"><i class="fa fa-home"></i> @lang('home.home')</a>
             </li>
             @if( ! empty($schedule_config))
-                @if($config->init != 0)
+                @if($schedule_config->init != 0)
                 <li>
                     <a href="{{URL::route('preview')}}" target="_blank"><i class="gi gi-eye_open"></i> @lang('home.preview')</a>
                 </li>
@@ -64,7 +68,7 @@
     </div>
     <!-- END Dashboard 2 Content -->
 
-@if( ! empty($schedule_config))
+@if(empty($schedule_config))
     {{--{{ dd($config2) }}--}}
     <!-- Dummy Content -->
     <div class="block full block-alt-noborder">

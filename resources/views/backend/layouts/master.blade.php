@@ -85,9 +85,9 @@
 
 
 </head>
-{{--<body class="page-loading" onload="startTime(); viveed_date();">--}}
+<body class="page-loading" onload="startTime(); viveed_date();">
 
-<body class="">
+{{--<body class="">--}}
 <!-- Page Wrapper -->
 <!-- In the PHP version you can set the following options from inc/config file -->
 <!--
@@ -109,38 +109,7 @@
     <!-- END Preloader -->
 
     <!-- Page Container -->
-    <!-- In the PHP version you can set the following options from inc/config file -->
-    <!--
-        Available #page-container classes:
 
-        '' (None)                                       for a full main and alternative sidebar hidden by default (> 991px)
-
-        'sidebar-visible-lg'                            for a full main sidebar visible by default (> 991px)
-        'sidebar-partial'                               for a partial main sidebar which opens on mouse hover, hidden by default (> 991px)
-        'sidebar-partial sidebar-visible-lg'            for a partial main sidebar which opens on mouse hover, visible by default (> 991px)
-        'sidebar-mini sidebar-visible-lg-mini'          for a mini main sidebar with a flyout menu, enabled by default (> 991px + Best with static layout)
-        'sidebar-mini sidebar-visible-lg'               for a mini main sidebar with a flyout menu, disabled by default (> 991px + Best with static layout)
-
-        'sidebar-alt-visible-lg'                        for a full alternative sidebar visible by default (> 991px)
-        'sidebar-alt-partial'                           for a partial alternative sidebar which opens on mouse hover, hidden by default (> 991px)
-        'sidebar-alt-partial sidebar-alt-visible-lg'    for a partial alternative sidebar which opens on mouse hover, visible by default (> 991px)
-
-        'sidebar-partial sidebar-alt-partial'           for both sidebars partial which open on mouse hover, hidden by default (> 991px)
-
-        'sidebar-no-animations'                         add this as extra for disabling sidebar animations on large screens (> 991px) - Better performance with heavy pages!
-
-        'style-alt'                                     for an alternative main style (without it: the default style)
-        'footer-fixed'                                  for a fixed footer (without it: a static footer)
-
-        'disable-menu-autoscroll'                       add this to disable the main menu auto scrolling when opening a submenu
-
-        'header-fixed-top'                              has to be added only if the class 'navbar-fixed-top' was added on header.navbar
-        'header-fixed-bottom'                           has to be added only if the class 'navbar-fixed-bottom' was added on header.navbar
-
-        'enable-cookies'                                enables cookies for remembering active color theme when changed from the sidebar links
-    -->
-
-    {{--<div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">--}}
     <div id="page-container" class="sidebar-mini sidebar-visible-lg-mini sidebar-no-animations">
         <!-- Alternative Sidebar -->
         <div id="sidebar-alt">
@@ -342,15 +311,15 @@
                                 {{--<img src="{{ asset('assets/backend/img/placeholders/avatars/avatar2.jpg') }}" alt="avatar">--}}
                             </a>
                         </div>
-                        <div class="sidebar-user-name">John Doe</div>
+                        <div class="sidebar-user-name">{{ Sentinel::getUser()->first_name . ' ' . Sentinel::getUser()->last_name }}</div>
                         <div class="sidebar-user-links">
                             {{--<a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
                             <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>--}}
                             <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
                             {{--<a href="javascript:void(0)" class="label label-warning">Trial</a>--}}
-                            <a href="javascript:void(0)" class="label label-warning enable-tooltip" data-placement="bottom" title="@lang('privileges.privileges')" onclick="$('#modal-user-settings').modal('show');">Admin</a>
+                            <a href="javascript:void(0)" class="label label-warning enable-tooltip" data-placement="bottom" title="@lang('privileges.privileges')" onclick="$('#modal-user-settings').modal('show');">{{ head($userRoles) }}</a>
                             {{--<a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>--}}
-                            <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
+                            <a href="{{URL::route('logout')}}" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
                         </div>
                     </div>
                     <!-- END User Info -->
@@ -360,50 +329,6 @@
                     <!-- Sidebar Navigation -->
                         @include('backend/partials.nav')
                     <!-- END Sidebar Navigation -->
-
-                    {{--<!-- Sidebar Notifications -->--}}
-                    {{--<div class="sidebar-header sidebar-nav-mini-hide">--}}
-                                {{--<span class="sidebar-header-options clearfix">--}}
-                                    {{--<a href="javascript:void(0)" data-toggle="tooltip" title="Refresh"><i class="gi gi-refresh"></i></a>--}}
-                                {{--</span>--}}
-                        {{--<span class="sidebar-header-title">@lang('master.latest_activities')</span>--}}
-                    {{--</div>--}}
-                    {{--<div class="sidebar-section sidebar-nav-mini-hide">--}}
-                        {{--<div class="alert alert-success alert-alt">--}}
-                            {{--<small>5 min ago</small><br>--}}
-                            {{--<i class="fa fa-thumbs-up fa-fw"></i> You had a new sale ($10)--}}
-                        {{--</div>--}}
-                        {{--<div class="alert alert-info alert-alt">--}}
-                            {{--<small>10 min ago</small><br>--}}
-                            {{--<i class="fa fa-arrow-up fa-fw"></i> Upgraded to Pro plan--}}
-                        {{--</div>--}}
-                        {{--<div class="alert alert-warning alert-alt">--}}
-                            {{--<small>3 hours ago</small><br>--}}
-                            {{--<i class="fa fa-exclamation fa-fw"></i> Running low on space<br><strong>18GB in use</strong> 2GB left--}}
-                        {{--</div>--}}
-                        {{--<div class="alert alert-danger alert-alt">--}}
-                            {{--<small>Yesterday</small><br>--}}
-                            {{--<i class="fa fa-bug fa-fw"></i> <a href="javascript:void(0)"><strong>New bug submitted</strong></a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<!-- END Sidebar Notifications -->--}}
-
-                    <!-- Sidebar Notifications -->
-                    {{--<div class="sidebar-header">
-                                <span class="sidebar-header-options clearfix">
-                                    <a href="javascript:void(0)" title="@lang('master.datetime')"><i class="gi gi-calendar"></i></a>
-                                </span>
-                        <span class="sidebar-header-title">@lang('master.datetime')</span>
-                    </div>
-                    <div class="sidebar-section">
-                        <div class="vvd_date">
-                            <h2 id="vvd_date" class="text-center"></h2>
-                        </div>
-                        <div class="vvd_time">
-                            <h2 id="vvd_time" class="text-center vvd_time"></h2>
-                        </div>
-                    </div>--}}
-                    <!-- END Sidebar Notifications -->
 
 
 
@@ -417,19 +342,6 @@
         <!-- Main Container -->
         <div id="main-container">
             <!-- Header -->
-            <!-- In the PHP version you can set the following options from inc/config file -->
-            <!--
-                Available header.navbar classes:
-
-                'navbar-default'            for the default light header
-                'navbar-inverse'            for an alternative dark header
-
-                'navbar-fixed-top'          for a top fixed header (fixed sidebars with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar())
-                    'header-fixed-top'      has to be added on #page-container only if the class 'navbar-fixed-top' was added
-
-                'navbar-fixed-bottom'       for a bottom fixed header (fixed sidebars with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
-                    'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
-            -->
             <header class="navbar navbar-inverse">
 
                 <!-- Left Header Navigation -->
@@ -442,31 +354,6 @@
                     </li>
                     <!-- END Main Sidebar Toggle Button -->
 
-                    <!-- Template Options -->
-                    <!-- Change Options functionality can be found in js/app.js - templateOptions() -->
-                    {{--<li class="dropdown">
-                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="gi gi-settings"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-custom dropdown-options">
-                            <li class="dropdown-header text-center">Header Style</li>
-                            <li>
-                                <div class="btn-group btn-group-justified btn-group-sm">
-                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-header-default">Light</a>
-                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-header-inverse">Dark</a>
-                                </div>
-                            </li>
-                            <li class="dropdown-header text-center">Page Style</li>
-                            <li>
-                                <div class="btn-group btn-group-justified btn-group-sm">
-                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-main-style">Default</a>
-                                    <a href="javascript:void(0)" class="btn btn-primary" id="options-main-style-alt">Alternative</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>--}}
-                    <!-- END Template Options -->
-
                     <li>
                         <a href="javascript:void(0)" style="text-decoration: none;">
                             <i class="fa fa-calendar fa-fw"></i> <strong>Τρίτη 14 Ιουνίου 2016</strong>
@@ -474,6 +361,11 @@
                     </li>
 
                 </ul>
+                {{--@if(Sentinel::check())--}}
+                    {{--{{ $roles }}--}}
+                {{--@endif--}}
+
+
 
                 <!-- END Left Header Navigation -->
 
@@ -514,17 +406,6 @@
 <script src="{{ asset('assets/backend/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/backend/js/app.js') }}"></script>
 
-
-
-
-
-
-
-{{--<script type="text/javascript">--}}
-    {{--$(document).ready(function() {--}}
-        {{--alert("I am an alert box!");--}}
-    {{--});--}}
-{{--</script>--}}
 
 <script type="text/javascript">
     $.ajaxSetup({

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header text-center">
-                <h2 class="modal-title"><i class="fa fa-pencil"></i> <strong>@lang('privileges.privileges'):</strong> @lang('privileges.admin')</h2>
+                <h2 class="modal-title"><i class="fa fa-pencil"></i> <strong>@lang('privileges.privileges'):</strong> @lang('privileges.'.head($userRoles))</h2>
             </div>
             <!-- END Modal Header -->
 
@@ -16,10 +16,14 @@
                             <label class="col-md-4 control-label">@lang('privileges.sessions')</label>
                             <div class="col-md-8">
                                 <ul class="form-control-static">
-                                    <li>@lang('privileges.schedule_admin_add_session')</li>
-                                    <li>@lang('privileges.schedule_edit_session')</li>
-                                    <li>@lang('privileges.schedule_delete_session')</li>
-                                    <li>@lang('privileges.schedule_view_session')</li>
+                                    @if((head($userRoles) == 'Admin') || head($userRoles) == 'Editor')
+                                        <li>@lang('privileges.schedule_admin_add_session')</li>
+                                        <li>@lang('privileges.schedule_delete_session')</li>
+                                    @endif
+                                    @if((head($userRoles) == 'Admin') || (head($userRoles) == 'Editor') || (head($userRoles) == 'Author'))
+                                        <li>@lang('privileges.schedule_edit_session')</li>
+                                    @endif
+                                        <li>@lang('privileges.schedule_view_session')</li>
                                 </ul>
                             </div>
                         </div>
@@ -27,10 +31,14 @@
                             <label class="col-md-4 control-label">@lang('privileges.speakers')</label>
                             <div class="col-md-8">
                                 <ul class="form-control-static">
-                                    <li>@lang('privileges.schedule_admin_add_speaker')</li>
-                                    <li>@lang('privileges.schedule_edit_speaker')</li>
-                                    <li>@lang('privileges.schedule_delete_speaker')</li>
-                                    <li>@lang('privileges.schedule_view_speaker')</li>
+                                    @if((head($userRoles) == 'Admin') || head($userRoles) == 'Editor')
+                                        <li>@lang('privileges.schedule_admin_add_speaker')</li>
+                                        <li>@lang('privileges.schedule_delete_speaker')</li>
+                                    @endif
+                                    @if((head($userRoles) == 'Admin') || (head($userRoles) == 'Editor') || (head($userRoles) == 'Author'))
+                                        <li>@lang('privileges.schedule_edit_speaker')</li>
+                                    @endif
+                                        <li>@lang('privileges.schedule_view_speaker')</li>
                                 </ul>
                             </div>
                         </div>
@@ -38,8 +46,10 @@
                             <label class="col-md-4 control-label">@lang('privileges.settings')</label>
                             <div class="col-md-8">
                                 <ul class="form-control-static">
-                                    <li>@lang('privileges.schedule_edit_settings')</li>
-                                    <li>@lang('privileges.schedule_view_settings')</li>
+                                    @if((head($userRoles) == 'Admin') || head($userRoles) == 'Editor')
+                                        <li>@lang('privileges.schedule_edit_settings')</li>
+                                    @endif
+                                        <li>@lang('privileges.schedule_view_settings')</li>
                                 </ul>
                             </div>
                         </div>

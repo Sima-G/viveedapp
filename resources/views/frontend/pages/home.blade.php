@@ -37,21 +37,22 @@
 
     <script src="{{ asset('assets/frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/pages/home/viveed.js') }}"></script>
-
-    <script src="{{ asset('assets/frontend/js/pages/home/sweetalert.min.js') }}"></script>
-    <script>
-        jQuery(document).ready(function () {
-            $(document).on('click','.speaker_of_session',function(e){
-            switch ($(this).attr('id')) {
-                @foreach($speakers AS $speaker)
-                    case "{{ $speaker->id }}":
-                    swal("{!! $speaker->full_name !!}", "{!! str_replace(array('<p>', '</p>'), '', str_replace(array("\r\n", "\n", "\r"), ' ',  html_entity_decode($speaker->description))) !!}");
-                    break;
-                @endforeach
-            };
-        });
-        });
-    </script>
+    @if( ! empty($speakers))
+        <script src="{{ asset('assets/frontend/js/pages/home/sweetalert.min.js') }}"></script>
+        <script>
+            jQuery(document).ready(function () {
+                $(document).on('click','.speaker_of_session',function(e){
+                switch ($(this).attr('id')) {
+                    @foreach($speakers AS $speaker)
+                        case "{{ $speaker->id }}":
+                        swal("{!! $speaker->full_name !!}", "{!! str_replace(array('<p>', '</p>'), '', str_replace(array("\r\n", "\n", "\r"), ' ',  html_entity_decode($speaker->description))) !!}");
+                        break;
+                    @endforeach
+                };
+            });
+            });
+        </script>
+    @endif
 
 
 @stop

@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        $this->call('AdminSeeder');
+        $this->command->info('Admin User created with username admin@admin.com and password admin');
+
+        $this->call(ModuleSeeder::class);
 
         Model::reguard();
     }

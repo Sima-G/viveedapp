@@ -132,9 +132,7 @@ Route::get('/backend', array('as' => 'login', function () {
     return view('backend.pages.login');
 }));
 
-Route::get('/backend/home', array('as' => 'home', function () {
-    return view('backend.pages.home');
-}));
+Route::get('/backend/home', array('as' => 'home', 'uses' => 'BackendController@showhome'));
 
 Route::post('/store', 'SessionController@store');
 
@@ -219,3 +217,15 @@ Route::get('/backend/users/', array('as' => 'users', function()
 }));
 
 Route::get('/backend/modules/', array('as' => 'modules', 'uses' => 'ModuleController@modulist'));
+
+
+
+
+
+
+Route::group(array('prefix' => 'backend/'), function () {
+    Route::get('signin', array('as' => 'signin', 'uses' => 'AuthController@getSignin'));
+    Route::post('signin', 'AuthController@postSignin');
+    # Logout
+    Route::get('logout', array('as' => 'logout','uses' => 'AuthController@getLogout'));
+});
