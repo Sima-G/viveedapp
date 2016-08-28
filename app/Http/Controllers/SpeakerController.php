@@ -27,7 +27,6 @@ class SpeakerController extends Controller
             if(Input::has('speaker_action_id')){
 
                 // find the bear
-//                $speaker = Speaker::where('id', '=', Input::get('speaker_action_id'))->first();
                 $speaker = Speaker::find(Input::get('speaker_action_id'));
 
                 // change the attribute
@@ -48,11 +47,7 @@ class SpeakerController extends Controller
                 'email'		    => Input::get('speaker_email'),
             ));
             $last_inserted_id = $speaker->id;
-//            return Response::json(array('success' => true, 'last_insert_id' => $data->id), 200);
             return $last_inserted_id;
-//            return json_encode(array('success' => true, 'last_insert_id' => $data->id), 200);
-//            print_r($data);
-//            die;
             }
         }
     }
@@ -60,11 +55,7 @@ class SpeakerController extends Controller
     public function data()
     {
         // Getting all table data
-//        $speakers = Speaker::select('*')->get();
         $speaker = Speaker::find(Input::get('speaker_action_id'));
-
-
-
                 echo "<div id=\"widget_" . $speaker->id . "\" class=\"col-sm-6 col-lg-4\">";
                 echo "<div class=\"widget\">";
                 echo "<div class=\"widget-simple\">";
@@ -90,8 +81,6 @@ class SpeakerController extends Controller
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
-
-
     }
 
     public function show()
@@ -140,6 +129,15 @@ class SpeakerController extends Controller
             echo "</div>";
         }
     }
+
+    public function show_speakers()
+    {
+
+        // Getting all table data
+        $speakers = Speaker::select('*')->get();
+
+    }
+
     public function delete()
     {
         if (Request::ajax()) {

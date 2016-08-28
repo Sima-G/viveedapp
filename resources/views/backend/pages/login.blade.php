@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js') }}"> <!--<![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>
+<html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js') }}"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
 
     <title>Viveed - @lang('login.login')</title>
 
-    <meta name="description" content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
-    <meta name="author" content="pixelcave">
+    <meta name="description"
+          content="ProUI is a Responsive Bootstrap Admin Template created by pixelcave and published on Themeforest.">
+    <meta name="author" content="Aegeantech">
     <meta name="robots" content="noindex, nofollow">
 
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
 
-    {{--<meta name="_token" content="{!! csrf_token() !!}"/>--}}
-
     <!-- Icons -->
-    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="{{ asset('assets/backend/img/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('assets/backend/img/icon57.png') }}" sizes="57x57">
     <link rel="apple-touch-icon" href="{{ asset('assets/backend/img/icon72.png') }}" sizes="72x72">
@@ -88,13 +89,15 @@
                 <!-- Login Block -->
                 <div class="block push-bit">
                     <!-- Login Form -->
-                    <form action="{{ URL::to('backend/signin') }}" method="post" id="form-login" class="form-horizontal">
+                    <form action="{{ URL::to('backend/signin') }}" method="post" id="form-login"
+                          class="form-horizontal">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
-                                    <input type="text" id="login-email" name="email" class="form-control input-lg" placeholder="Email">
+                                    <input type="text" id="login-email" name="email" class="form-control input-lg"
+                                           placeholder="Email">
                                 </div>
                             </div>
                         </div>
@@ -102,13 +105,15 @@
                             <div class="col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
-                                    <input type="password" id="login-password" name="password" class="form-control input-lg" placeholder="Password">
+                                    <input type="password" id="login-password" name="password"
+                                           class="form-control input-lg" placeholder="Password">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group form-actions">
                             <div class="col-xs-8 text-right">
-                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> @lang('login.enter')</button>
+                                <button type="submit" class="btn btn-sm btn-primary"><i
+                                            class="fa fa-angle-right"></i> @lang('login.enter')</button>
                             </div>
                         </div>
                     </form>
@@ -131,6 +136,8 @@
 
 <!-- Load and execute javascript code used only in this page -->
 <script src="{{ asset('assets/backend/js/pages/login.js') }}"></script>
-<script>$(function(){ Login.init(); });</script>
+<script>$(function () {
+        Login.init();
+    });</script>
 </body>
 </html>

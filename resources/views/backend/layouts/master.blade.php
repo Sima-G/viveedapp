@@ -317,7 +317,7 @@
                             <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>--}}
                             <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
                             {{--<a href="javascript:void(0)" class="label label-warning">Trial</a>--}}
-                            <a href="javascript:void(0)" class="label label-warning enable-tooltip" data-placement="bottom" title="@lang('privileges.privileges')" onclick="$('#modal-user-settings').modal('show');">{{ head($userRoles) }}</a>
+                            {{--<a href="javascript:void(0)" class="label label-warning enable-tooltip" data-placement="bottom" title="@lang('privileges.privileges')" onclick="$('#modal-user-settings').modal('show');">{{ head($userRoles) }}</a>--}}
                             {{--<a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>--}}
                             <a href="{{URL::route('logout')}}" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
                         </div>
@@ -397,7 +397,7 @@
 <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 
 <!-- User Settings, modal which opens from Settings link (found in top right user menu) and the Cog link (found in sidebar user info) -->
-@include('backend/partials.privileges')
+{{--@include('backend/partials.privileges')--}}
 <!-- END User Settings -->
 
 <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->

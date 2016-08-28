@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Partial Language Lines
+    | Message Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines contain the default error messages used by
@@ -13,9 +13,8 @@ return [
     |
     */
 
-    'read_more'                     => 'ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ',
-    'calendar'                      => 'Ημερολόγιο',
-    'date_now'                      => 'ΤΡΕΧΟΥΣΑ',
-
+    'welcome_viveed_msg'                        => 'Καλωσήρθατε στο Viveed',
+    'init_pending_msg'                          => 'Εκκρεμεί αρχικοποίηση του πρόσθετου..',
+    'none_module_msg'                           => 'Αυτή την στιγμή δεν υπάρχει κάποιο ενεργοποιημένο πρόσθετο.',
 
 ];

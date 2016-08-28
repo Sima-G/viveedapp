@@ -29,7 +29,8 @@
         </ul>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-        <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
+        <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change
+            location</a>
         <div class="mdl-layout-spacer"></div>
         <i class="material-icons">location_on</i>
     </div>
