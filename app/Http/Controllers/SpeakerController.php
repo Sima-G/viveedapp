@@ -135,6 +135,7 @@ class SpeakerController extends Controller
 
         // Getting all table data
         $speakers = Speaker::select('*')->get();
+        return View('backend.pages.speakers2', compact('speakers'));
 
     }
 

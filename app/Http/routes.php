@@ -183,6 +183,9 @@ Route::get('/backend/schedule/speakers/', array('as' => 'speakers', function()
 {
     return view('backend.pages.speakers');
 }));
+
+Route::post('/backend/schedule/speakers/show/', 'SpeakerController@show_speakers');
+
 //Route::get('/backend/schedule/speakers/', function () {
 //    return view('backend.pages.speakers');
 //});
