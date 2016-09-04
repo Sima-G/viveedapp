@@ -6,10 +6,10 @@
 
 @section('header')
     <meta name="_token" content="{!! csrf_token() !!}"/>
-    @stop
+@stop
 
 @section('content')
-            <!-- Page content -->
+    <!-- Page content -->
     <div id="page-content">
         <!-- Contacts Header -->
         <div class="content-header">
@@ -25,10 +25,10 @@
             <li>@lang('schedule/speakers.speakers')</li>
         </ul>
         <!-- END Contacts Header -->
-
         <!-- Main Row -->
         <div class="row">
-            <div class="col-lg-8">
+
+            <div @if((head($userRoles) == 'Admin') || (head($userRoles) == 'Editor') || (head($userRoles) == 'Author')) class="col-lg-8" @else class="col-lg-12" @endif>
                 <!-- Contacts Block -->
                 <div class="block">
                     <!-- Contacts Title -->
@@ -40,18 +40,18 @@
                         </div>
                     </div>
                     <!-- END Contacts Title -->
-
                     <!-- Contacts Content -->
                     <div id="speaker-list" class="row style-alt speakers_content">
                         <!-- Contact Widget -->
                         <div id="contact-list"></div>
                         <!-- END Contact Widget -->
-
                     </div>
                     <!-- END Contacts Content -->
                 </div>
                 <!-- END Contacts Block -->
             </div>
+
+            @if((head($userRoles) == 'Admin') || (head($userRoles) == 'Editor') || (head($userRoles) == 'Author'))
             <div class="col-lg-4">
                 <!-- Add Contact Block -->
                 <div class="block">
@@ -62,11 +62,13 @@
                     <!-- END Add Contact Title -->
 
                     <!-- Add Contact Content -->
-                    <form id="form_speakers" action="/backend/schedule/speakers/store" enctype="multipart/form-data" method="post"
+                    <form id="form_speakers" action="/backend/schedule/speakers/store" enctype="multipart/form-data"
+                          method="post"
                           class="form-horizontal form-bordered" onsubmit="return false;">
                         <div class="form-group">
                             <label class="col-xs-3 control-label"
-                                   for="speaker_firstname">@lang('schedule/speakers.speaker_firstname') <span class="text-danger">*</span></label>
+                                   for="speaker_firstname">@lang('schedule/speakers.speaker_firstname') <span
+                                        class="text-danger">*</span></label>
                             <div class="col-xs-9">
                                 <input type="text" id="speaker_firstname" name="speaker_firstname" class="form-control"
                                        placeholder="@lang('schedule/speakers.speaker_firstname_desc')">
@@ -74,7 +76,8 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label"
-                                   for="speaker_lastname">@lang('schedule/speakers.speaker_lastname') <span class="text-danger">*</span></label>
+                                   for="speaker_lastname">@lang('schedule/speakers.speaker_lastname') <span
+                                        class="text-danger">*</span></label>
                             <div class="col-xs-9">
                                 <input type="text" id="speaker_lastname" name="speaker_lastname" class="form-control"
                                        placeholder="@lang('schedule/speakers.speaker_lastname_desc')">
@@ -90,7 +93,8 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label"
-                                   for="speaker_description">@lang('schedule/speakers.speaker_description') <span class="text-danger">*</span></label>
+                                   for="speaker_description">@lang('schedule/speakers.speaker_description') <span
+                                        class="text-danger">*</span></label>
                             <div class="col-xs-9">
                                 <textarea id="speaker_description" name="speaker_description"
                                           class="ckeditor"></textarea>
@@ -106,10 +110,12 @@
                                        value="<i class='fa fa-arrow-right'></i> @lang('schedule/speakers.speaker_change_save')">
                                 <input type="hidden" name="alt-btn-txt-alt" id="alt-btn-txt-alt"
                                        value="@lang('schedule/speakers.speaker_action_undo')">
-                                <button type="submit" id="send-btn"
-                                        class="btn btn-sm btn-primary send-btn"><i class="fa fa-arrow-right"></i> @lang('schedule/speakers.speaker_new_save')</button>
-                                {{--<button type="submit" id="undo-btn"
-                                        class="btn btn-sm btn-warning send-btn"><i class="fa fa-repeat"></i> @lang('schedule/speakers.speaker_new_save')</button>--}}
+                                @if((head($userRoles) == 'Admin') || head($userRoles) == 'Editor')
+                                    <button type="submit" id="send-btn"
+                                            class="btn btn-sm btn-primary send-btn"><i
+                                                class="fa fa-arrow-right"></i> @lang('schedule/speakers.speaker_new_save')
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </form>
@@ -117,15 +123,17 @@
                 </div>
                 <!-- END Add Contact Block -->
             </div>
+            @endif
         </div>
         <!-- END Main Row -->
     </div>
     <!-- END Page Content -->
-    @stop
+@stop
 
-    @section('footer')
-            <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
-    <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
+@section('footer')
+    @if((head($userRoles) == 'Admin') || (head($userRoles) == 'Editor') || (head($userRoles) == 'Author'))
+        <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
+    @endif
     <script src="{{ asset('assets/backend/js/pages/speakers/viveed.js') }}"></script>
 @stop

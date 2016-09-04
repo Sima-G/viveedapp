@@ -16,7 +16,7 @@
             <div class="header-section">
                 <h1>
                     <i class="gi gi-adjust_alt"></i>@lang('modules.modules')<br>
-                    <small>@lang('modules.modules_help')</small>
+                    <small>@lang('modules.modules_help')</small> {{ Lang::locale() }}
                 </h1>
             </div>
         </div>
@@ -52,8 +52,8 @@
                             @foreach($modules as $module)
                                 <tr class="@if($module->init == '0') active @elseif($module->init == '1') success @else info @endif">
                                     <td class="text-center">{{ trans('modules.' . $module->type) }}</td>
-                                    <td>{{ $module->created_at->diffForHumans() }}</td>
-                                    <td>{{ $module->updated_at->diffForHumans() }}</td>
+                                    <td>{{ Date::parse($module->created_at)->diffForHumans() }}</td>
+                                    <td>{{ Date::parse($module->updated_at)->diffForHumans() }}</td>
                                     <td>
                                         @if($module->status == '1')
                                             <a href="javascript:void(0)" class="label label-success">@lang('modules.active')</a>

@@ -149,45 +149,47 @@ Route::get('/backend/settings', function () {
 
 
 //Routes for sessions
-Route::group(array('prefix' => 'backend/'), function () {
-    Route::get('schedule/sessions/', array('as' => 'sessions', 'uses' => 'SessionController@show_sessions'));
-    Route::post('schedule/sessions/store', 'SessionController@store');
-    Route::post('schedule/sessions/delete', 'SessionController@delete');
-    Route::get('schedule/sessions/speakers', 'SessionController@speakers');
-    Route::get('schedule/sessions/session_list', 'SessionController@session_list');
-    Route::get('schedule/sessions/speaker_list', 'SessionController@speaker_list');
-});
+Route::get('/backend/schedule/sessions/', array('as' => 'sessions', function()
+{
+    return view('backend.pages.sessions');
+}));
+Route::post('/backend/schedule/sessions/', 'SessionController@show');
+Route::get('/backend/schedule/sessions/session_partial', 'SessionController@session_partial');
+Route::post('/backend/schedule/sessions/store', 'SessionController@store');
+Route::get('/backend/schedule/sessions/data', 'SessionController@data');
+Route::post('/backend/schedule/sessions/data', 'SessionController@data');
+Route::get('/backend/schedule/sessions/speaker_list', 'SessionController@speaker_list');
+Route::get('/backend/schedule/sessions/speakers', 'SessionController@speakers');
+Route::post('/backend/schedule/sessions/delete', 'SessionController@delete');
 //--------------------
-
-
 
 //Routes for speakers
-Route::group(array('prefix' => 'backend/'), function () {
-    Route::get('schedule/speakers/', array('as' => 'speakers', 'uses' => 'SpeakerController@show_speakers'));
-    Route::get('schedule/speakers/speaker_list', 'SpeakerController@speaker_list');
-    Route::post('schedule/speakers/store', 'SpeakerController@store');
-    Route::post('schedule/speakers/delete', 'SpeakerController@delete');
-});
+Route::get('/backend/schedule/speakers/', array('as' => 'speakers', function()
+{
+    return view('backend.pages.speakers');
+}));
+Route::get('/backend/schedule/speakers/show2/', 'SpeakerController@show_speakers');
+Route::get('/backend/schedule/speakers/speaker_list', 'SpeakerController@speaker_list');
+Route::get('/backend/schedule/speakers/show', 'SpeakerController@show');
+Route::post('/backend/schedule/speakers/store', 'SpeakerController@store');
+Route::get('/backend/schedule/speakers/data', 'SpeakerController@data');
+Route::post('/backend/schedule/speakers/data', 'SpeakerController@data');
+Route::post('/backend/schedule/speakers/delete', 'SpeakerController@delete');
 //--------------------
 
-
-
 //Routes for settings
-Route::group(array('prefix' => 'backend/'), function () {
-    Route::get('schedule/settings/', array('as' => 'settings', 'uses' => 'SettingController@show'));
-    Route::post('schedule/settings/store', 'SettingController@store');
-    Route::post('schedule/settings/data', 'SettingController@data');
-    //Route::get('schedule/settings/data', 'SettingController@data');
-});
+Route::get('/backend/schedule/settings/', array('as' => 'settings', 'uses' => 'SettingController@show'));
+Route::post('/backend/schedule/settings/store', 'SettingController@store');
+Route::post('/backend/schedule/settings/data', 'SettingController@data');
+Route::get('/backend/schedule/settings/data', 'SettingController@data');
+Route::get('/backend/schedule/sessions/show', 'SessionController@show');
 //-------------------
 
 //Routes for users
-//Route::get('/backend/users/', array('as' => 'users', function()
-//{
-//    return view('backend.pages.users');
-//}));
-
-Route::get('/backend/users/', array('as' => 'users', 'uses' => 'UserController@userlist'));
+Route::get('/backend/users/', array('as' => 'users', function()
+{
+    return view('backend.pages.users');
+}));
 //-------------------
 
 //Routes for modules

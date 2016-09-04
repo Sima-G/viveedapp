@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
 
     $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i><br/><br/></div>');
     jQuery.ajax({
-        url: "/backend/schedule/speakers/speaker_list",
+        url: "/backend/schedule/speakers/show",
         type: "GET",
         success: function (data) {
             $('#speaker-list').html(data);
@@ -24,12 +24,6 @@ jQuery(document).ready(function () {
         $('#speaker_email').val($('#email_' + id).html());
         var send_btn_alt_txt = $('#send-btn-txt-alt').val();
         $('#send-btn').html(send_btn_alt_txt);
-
-        if ($('#send-btn').length == 0) {
-            var send_btn_txt_alt = $('#send-btn-txt-alt').val();
-            $('#speaker_actions').append('<button type=\"submit\" id=\"send-btn\" class=\"btn btn-sm btn-primary send-btn\"><i class=\"fa fa-arrow-right\"></i>  ' + send_btn_txt_alt + '</button>');
-        }
-
         if ($('#undo-btn').length == 0) {
             var alt_button_alt_txt = $('#alt-btn-txt-alt').val();
             $('#speaker_actions').append('<button type=\"submit\" id=\"undo-btn\" class=\"btn btn-sm btn-warning send-btn\"><i class=\"fa fa-repeat\"></i>  ' + alt_button_alt_txt + '</button>');
@@ -60,15 +54,10 @@ jQuery(document).ready(function () {
                         '_token': $('input[name=_token]').val()
                     },
                     success: function getcontent(data) {
+
+                        $('#widget_' + data).remove();
                         $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
                         swal("Ενημέρωση", "Ο ομιλιτής διεγράφη!", "success");
-                        jQuery.ajax({
-                            url: "/backend/schedule/speakers/speaker_list",
-                            type: "get",
-                            success: function (data) {
-                                $('#speaker-list').html(data);
-                            }
-                        });
                     }
                 });
             });
@@ -77,7 +66,15 @@ jQuery(document).ready(function () {
 
     $("#speaker_actions").on('click', '#undo-btn', function (event) {
         event.preventDefault();
-        cleanFields();
+        $('#speaker_action_id').val("");
+        $('#speaker_firstname').val("");
+        $('#speaker_lastname').val("");
+        CKEDITOR.instances.speaker_description.setData("");
+        $('#speaker_email').val("");
+        var send_btn_txt = $('#send-btn-txt').val();
+        $('#send-btn').html(send_btn_txt);
+        $('#undo-btn').remove();
+
     });
 
     $('#form_speakers').validate({
@@ -153,13 +150,17 @@ jQuery(document).ready(function () {
                     }
                     $('#contact-list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
                     jQuery.ajax({
-                        url: "/backend/schedule/speakers/speaker_list",
-                        type: "get",
+                        url: "/backend/schedule/speakers/data",
+                        type: "post",
+                        widget_id: data,
+                        data: {
+                            'speaker_action_id': data,
+                            '_token': $('input[name=_token]').val()
+                        },
                         success: function (data) {
                             swal("Ενημέρωση", "Ο ομιλιτής αποθηκεύτηκε!", "success");
-                            $('#speaker-list').html(data);
+                            $('#speaker-list').append(data);
                             $('#content_loader').remove();
-                            cleanFields();
                         }
                     });
                 }
@@ -168,15 +169,6 @@ jQuery(document).ready(function () {
         }
     });
 
-    function cleanFields() {
-        $('#speaker_action_id').val("");
-        $('#speaker_firstname').val("");
-        $('#speaker_lastname').val("");
-        CKEDITOR.instances.speaker_description.setData("");
-        $('#speaker_email').val("");
-        var send_btn_txt = $('#send-btn-txt').val();
-        $('#send-btn').html(send_btn_txt);
-        $('#undo-btn').remove();
-    }
+
 
 });

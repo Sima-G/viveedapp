@@ -8,18 +8,18 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 // Viveed
-use App\Setting;
+use App\User;
 use Sentinel;
-//use Jenssegers\Date\Date;
 
-class ModuleController extends Controller
+class UserController extends Controller
 {
-    public function modulist(){
+    public function userlist(){
 
         if(Sentinel::check()){
             $userRoles = Sentinel::getRoles()->lists('name', 'id')->all();
-            $modules = Setting::Select('*')->get();
-            return view('backend.pages.modules', compact('modules', 'userRoles'));
+            $users = User::Select('*')->get();
+            $test = Sentinel::getUserRepository();
+            return view('backend.pages.users', compact('users', 'userRoles', 'test'));
         } else {
             return Redirect::to('backend/');
         }

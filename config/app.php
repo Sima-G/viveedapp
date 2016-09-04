@@ -150,6 +150,10 @@ return [
          * Viveed Sentinel Providers...
          */
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        /*
+         * Viveed Carbon Providers...
+         */
+        'Jenssegers\Date\DateServiceProvider',
 
     ],
 
@@ -204,6 +208,10 @@ return [
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
         'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
+        /*
+        * Viveed Carbon Aliases...
+        */
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 

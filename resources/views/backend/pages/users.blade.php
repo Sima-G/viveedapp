@@ -28,6 +28,7 @@
                 <div class="block">
                     <!-- Row Styles Title -->
                     <div class="block-title">
+                        {{ dd($test) }}
                         <h2><strong>@lang('users.list')</strong> @lang('users.of_users')</h2>
                     </div>
                     <!-- END Row Styles Title -->
@@ -45,6 +46,22 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            @foreach($users as $user)
+                                <tr>
+                                    <td class="">{{ $user->first_name }}</td>
+                                    <td>{{ $user->last_name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td><a href="javascript:void(0)" class="label label-warning">Trial</a></td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-xs">
+                                            <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                                            <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             <tr class="active">
                                 <td class="text-center"><img src="img/placeholders/avatars/avatar6.jpg" alt="avatar" class="img-circle"></td>
                                 <td><a href="page_ready_user_profile.html">client1</a></td>
