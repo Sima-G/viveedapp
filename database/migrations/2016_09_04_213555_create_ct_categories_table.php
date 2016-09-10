@@ -15,9 +15,9 @@ class CreateCtCategoriesTable extends Migration
         Schema::create('ct_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');
-            $table->text('description')->nullable();
-            $table->tinyInteger('status')->nullable();
-            $table->tinyInteger('state')->nullable();
+            $table->text('description');
+            $table->tinyInteger('status');
+            $table->tinyInteger('state');
             $table->softDeletes();
             $table->timestamps();
         });

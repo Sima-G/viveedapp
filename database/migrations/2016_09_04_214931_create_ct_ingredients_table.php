@@ -15,11 +15,11 @@ class CreateCtIngredientsTable extends Migration
         Schema::create('ct_ingredients', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');
-            $table->text('description')->nullable();
-            $table->text('unit')->nullable();
-            $table->text('quantity')->nullable();
-            $table->tinyInteger('status')->nullable();
-            $table->tinyInteger('state')->nullable();
+            $table->text('description');
+            $table->text('unit');
+            $table->text('quantity');
+            $table->tinyInteger('status');
+            $table->tinyInteger('state');
             $table->softDeletes();
             $table->timestamps();
         });
