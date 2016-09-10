@@ -181,6 +181,56 @@ Route::group(array('prefix' => 'backend/'), function () {
 });
 //-------------------
 
+//Routes for settings
+Route::group(array('prefix' => 'backend/'), function () {
+
+    //Module
+    Route::get('modules/catering/dashboard/', array('as' => 'ct_dashboard', 'uses' => 'Ct_moduleController@show_dashboard'));
+    Route::get('modules/catering/categories/category_stats', 'Ct_moduleController@category_stats');
+
+
+    //Category
+    Route::group(array('prefix' => 'modules/catering/categories'), function () {
+        /*Route::get('modules/catering/categories/', array('as' => 'ct_categories', 'uses' => 'Ct_categoryController@show_categories'));
+        Route::get('modules/catering/categories/category_list', 'Ct_categoryController@category_list');
+        Route::post('modules/catering/categories/store', 'Ct_categoryController@store');
+        Route::post('modules/catering/categories/delete', 'Ct_categoryController@delete');*/
+        Route::get('/', array('as' => 'ct_categories', 'uses' => 'Ct_categoryController@show_categories'));
+        Route::get('/category_list', 'Ct_categoryController@category_list');
+        Route::post('/store', 'Ct_categoryController@store');
+        Route::post('/delete', 'Ct_categoryController@delete');
+    });
+
+    //Product
+
+    Route::get('modules/catering/product/{id}/manage', array('as' => 'ct_product_manage', 'uses' => 'Ct_productController@product_manage'));
+    Route::get('modules/catering/product/{id}/show', array('as' => 'ct_product_show', 'uses' => 'Ct_productController@product_show'));
+    Route::get('modules/catering/product/create', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_create'));
+    Route::get('modules/catering/products/show', array('as' => 'ct_products', 'uses' => 'Ct_productController@show_products'));
+    Route::get('modules/catering/products/product_list', array('as' => 'ct_product_list', 'uses' => 'Ct_productController@product_list'));
+    Route::post('modules/catering/products/store_product', 'Ct_productController@store_product');
+    Route::post('modules/catering/products/store_ingredient', 'Ct_productController@store_ingredient');
+
+    //Product views
+        Route::get('modules/catering/products/product_create_block', array('as' => 'ct_product_create_block', function () {
+            return view('backend.partials.modules.catering.product_create_block');
+        }));
+        Route::get('modules/catering/products/{id}/product_view_block', array('as' => 'ct_product_view_block', function () {
+            return view('backend.partials.modules.catering.product_view_block');
+        }));
+        Route::get('modules/catering/products/{id}/product_manage_block', array('as' => 'ct_product_manage_block', function () {
+            return view('backend.partials.modules.catering.product_manage_block');
+        }));
+    //Ingredient views
+    Route::get('modules/catering/products/ingredient_view_block', array('as' => 'ct_ingredient_view_block', function () {
+        return view('backend.partials.modules.catering.ingredient_view_block');
+    }));
+    Route::get('modules/catering/products/{id}/ingredient_manage_block', array('as' => 'ct_ingredient_manage_block', function () {
+        return view('backend.partials.modules.catering.ingredient_manage_block');
+    }));
+});
+//-------------------
+
 //Routes for users
 //Route::get('/backend/users/', array('as' => 'users', function()
 //{

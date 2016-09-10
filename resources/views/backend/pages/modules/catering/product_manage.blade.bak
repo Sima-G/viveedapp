@@ -1,0 +1,196 @@
+@extends('backend.layouts.master')
+
+@section('title')
+    @lang('schedule/speakers.speakers')
+@stop
+
+@section('header')
+    <meta name="_token" content="{!! csrf_token() !!}"/>
+@stop
+
+@section('content')
+    <!-- Page content -->
+    <div id="page-content">
+        <!-- Catering Categories Header -->
+        <div class="content-header">
+            <ul class="nav-horizontal text-center">
+                <li>
+                    <a href="page_ecom_dashboard.html"><i class="fa fa-bar-chart"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="page_ecom_orders.html"><i class="gi gi-shop_window"></i> Orders</a>
+                </li>
+                <li>
+                    <a href="page_ecom_order_view.html"><i class="gi gi-shopping_cart"></i> Order View</a>
+                </li>
+                <li>
+                    <a href="page_ecom_products.html"><i class="gi gi-shopping_bag"></i> Products</a>
+                </li>
+                <li>
+                    <a href="page_ecom_product_edit.html"><i class="gi gi-pencil"></i> Product Edit</a>
+                </li>
+                <li @if(Route::current()->getName() == 'ct_categories') class="active" @endif >
+                    <a href="{{URL::route('ct_categories')}}"><i class="gi gi-bookmark"></i> @lang('backend/modules/catering/categories.categories')</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END Catering Categories Header -->
+
+        <!-- Quick Stats -->
+        <div id="category-stats" class="row text-center"></div>
+        <!-- END Quick Stats -->
+
+        <!-- Main Row -->
+        <div class="row">
+
+
+            <!-- Clickable Wizard Block -->
+            <div class="block">
+                <!-- Clickable Wizard Title -->
+                <div class="block-title">
+                    <h2><strong>Clickable</strong> Wizard</h2>
+                </div>
+                <!-- END Clickable Wizard Title -->
+
+                <!-- Clickable Wizard Content -->
+                <form id="clickable-wizard" action="page_forms_wizard.html" method="post" class="form-horizontal form-bordered">
+                    <!-- First Step -->
+                    <div id="clickable-first" class="step">
+                        <!-- Step Info -->
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <ul class="nav nav-pills nav-justified clickable-steps">
+                                    <li class="active"><a href="javascript:void(0)" data-gotostep="clickable-first"><strong>1. Account</strong></a></li>
+                                    <li><a href="javascript:void(0)" data-gotostep="clickable-second"><strong>2. Personal</strong></a></li>
+                                    <li><a href="javascript:void(0)" data-gotostep="clickable-third"><strong>3. Extras</strong></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- END Step Info -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-username">Username</label>
+                            <div class="col-md-5">
+                                <input type="text" id="product_title" name="product_title" class="form-control" placeholder="Your username..">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-email">Email</label>
+                            <div class="col-md-5">
+                                {{--<input type="text" id="example-clickable-email" name="example-clickable-email" class="form-control" placeholder="test@example.com">--}}
+                                <textarea id="product_description" name="product_description" class="ckeditor"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END First Step -->
+
+                    <!-- Second Step -->
+                    <div id="clickable-second" class="step">
+                        <!-- Step Info -->
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <ul class="nav nav-pills nav-justified clickable-steps">
+                                    <li><a href="javascript:void(0)" data-gotostep="clickable-first"><i class="fa fa-check"></i> <strong>1. Account</strong></a></li>
+                                    <li class="active"><a href="javascript:void(0)" data-gotostep="clickable-second"><strong>2. Personal</strong></a></li>
+                                    <li><a href="javascript:void(0)" data-gotostep="clickable-third"><strong>3. Extras</strong></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- END Step Info -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-firstname">Firstname</label>
+                            <div class="col-md-5">
+                                <input type="text" id="example-clickable-firstname" name="example-clickable-firstname" class="form-control" placeholder="John..">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-lastname">Lastname</label>
+                            <div class="col-md-5">
+                                <input type="text" id="example-clickable-lastname" name="example-clickable-lastname" class="form-control" placeholder="Doe..">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-country">Country</label>
+                            <div class="col-md-5">
+                                <input type="text" id="example-clickable-country" name="example-clickable-country" class="form-control" placeholder="Where do you live?">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-city">City</label>
+                            <div class="col-md-5">
+                                <input type="text" id="example-clickable-city" name="example-clickable-city" class="form-control" placeholder="Which one?">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Second Step -->
+
+                    <!-- Third Step -->
+                    <div id="clickable-third" class="step">
+                        <!-- Step Info -->
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <ul class="nav nav-pills nav-justified clickable-steps">
+                                    <li><a href="javascript:void(0)" data-gotostep="clickable-first"><i class="fa fa-check"></i> <strong>1. Account</strong></a></li>
+                                    <li><a href="javascript:void(0)" data-gotostep="clickable-second"><i class="fa fa-check"></i> <strong>2. Personal</strong></a></li>
+                                    <li class="active"><a href="javascript:void(0)" data-gotostep="clickable-third"><strong>3. Extras</strong></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- END Step Info -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-bio">Bio</label>
+                            <div class="col-md-8">
+                                <textarea id="example-clickable-bio" name="example-clickable-bio" rows="6" class="form-control" placeholder="Tell us your story.."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="example-clickable-newsletter">Newsletter</label>
+                            <div class="col-md-8">
+                                <div class="checkbox">
+                                    <label for="example-clickable-newsletter">
+                                        <input type="checkbox" id="example-clickable-newsletter" name="example-clickable-newsletter">  Sign up
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"><a href="#modal-terms" data-toggle="modal">Terms</a></label>
+                            <div class="col-md-8">
+                                <label class="switch switch-primary" for="example-clickable-terms">
+                                    <input type="checkbox" id="example-clickable-terms" name="example-clickable-terms" value="1">
+                                    <span data-toggle="tooltip" title="I agree to the terms!"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Third Step -->
+
+                    <!-- Form Buttons -->
+                    <div class="form-group form-actions">
+                        <div class="col-md-8 col-md-offset-4">
+                            <button type="reset" class="btn btn-sm btn-warning" id="back4">Previous</button>
+                            <button type="submit" class="btn btn-sm btn-primary" id="next4">Next</button>
+                        </div>
+                    </div>
+                    <!-- END Form Buttons -->
+                </form>
+                <!-- END Clickable Wizard Content -->
+            </div>
+            <!-- END Clickable Wizard Block -->
+
+        </div>
+        <!-- END Main Row -->
+    </div>
+    <!-- END Page Content -->
+@stop
+
+@section('footer')
+    @if((head($userRoles) == 'Admin') || (head($userRoles) == 'Editor') || (head($userRoles) == 'Author'))
+        <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
+    @endif
+    {{--<script src="{{ asset('assets/backend/js/pages/modules/catering/viveed.js') }}"></script>--}}
+
+    <!-- Load and execute javascript code used only in this page -->
+    <script src="{{ asset('assets/backend/js/pages/formsWizard.js') }}"></script>
+    <script>$(function(){ FormsWizard.init(); });</script>
+@stop
