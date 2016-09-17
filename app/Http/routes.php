@@ -163,6 +163,10 @@ Route::group(array('prefix' => 'backend/'), function () {
 
 //Routes for speakers
 Route::group(array('prefix' => 'backend/'), function () {
+
+    //Dashboard section
+    Route::get('schedule/dashboard/', array('as' => 'cnf_dashboard', 'uses' => 'Cnf_moduleController@show_dashboard'));
+
     Route::get('schedule/speakers/', array('as' => 'speakers', 'uses' => 'SpeakerController@show_speakers'));
     Route::get('schedule/speakers/speaker_list', 'SpeakerController@speaker_list');
     Route::post('schedule/speakers/store', 'SpeakerController@store');

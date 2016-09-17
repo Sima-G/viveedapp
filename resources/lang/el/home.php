@@ -14,6 +14,9 @@ return [
     */
 
     'home'                         => 'Αρχική',
+    'conference'                   => 'Συνέδρια',
+    'catering'                     => 'Εστίαση',
+    'pricing'                      => 'Τιμολόγηση',
     'preview'                      => 'Προεπισκόπηση',
     'viveed_sessions'              => 'Ομιλίες',
     'viveed_speakers'              => 'Ομιλητές',

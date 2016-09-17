@@ -20,6 +20,7 @@ return [
     'home'                              => 'Αρχική',
     'users'                             => 'Χρήστες',
     'preview'                           => 'Προεπισκόπηση',
+    'conference'                        => 'Συνέδρια',
     'schedule'                          => 'Πρόγραμμα',
     'catering'                          => 'Εστίαση',
     'MODULES'                           => 'ΠΡΟΣΘΕΤΑ',

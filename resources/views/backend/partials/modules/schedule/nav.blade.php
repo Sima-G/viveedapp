@@ -1,8 +1,13 @@
 @if( ! empty($schedule_config))
     <ul class="sidebar-nav">
         <li @if((Route::current()->getName() == 'sessions') || (Route::current()->getName() == 'speakers') || (Route::current()->getName() == 'settings'))  class="active" @endif>
-            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.sessions')</span></a>
+            <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-microphone sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.conference')</span></a>
             <ul>
+
+                <li>
+                    <a href="{{URL::route('cnf_dashboard')}}" @if(Route::current()->getName() == 'cnf_dashboard') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                </li>
+
                 @if($schedule_config->init != 0)
                     <li @if($schedule_config->init == 0) class="content_not_for_init" @endif>
                         <a href="{{URL::route('sessions')}}" @if(Route::current()->getName() == 'sessions') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.sessions_desc')">@lang('master.sessions')</span></a>
