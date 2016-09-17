@@ -15,4 +15,9 @@ class Ct_product extends Model
     {
         return $this->hasOne('App\Ct_category', 'id', 'id');
     }
+
+    public function ct_quantities()
+    {
+        return $this->hasOne('App\Ct_category', 'id', 'id');
+    }
 }

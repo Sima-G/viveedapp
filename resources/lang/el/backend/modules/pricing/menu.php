@@ -14,12 +14,7 @@ return [
     */
 
     'view_of_dashboard'                 => 'Γενική Επισκόπηση',
-    'view_of_products'                  => 'Επισκόπηση Προϊόντων',
-    'manage_of_products'                => 'Διαχείριση Προϊόντων',
-    'manage_of_product'                 => 'Διαχείριση Προϊόντος',
-    'list_of_products'                  => 'Λίστα Προϊόντων',
-    'create_product'                    => 'Δημιουργία Προϊόντος',
-    'manage_of_categories'              => 'Διαχείριση Κατηγοριών',
+    'view_of_catalogues'                => 'Επισκόπηση Καταλόγων',
 
 
 ];

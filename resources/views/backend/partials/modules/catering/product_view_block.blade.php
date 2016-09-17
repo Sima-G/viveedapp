@@ -1,4 +1,4 @@
-<div class="block">
+<div id="product_view_block" class="block">
     <!-- Customer Info Title -->
     <div class="block-title">
         <h2><i class="gi gi-shopping_bag"></i> <strong>@lang('backend/modules/catering/products.info')</strong> @lang('backend/modules/catering/products.of_product')</h2>
@@ -48,7 +48,7 @@
 
     <div class="block-section text-center">
         <div id="product_actions" class="">
-            <form>
+            <form action="" enctype="multipart/form-data" method="get" onsubmit="return false;">
                 <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                 <button type="submit" id="send-btn" class="btn btn-sm btn-primary product-manage-btn">
                     <i class="fa fa-arrow-right"></i> @lang('backend/modules/catering/products.product_edit')

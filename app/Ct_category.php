@@ -17,7 +17,7 @@ class Ct_category extends Model
     protected $table = 'ct_categories';
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
-    protected $fillable = ['title', 'description', 'status', 'state'];
+    protected $fillable = ['title', 'parent', 'description', 'status', 'state'];
     protected $guarded = ['id'];
 
     public function ct_products()

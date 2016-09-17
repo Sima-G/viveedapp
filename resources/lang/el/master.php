@@ -41,6 +41,10 @@ return [
     'ct_categories'                     => 'Κατηγορίες',
     'ct_categories_description'         => 'Διαχείριση κατηγοριών',
 
+    'prc_prices'                        => 'Τιμές',
+    'prc_catalogues'                    => 'Τιμοκατάλογοι',
+    'prc_price_per_product'             => 'Τιμές/Προϊόν',
+
     'latest_activities'                 => 'Τελευταίες Ενέργειες',
     'datetime'                          => 'ΗΜΕΡΟΜΗΝΙΑ',
     'msg_setting_init'                  => 'Εκκρεμεί αρχικοποίηση',

@@ -3,6 +3,8 @@
     <tr>
         <th class="text-center" style="width: 70px;">@lang('backend/modules/catering/categories.category_id')</th>
         <th>@lang('backend/modules/catering/categories.category_title')</th>
+        <th class="text-left hidden-xs">@lang('backend/modules/catering/categories.type')</th>
+        <th class="text-left hidden-xs">@lang('backend/modules/catering/categories.parent')</th>
         <th class="text-left hidden-xs">@lang('backend/modules/catering/categories.status')</th>
         <th class="text-left hidden-xs">@lang('backend/modules/catering/categories.state')</th>
         <th class="text-center ">@lang('backend/modules/catering/categories.actions')</th>
@@ -13,6 +15,26 @@
         <tr>
             <td class="text-center"><strong>{{ $key+1 }}</strong></td>
             <td class="category_title">{{ $category->title }}</td>
+
+            <td class="hidden-xs category_type">
+                @if( ! empty ($category->state) )
+                    <span class="category_state_txt"> @lang('backend/modules/catering/categories.category') </span>
+                @else
+                    <span class="category_state_txt"> @lang('backend/modules/catering/categories.subcategory')</span>
+                @endif
+            </td>
+            <td class="hidden-xs category_parent">
+                @if( ! empty ($category->parent) )
+                    @foreach($categories as $key => $subcategory)
+                        @if($subcategory->id == $category->parent)
+                            <span class="category_parent_txt">{{ $subcategory->title }}</span>
+                        @endif
+                    @endforeach
+                @else
+                    <span class="subcategory_title_txt"></span>
+                @endif
+            </td>
+
             <td class="hidden-xs category_status">
                 @if($category->status == 0)
                     <span class="label label-warning category_status_txt"> @lang('backend/modules/catering/categories.status_unavailable') </span>

@@ -8,13 +8,12 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 // Viveed;
-
 use Input;
 use Request;
 use Sentinel;
-use App\Ct_category;
+use App\Prc_catalogue;
 
-class Ct_categoryController extends Controller
+class Prc_catalogueController extends Controller
 {
     public function store()
     {
@@ -57,13 +56,13 @@ class Ct_categoryController extends Controller
         }
     }
 
-    public function show_categories()
+    public function show_catalogues()
     {
         if (Sentinel::check()) {
             // Getting all table data
             $userRoles = Sentinel::getRoles()->lists('name', 'id')->all();
-            $categories = Ct_category::Select('*')->get();
-            return View('backend.pages.modules.catering.categories', compact('userRoles', 'categories'));
+            $catalogues = Prc_catalogue::Select('*')->get();
+            return View('backend.pages.modules.pricing.catalogues', compact('userRoles', 'catalogues'));
         } else {
             return Redirect::to('backend/');
         }

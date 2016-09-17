@@ -72,6 +72,18 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-xs-3 control-label" for="category_parent">@lang('backend/modules/catering/categories.parent_category') <span class="text-danger">*</span></label>
+                                <div class="col-xs-9">
+                                    <select id="category_parent" name="category_parent" class="form-control">
+                                        <option value="">-</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-xs-3 control-label" for="category_status">@lang('backend/modules/catering/categories.status') <span class="text-danger">*</span></label>
                                 <div class="col-xs-9">
                                     <select id="category_status" name="category_status" class="form-control">
