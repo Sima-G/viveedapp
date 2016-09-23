@@ -4,12 +4,12 @@
         <tbody>
 
         <tr>
-            <th class="text-center" style="width: 100px;"><strong>@lang('backend/modules/catering/quantities.quantity_id')</strong></th>
-            <th class="hidden-xs" style="width: 15%;">@lang('backend/modules/catering/quantities.unit')</th>
-            <th class="text-right hidden-xs" style="width: 10%;">@lang('backend/modules/catering/quantities.quantity')</th>
-            <th class="hidden-xs">@lang('backend/modules/catering/quantities.status')</th>
-            <th class="hidden-xs text-center">@lang('backend/modules/catering/quantities.state')</th>
-            <th class="text-center" style="width: 70px;">@lang('backend/modules/catering/quantities.actions')</th>
+            <th class="text-center" style="width: 100px;"><strong>@lang('backend/modules/pricing/catalogues.catalogue_id')</strong></th>
+            <th class="hidden-xs" style="width: 15%;">@lang('backend/modules/pricing/catalogues.catalogue_id')</th>
+            <th class="text-right hidden-xs" style="width: 10%;">@lang('backend/modules/pricing/catalogues.catalogue_id')</th>
+            <th class="hidden-xs">@lang('backend/modules/pricing/catalogues.catalogue_id')</th>
+            <th class="hidden-xs text-center">@lang('backend/modules/pricing/catalogues.catalogue_id')</th>
+            <th class="text-center" style="width: 70px;">@lang('backend/modules/pricing/catalogues.catalogue_id')</th>
         </tr>
 
         @foreach($quantities as $key => $quantity)

@@ -21,36 +21,37 @@ class Prc_catalogueController extends Controller
         if (Request::ajax()) {
             $data = Input::all();
 
-            $parent_category_id = Input::get('category_parent');
-            if (empty($parent_category_id)){
-                $parent_category_id = Null;
-            }
-
-            if(Input::has('category_action_id')){
+            if(Input::has('catalogue_action_id')){
                 // find the bear
-                $category = Ct_category::find(Input::get('category_action_id'));
+                $catalogue = Prc_catalogue::find(Input::get('category_action_id'));
                 // change the attribute
-                $category->title = Input::get('category_title');
-
-//                $category->parent = Input::get('category_parent');
-                $category->parent = $parent_category_id;
-
-                $category->description = Input::get('category_description');
-                $category->status = Input::get('category_status');
-                $category->state = Input::get('category_state');
+                $catalogue->title       =       Input::get('category_title');
+                $catalogue->description =       Input::get('category_description');
+                $catalogue->start_date  =       Input::get('category_title');
+                $catalogue->end_date    =       Input::get('category_description');
+                $catalogue->day         =       Input::get('category_title');
+                $catalogue->start_hour  =       Input::get('category_description');
+                $catalogue->title       =       Input::get('category_title');
+                $catalogue->description =       Input::get('category_description');
+                $catalogue->status      =       Input::get('category_status');
+                $catalogue->state       =       Input::get('category_state');
 
                 // save to our database
-                $category->save();
+                $catalogue->save();
                 return Input::get('category_action_id');
             } else {
-                $category = Ct_category::firstOrCreate(array(
-                    'title'	        => Input::get('category_title'),
-                    'parent'	    => Input::get('category_parent'),
-                    'description'	=> Input::get('category_description'),
-                    'status'	    => Input::get('category_status'),
-                    'state'	        => Input::get('category_state'),
+                $catalogue = Prc_catalogue::firstOrCreate(array(
+                    'title'	            => Input::get('catalogue_title'),
+                    'description'	    => Input::get('catalogue_description'),
+                    'start_date'        => Input::get('catalogue_start_date'),
+                    'end_date'	        => Input::get('catalogue_end_date'),
+                    'day'	            => Input::get('catalogue_dates'),
+                    'start_hour'        => Input::get('catalogue_start_hour'),
+                    'end_hour'          => Input::get('catalogue_end_hour'),
+                    'status'            => Input::get('catalogue_status'),
+                    'state'	            => Input::get('catalogue_state'),
                 ));
-                $last_inserted_id = $category->id;
+                $last_inserted_id = $catalogue->id;
                 return $last_inserted_id;
             }
         }
@@ -69,21 +70,21 @@ class Prc_catalogueController extends Controller
 
     }
 
-    public function category_list()
+    public function catalogue_list()
     {
         // Getting all table data
-        $categories = Ct_category::select('*')->orderBy('id', 'ASC')->get();
+        $catalogues = Prc_catalogue::select('*')->orderBy('id', 'ASC')->get();
         $userRoles = Sentinel::getRoles()->lists('name', 'id')->all();
-        return View('backend.partials.modules.catering.category_list', compact('userRoles', 'categories'));
+        return View('backend.partials.modules.pricing.catalogue_list', compact('userRoles', 'catalogues'));
     }
 
     public function delete()
     {
         if (Request::ajax()) {
             $data = Input::all();
-            if(Input::has('ct_category_action_id')) {
-                Ct_category::destroy(Input::get('ct_category_action_id'));
-                return Input::get('ct_category_action_id');
+            if(Input::has('prc_catalogue_action_id')) {
+                Prc_catalogue::destroy(Input::get('prc_catalogue_action_id'));
+                return Input::get('prc_catalogue_action_id');
             }
         }
     }

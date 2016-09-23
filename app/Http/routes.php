@@ -148,6 +148,8 @@ Route::get('/backend/settings', function () {
 
 
 
+
+
 //Routes for sessions
 Route::group(array('prefix' => 'backend/'), function () {
     Route::get('schedule/sessions/', array('as' => 'sessions', 'uses' => 'SessionController@show_sessions'));
@@ -185,6 +187,9 @@ Route::group(array('prefix' => 'backend/'), function () {
 });
 //-------------------
 
+
+
+
 //Routes for settings
 Route::group(array('prefix' => 'backend/'), function () {
 
@@ -193,6 +198,10 @@ Route::group(array('prefix' => 'backend/'), function () {
 
     //Routes for modules
     Route::group(array('prefix' => 'modules/'), function () {
+
+
+
+
 
         //Routes for Pricing module
         Route::group(array('prefix' => 'pricing/'), function () {
@@ -204,6 +213,17 @@ Route::group(array('prefix' => 'backend/'), function () {
                 Route::get('/catalogue_list', array('as' => 'prc_catalogue_list', 'uses' => 'Prc_catalogueController@catalogue_list'));
                 Route::post('/store', 'Prc_catalogueController@store');
                 Route::post('/delete', 'Prc_catalogueController@delete');
+                Route::get('/catalogue_stats', 'Prc_moduleController@catalogue_stats');
+            });
+            //Product price section
+            Route::group(array('prefix' => 'products'), function () {
+//                Route::get('/', array('as' => 'prc_catalogues', 'uses' => 'Prc_productController@show_catalogues'));
+                Route::get('/{id}/manage', array('as' => 'prc_product_manage', 'uses' => 'Prc_productController@product_manage'));
+                Route::post('/store', 'Prc_productController@store');
+//                Route::get('/catalogue_list', array('as' => 'prc_catalogue_list', 'uses' => 'Prc_catalogueController@catalogue_list'));
+//                Route::post('/store', 'Prc_catalogueController@store');
+//                Route::post('/delete', 'Prc_catalogueController@delete');
+//                Route::get('/catalogue_stats', 'Prc_moduleController@catalogue_stats');
             });
         });
 

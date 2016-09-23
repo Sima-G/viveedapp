@@ -1,5 +1,6 @@
 <ul class="sidebar-nav">
-    <li @if((Route::current()->getName() == 'prc_catalogues') || (Route::current()->getName() == 'prc_catalogue'))  class="active" @endif>
+    {{--<li @if((Route::current()->getName() == 'prc_catalogues') || (Route::current()->getName() == 'prc_catalogue'))  class="active" @endif>--}}
+    <li @if(substr(Route::current()->getName(), 0, 4) == "prc_")  class="active" @endif>
         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-coins sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.prc_prices')</span></a>
         <ul>
 

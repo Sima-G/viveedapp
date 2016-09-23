@@ -16,8 +16,19 @@ class Ct_product extends Model
         return $this->hasOne('App\Ct_category', 'id', 'id');
     }
 
+    /*public function ct_quantities()
+    {
+        return $this->hasOne('App\Ct_quantity', 'product', 'id');
+    }*/
+
+    //Ct products has many prices
     public function ct_quantities()
     {
-        return $this->hasOne('App\Ct_category', 'id', 'id');
+        return $this->hasMany('App\Ct_quantity', 'product', 'id');
+    }
+
+    public function prc_products()
+    {
+        return $this->hasMany('App\Prc_product', 'product', 'id');
     }
 }

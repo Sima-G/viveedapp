@@ -45,7 +45,11 @@ return [
     'of_catalogues'                     => 'καταλόγων',
 
 
-
+    'start_date'                        => 'Ημερομηνία Έναρξης',
+    'end_date'                          => 'Ημερομηνία Λήξης',
+    'days'                              => 'Ημέρες',
+    'start_hour'                        => 'Ώρα Έναρξης',
+    'end_hour'                          => 'Ώρα Έναρξης',
 
 
     'unit'                              => 'Μονάδα',
@@ -55,10 +59,10 @@ return [
     'of_product'                        => 'Προϊόντος',
 
     'status_unavailable'                => 'μη διαθέσιμη',
-    'status_new'                        => 'νέα',
-    'status_old'                        => 'παλιά',
-    'state_enabled'                     => 'ενεργή',
-    'state_disabled'                    => 'ανενεργή',
+    'status_new'                        => 'νέος',
+    'status_old'                        => 'παλιός',
+    'state_enabled'                     => 'ενεργός',
+    'state_disabled'                    => 'ανενεργός',
     'quantity_new_save'                 => 'Αποθήκευση Νέας',
     'quantity_change_save'              => 'Αποθήκευση Αλλαγών',
     'quantity_action_undo'              => 'Αναίρεση και Νέο',

@@ -52,27 +52,28 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">@lang('backend/modules/pricing/catalogues.selection_of_days')</label>
                         <div class="col-md-10">
-                            <label class="checkbox-inline" for="example-inline-checkbox1">
-                                <input id="example-inline-checkbox1" name="example-inline-checkbox1" value="1" type="checkbox"> @lang('backend/modules/pricing/catalogues.sun')
+                            <label class="checkbox-inline" for="selected_date_sun">
+                                <input id="catalogue_date_sun" name="catalogue_date" value="1" type="checkbox"> @lang('backend/modules/pricing/catalogues.sun')
                             </label>
-                            <label class="checkbox-inline" for="example-inline-checkbox2">
-                                <input id="example-inline-checkbox2" name="example-inline-checkbox2" value="2" type="checkbox"> @lang('backend/modules/pricing/catalogues.mon')
+                            <label class="checkbox-inline" for="selected_date_mon">
+                                <input id="catalogue_date_mon" name="catalogue_date" value="2" type="checkbox"> @lang('backend/modules/pricing/catalogues.mon')
                             </label>
-                            <label class="checkbox-inline" for="example-inline-checkbox3">
-                                <input id="example-inline-checkbox3" name="example-inline-checkbox3" value="4" type="checkbox"> @lang('backend/modules/pricing/catalogues.tue')
+                            <label class="checkbox-inline" for="selected_date_tue">
+                                <input id="catalogue_date_tue" name="catalogue_date" value="4" type="checkbox"> @lang('backend/modules/pricing/catalogues.tue')
                             </label>
-                            <label class="checkbox-inline" for="example-inline-checkbox1">
-                                <input id="example-inline-checkbox1" name="example-inline-checkbox1" value="8" type="checkbox"> @lang('backend/modules/pricing/catalogues.wed')
+                            <label class="checkbox-inline" for="selected_date_wed">
+                                <input id="catalogue_date_wed" name="catalogue_date" value="8" type="checkbox"> @lang('backend/modules/pricing/catalogues.wed')
                             </label>
-                            <label class="checkbox-inline" for="example-inline-checkbox2">
-                                <input id="example-inline-checkbox2" name="example-inline-checkbox2" value="16" type="checkbox"> @lang('backend/modules/pricing/catalogues.thu')
+                            <label class="checkbox-inline" for="selected_date_thu">
+                                <input id="catalogue_date_thu" name="catalogue_date" value="16" type="checkbox"> @lang('backend/modules/pricing/catalogues.thu')
                             </label>
-                            <label class="checkbox-inline" for="example-inline-checkbox3">
-                                <input id="example-inline-checkbox3" name="example-inline-checkbox3" value="32" type="checkbox"> @lang('backend/modules/pricing/catalogues.fri')
+                            <label class="checkbox-inline" for="selected_date_fri">
+                                <input id="catalogue_date_fri" name="catalogue_date" value="32" type="checkbox"> @lang('backend/modules/pricing/catalogues.fri')
                             </label>
-                            <label class="checkbox-inline" for="example-inline-checkbox1">
-                                <input id="example-inline-checkbox1" name="example-inline-checkbox1" value="64" type="checkbox"> @lang('backend/modules/pricing/catalogues.sat')
+                            <label class="checkbox-inline" for="selected_date_sat">
+                                <input id="catalogue_date_sat" name="catalogue_date" value="64" type="checkbox"> @lang('backend/modules/pricing/catalogues.sat')
                             </label>
+                                <input type="hidden" name="catalogue_dates" id="catalogue_dates">
                         </div>
                     </div>
 
@@ -80,9 +81,9 @@
                 <label class="col-md-2 control-label" for="example-daterange1">@lang('backend/modules/pricing/catalogues.selection_of_dates')</label>
                 <div class="col-md-10">
                     <div class="input-group input-daterange" data-date-format="mm/dd/yyyy">
-                        <input type="text" id="example-daterange1" name="example-daterange1" class="form-control text-center" placeholder="@lang('backend/modules/pricing/catalogues.from')">
+                        <input type="text" id="catalogue_start_date" name="catalogue_start_date" class="form-control text-center" placeholder="@lang('backend/modules/pricing/catalogues.from')">
                         <span class="input-group-addon"><i class="fa fa-angle-right"></i></span>
-                        <input type="text" id="example-daterange2" name="example-daterange2" class="form-control text-center" placeholder="@lang('backend/modules/pricing/catalogues.to')">
+                        <input type="text" id="catalogue_end_date" name="catalogue_end_date" class="form-control text-center" placeholder="@lang('backend/modules/pricing/catalogues.to')">
                     </div>
                 </div>
             </div>
@@ -92,7 +93,7 @@
                     <label class="col-md-4 control-label" for="example-timepicker24">@lang('backend/modules/pricing/catalogues.selection_of_hours') (@lang('backend/modules/pricing/catalogues.from'))</label>
                     <div class="col-md-8">
                         <div class="input-group bootstrap-timepicker">
-                            <input type="text" id="example-timepicker24" name="example-timepicker24" class="form-control input-timepicker24">
+                            <input type="text" id="catalogue_start_hour" name="catalogue_start_hour" class="form-control input-timepicker24">
                             <span class="input-group-btn">
                                         <a href="javascript:void(0)" class="btn btn-primary"><i class="fa fa-clock-o"></i></a>
                                     </span>
@@ -105,7 +106,7 @@
                     <label class="col-md-4 control-label" for="example-timepicker24">@lang('backend/modules/pricing/catalogues.selection_of_hours') (@lang('backend/modules/pricing/catalogues.to'))</label>
                     <div class="col-md-8">
                         <div class="input-group bootstrap-timepicker">
-                            <input type="text" id="example-timepicker24" name="example-timepicker24" class="form-control input-timepicker24">
+                            <input type="text" id="catalogue_end_hour" name="catalogue_end_hour" class="form-control input-timepicker24">
                             <span class="input-group-btn">
                                         <a href="javascript:void(0)" class="btn btn-primary"><i class="fa fa-clock-o"></i></a>
                                     </span>
@@ -116,13 +117,30 @@
 
         </div>
 
+        {{--<div id="container"><h1>Add-ons</h1>
+            <input type="checkbox" name="ch1" value="10" id="qr1" />Add-on Number 1 - 10 QR <br />
+            <input type="checkbox" name="ch1" value="20" id="qr1" />Add-on Number 2 - 20 QR <br />
+            <input type="checkbox" name="ch1" value="40" id="qr1" />Add-on Number 3 - 40 QR <br />
+            <input type="checkbox" name="ch1" value="60" id="qr1" />Add-on Number 4 - 60 QR <br />
+        </div>
+
+        <div> I want more add-ons
+            <select id="more" name="more">
+                <option value="0 QR">0</option>
+                <option value="30 QR">1</option>
+                <option value="50 QR">2</option>
+                <option value="100 QR">3</option>
+            </select>
+            <span id="span"></span>
+            User total usage: <span id="usertotal"> </span>--}}
+
         <div class="form-group form-actions">
             <div id="quantity_actions" class="col-xs-9 col-xs-offset-3">
-                <input type="hidden" name="quantity_action_id" id="quantity_action_id">
-                <input type="hidden" name="quantity-manage-btn-txt" id="quantity-manage-btn-txt" value="<i class='fa fa-arrow-right'></i> @lang('backend/modules/catering/quantities.quantity_new_save')">
-                <input type="hidden" name="quantity-manage-btn-txt-alt" id="quantity-manage-btn-txt-alt" value="<i class='fa fa-arrow-right'></i> @lang('backend/modules/catering/quantities.quantity_change_save')">
-                <input type="hidden" name="quantity-undo-btn-txt" id="quantity-undo-btn-txt" value="<i class='fa fa-repeat'></i> @lang('backend/modules/catering/quantities.quantity_action_undo')">
-                <button type="submit" id="quantity_manage_btn" class="btn btn-sm btn-primary quantity-manage-btn">
+                <input type="hidden" name="catalogue_action_id" id="quantity_action_id">
+                <input type="hidden" name="catalogue_manage_btn_txt" id="catalogue_manage_btn_txt" value="<i class='fa fa-arrow-right'></i> @lang('backend/modules/catering/quantities.quantity_new_save')">
+                <input type="hidden" name="catalogue_manage_btn_txt_alt" id="catalogue_manage_btn_txt_alt" value="<i class='fa fa-arrow-right'></i> @lang('backend/modules/catering/quantities.quantity_change_save')">
+                <input type="hidden" name="catalogue_undo_btn_txt" id="catalogue_undo_btn_txt" value="<i class='fa fa-repeat'></i> @lang('backend/modules/catering/quantities.quantity_action_undo')">
+                <button type="submit" id="catalogue_manage_btn" class="btn btn-sm btn-primary catalogue-manage-btn">
                     <i class='fa fa-arrow-right'></i> @lang('backend/modules/catering/quantities.quantity_new_save')
                 </button>
             </div>

@@ -12,8 +12,21 @@ class Ct_quantity extends Model
     protected $fillable = ['product', 'unit', 'quantity', 'status', 'state'];
     protected $guarded = ['id'];
 
+    /*public function ct_products()
+    {
+        return $this->hasOne('App\Ct_product', 'id', 'product');
+    }*/
+
+    //Ct quantities belongs to a product
     public function ct_products()
     {
-        return $this->hasOne('App\Ct_product', 'id', 'id');
+        return $this->belongsTo('App\Ct_product', 'product', 'id');
+    }
+
+
+
+    public function prc_products()
+    {
+        return $this->hasMany('App\Prc_product', 'quantity', 'id');
     }
 }
