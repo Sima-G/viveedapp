@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    @lang('schedule/speakers.speakers')
+    @lang('module/catering.catering_title')
 @stop
 
 @section('header')
