@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                {{ var_dump($master_product) }}
+                {{--{{ var_dump($master_product) }}--}}
                 <!-- Product Price/Quantity -->
                 @foreach($master_product->ct_quantities as $product_quantity)
                     <div id="" class="row">
@@ -78,13 +78,13 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <input id="price_{{ $product_quantity->id }}" name="product_price" class="form-control" placeholder="Your username.." type="text">
+                                    <input id="price_{{ $product_quantity->id }}" name="product_price" class="form-control" placeholder="Your username.." type="text" value="{{ $product_quantity->prc_products->where('catalogue', $catalogue) }}">
                                     <input type="hidden" id="old_price_{{ $product_quantity->id }}" name="old_price">
                                     <span class="input-group-addon"><i class="gi gi-euro"></i></span>
                                 </div>
                             </div>
                             {{--{{ dd($master_product) }}--}}
-                            {{ var_dump($product_quantity) }}
+                            {{--{{ var_dump($product_quantity) }}--}}
                             <div class="col-md-3">
                                 <div class="input-group">
                                     <input id="discount_{{ $product_quantity->id }}" name="product_discount" class="form-control" placeholder="Your username.." type="text" value="">
