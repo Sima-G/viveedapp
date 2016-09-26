@@ -27,6 +27,6 @@ class Ct_quantity extends Model
 
     public function prc_products()
     {
-        return $this->hasMany('App\Prc_product', 'quantity', 'id');
+        return $this->hasMany('App\Prc_product', 'id', 'quantity');
     }
 }
