@@ -30,40 +30,34 @@ class Prc_catalogue extends Model
             $catalogue_active_day = 0;
         }
 
-        if ( ($this->start_date >= date("d/m/Y")) || is_null($this->start_date) ){
+        if ( (Date::createFromFormat('d/m/Y', $this->start_date) >= date("Y-m-d")) || is_null($this->start_date) ){
             $catalogue_active_start_date = 1;
         } else{
             $catalogue_active_start_date = 0;
         }
 
-        if ( ($this->end_date <= date("d/m/Y")) || is_null($this->end_date) ){
+        if ( (Date::createFromFormat('d/m/Y', $this->end_date) <= date("d/m/Y")) || is_null($this->end_date) ){
             $catalogue_active_end_date = 1;
         } else{
             $catalogue_active_end_date = 0;
         }
 
-        if ( ($this->start_hour >= date("H:i:s")) || is_null($this->start_hour) ){
+        if ( (Date::createFromFormat('H:i:s', $this->start_hour) >= date("H:i:s")) || is_null($this->start_hour) ){
             $catalogue_active_start_hour = 1;
         } else{
             $catalogue_active_start_hour = 0;
         }
 
-        if ( ($this->end_hour <= date("H:i:s")) || is_null($this->end_hour) ){
+        if ( (Date::createFromFormat('H:i:s', $this->end_hour) <= date("H:i:s")) || is_null($this->end_hour) ){
             $catalogue_active_end_hour = 1;
         } else{
             $catalogue_active_end_hour = 0;
         }
 
 
-//        if ((((($this->day) & date("d")) > 0) || is_null($this->day)) && (($this->start_date >= date("Y-m-d") || is_null($this->start_date))) && ($this->end_date <= date("Y-m-d"))){
 
-        /*if( ($catalogue_active_day + $catalogue_active_start_date + $catalogue_active_end_date + $catalogue_active_start_hour + $catalogue_active_end_hour) == 5){
-            return "active";
-        } else {
-            return "inactive";
-        }*/
-
-        return($catalogue_active_day + $catalogue_active_start_date + $catalogue_active_end_date + $catalogue_active_start_hour + $catalogue_active_end_hour);
+//        return($catalogue_active_day + $catalogue_active_start_date + $catalogue_active_end_date + $catalogue_active_start_hour + $catalogue_active_end_hour);
+        return gettype(Date::createFromFormat('d/m/Y', $this->start_date));
 //        return ($this->day) & date("d");
     }
 

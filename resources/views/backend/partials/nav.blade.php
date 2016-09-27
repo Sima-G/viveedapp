@@ -26,7 +26,7 @@
 
 {{--{{ Route::current()->getPrefix() }}--}}
 
-{{--{{ substr(Route::current()->getName(), 0, 4) }}--}}
+{{ substr(Route::current()->getName(), 0, 4) }}
 
 @include('backend.partials.modules.catering.nav')
 

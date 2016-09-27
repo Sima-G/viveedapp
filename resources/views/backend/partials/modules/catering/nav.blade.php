@@ -1,7 +1,7 @@
 {{--@if( ! empty($schedule_config))--}}
 <ul class="sidebar-nav">
 
-    <li @if((Route::current()->getName() == 'sessions') || (Route::current()->getName() == 'speakers') || (Route::current()->getName() == 'settings'))  class="active" @endif>
+    <li @if(substr(Route::current()->getName(), 0, 3) == "ct_")  class="active" @endif>
         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-fast_food sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.catering')</span></a>
         <ul>
 

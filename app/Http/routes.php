@@ -259,16 +259,37 @@ Route::group(array('prefix' => 'backend/'), function () {
     Route::get('modules/catering/product/{id}/manage', array('as' => 'ct_product_manage', 'uses' => 'Ct_productController@product_manage'));
     Route::get('modules/catering/product/{id}/show', array('as' => 'ct_product_show', 'uses' => 'Ct_productController@product_show'));
     Route::post('modules/catering/product/delete', 'Ct_productController@delete');
+
+
+    //Product block lists
+    Route::get('modules/catering/product/{id}/inquantity_list', array('as' => 'ct_inquantity_list', 'uses' => 'Ct_inquantityController@inquantity_list'));
+    Route::get('modules/catering/product/{id}/ingroup_list', array('as' => 'ct_ingroup_list', 'uses' => 'Ct_ingroupController@ingroup_list'));
     Route::get('modules/catering/product/{id}/quantity_list', array('as' => 'ct_quantity_list', 'uses' => 'Ct_quantityController@quantity_list'));
     Route::get('modules/catering/product/{id}/ingredient_list', array('as' => 'ct_ingredient_list', 'uses' => 'Ct_ingredientController@ingredient_list'));
+    //-------------------
+
+
 //    Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_manage'));
     Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_create'));
     Route::get('modules/catering/products/show', array('as' => 'ct_products', 'uses' => 'Ct_productController@show_products'));
     Route::get('modules/catering/products/product_list', array('as' => 'ct_product_list', 'uses' => 'Ct_productController@product_list'));
+
+
+    //Product block store
     Route::post('modules/catering/products/store_product', 'Ct_productController@store_product');
+    Route::post('modules/catering/products/store_ingroup', 'Ct_ingroupController@store');
+    Route::post('modules/catering/products/store_inquantity', 'Ct_inquantityController@store');
     Route::post('modules/catering/products/store_ingredient', 'Ct_ingredientController@store');
     Route::post('modules/catering/products/store_quantity', 'Ct_quantityController@store');
+
+
+    //Product block delete
+    Route::post('modules/catering/products/delete_ingroup', 'Ct_ingroupController@delete');
+    Route::post('modules/catering/products/delete_inquantity', 'Ct_inquantityController@delete');
     Route::post('modules/catering/products/delete_quantity', 'Ct_quantityController@delete');
+    Route::post('modules/catering/products/delete_ingredient', 'Ct_ingredientController@delete');
+
+
     //Product views
         Route::get('modules/catering/products/product_create_block', array('as' => 'ct_product_create_block', function () {
             return view('backend.partials.modules.catering.product_create_block');

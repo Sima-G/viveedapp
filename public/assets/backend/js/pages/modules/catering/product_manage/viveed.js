@@ -12,23 +12,45 @@ jQuery(document).ready(function () {
     switch(product_action) {
         case "create":
             $(".product-manage-btn").html($('#product-manage-btn-txt').val());
+
+            $('#inquantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#ingroup_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+
             $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
             $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
             break;
         case "view":
+
+            showingroupList($('#managed_product_id').val());
+            showinquantityList($('#managed_product_id').val());
+
             showquantityList($('#managed_product_id').val());
             showingredientList($('#managed_product_id').val());
+
             $(".product-manage-btn").html($('#product-manage-btn-txt').val());
             $('#product_manage_block').find('input, textarea, select').attr('disabled','disabled');
+
+            $('#inquantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#ingroup_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+
             $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
             $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
             break;
         case "edit":
+
+            showingroupList($('#managed_product_id').val());
+            showinquantityList($('#managed_product_id').val());
+
             showquantityList($('#managed_product_id').val());
             showingredientList($('#managed_product_id').val());
+
             $('#product_action_id').val($('#managed_product_id').val());
             $(".product-manage-btn").html($('#product-manage-btn-txt-alt').val());
             $('#product_manage_block').find('input, textarea, select').removeAttr('disabled');
+
+            $('#inquantity_manage_block').find('input, textarea, button, select').removeAttr('disabled');
+            $('#ingroup_manage_blocks').find('input, textarea, button, select').removeAttr('disabled');
+
             $('#quantity_manage_block').find('input, textarea, button, select').removeAttr('disabled');
             $('#ingredient_manage_blocks').find('input, textarea, button, select').removeAttr('disabled');
             $('#product_title').val($('#managed_product_title').val());
@@ -42,6 +64,9 @@ jQuery(document).ready(function () {
         default:
             $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
             $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+
+            $('#inquantity_manage_block').find('input, textarea, button, select').removeAttr('disabled');
+            $('#ingroup_manage_blocks').find('input, textarea, button, select').removeAttr('disabled');
     }
 
 
@@ -118,6 +143,137 @@ jQuery(document).ready(function () {
                     $('#product_action_id').val(new_product_id);
                     $('#content_loader').remove();
 
+                }
+
+            });
+        }
+    });
+
+    // Ingroup manage block
+    $('#form_ingroups_manage').validate({
+        ignore: [],
+        errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+        errorElement: 'div',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can use the following if you would like to highlight with green color the input after successful validation!
+            e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+            ingroup_title: {
+                required: true
+            },
+        },
+        messages: {
+            ingroup_title: 'Εισαγετε ομάδα συστατικού'
+        },
+
+        submitHandler: function(form) {
+            $.ajax({
+                url: '/backend/modules/catering/products/store_ingroup',
+                type: "post",
+                data: {
+                    'product_action_id': $('input[name=product_action_id]').val(),
+                    'ingroup_action_id': $('input[name=ingroup_action_id]').val(),
+                    'ingroup_title': $('input[name=ingroup_title]').val(),
+                    'ingroup_selection': $('#ingroup_selection').val(),
+                    'ingroup_status': $("[name = 'ingroup_status']").val(),
+                    'ingroup_state': $('#ingroup_state').val(),
+                    '_token': $('input[name=_token]').val()
+                },
+
+                beforeSend: function () {
+                    $("<div id='content_loader' style='text-align: center'><i style='position: relative; top: calc(50% - 10px)' class='fa fa-asterisk fa-4x fa-spin'></i></div>").css({
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        opacity: 0.7,
+                        background: "#ccc"
+                    }).appendTo($(".ingroup-manage-list").css("position", "relative"));
+                },
+
+                success: function getcontent(data) {
+                    swal("Ενημέρωση", "Η ομάδα συστατικών αποθηκεύτηκε!", "success");
+                    showingroupList($('#managed_product_id').val());
+                    $('#form_ingroups_manage').trigger("reset");
+                    $('#ingroup_manage_btn').html($('#ingroup-manage-btn-txt-alt').val());
+                    $('#ingroup_undo_btn').remove();
+                    $('#content_loader').remove();
+
+                }
+
+            });
+        }
+    });
+
+    // Ingredient manage block
+    $('#form_inquantities_manage').validate({
+        ignore: [],
+        errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+        errorElement: 'div',
+        errorPlacement: function(error, e) {
+            e.parents('.form-group > div').append(error);
+        },
+        highlight: function(e) {
+            $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+            $(e).closest('.help-block').remove();
+        },
+        success: function(e) {
+            // You can use the following if you would like to highlight with green color the input after successful validation!
+            e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+            e.closest('.help-block').remove();
+        },
+        rules: {
+            inquantity_title: {
+                required: true
+            },
+        },
+        messages: {
+            inquantity_title: 'Εισαγετε τίτλο συστατικού'
+        },
+
+        submitHandler: function(form) {
+            $.ajax({
+                url: '/backend/modules/catering/products/store_inquantity',
+                type: "post",
+                data: {
+                    'inquantity_title': $('input[name=inquantity_title]').val(),
+                    'inquantity_quantity': $('input[name=inquantity_quantity]').val(),
+                    'inquantity_status': $("[name = 'inquantity_status']").val(),
+                    'inquantity_state': $('#inquantity_state').val(),
+                    'product_action_id': $('input[name=product_action_id]').val(),
+                    'inquantity_action_id': $('input[name=inquantity_action_id]').val(),
+                    '_token': $('input[name=_token]').val()
+                },
+
+                beforeSend: function () {
+                    $("<div id='content_loader' style='text-align: center'><i style='position: relative; top: calc(50% - 10px)' class='fa fa-asterisk fa-4x fa-spin'></i></div>").css({
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        opacity: 0.7,
+                        background: "#ccc"
+                    }).appendTo($(".inquantity-manage-list").css("position", "relative"));
+                },
+
+                success: function getcontent(data) {
+                    swal("Ενημέρωση", "Η ποσότητα του συστατικού αποθηκεύτηκε!", "success");
+                    showinquantityList($('#managed_product_id').val());
+                    $('#form_inquantities_manage').trigger("reset");
+                    $('#inquantity_manage_btn').html($('#inquantity-manage-btn-txt-alt').val());
+                    $('#inquantity_undo_btn').remove();
+                    $('#content_loader').remove();
                 }
 
             });
@@ -273,6 +429,41 @@ jQuery(document).ready(function () {
      */
 
     // Product quantity edit
+    $("#ingroup_list").on('click', '.ingroup_edit', function (event) {
+        event.preventDefault();
+        $('#form_ingroups_manage').trigger("reset");
+        var ingroup_manage_btn_txt_alt = $('#ingroup-manage-btn-txt-alt').val();
+        $('#ingroup_manage_btn').html(ingroup_manage_btn_txt_alt);
+        if ($('#ingroup_undo_btn').length == 0) {
+            var ingroup_undo_btn_txt = $('#ingroup-undo-btn-txt').val();
+            $('#ingroup_actions').append('<button type=\"submit\" id=\"quantity_undo_btn\" class=\"btn btn-sm btn-warning send-btn\">' + ingroup_undo_btn_txt + '</button>');
+        }
+        var id = $(this).attr('id');
+        var ingroup_title_txt = $(this).closest('tr').children('td.ingroup_title_txt').html();
+        var ingroup_selection_txt = $(this).closest('tr').children('td.ingroup_selection_txt').html();
+        ingroup_selection_txt = ingroup_selection_txt.trim();
+        var ingroup_status_txt = $(this).closest("tr").find(".ingroup_status_txt").text();
+        ingroup_status_txt = ingroup_status_txt.trim();
+        var ingroup_state_txt = $(this).closest("tr").find(".ingroup_state_txt").text();
+        ingroup_state_txt = ingroup_state_txt.trim();
+        $('#ingroup_action_id').val(id);
+        $('#ingroup_title').val(ingroup_title_txt);
+        $("#ingroup_selection option").filter(function() {
+            return this.text == ingroup_selection_txt;
+        }).prop('selected', true);
+        $("#ingroup_status option").filter(function() {
+            return this.text == ingroup_status_txt;
+        }).prop('selected', true);
+        $("#ingroup_state option").filter(function() {
+            return this.text == ingroup_state_txt;
+        }).prop('selected', true);
+
+        var ingroup_btn_alt_txt = $('#ingroup_manage_btn_txt_alt').val();
+        $('#ingroup_manage_btn').html(ingroup_btn_alt_txt);
+
+    });
+
+    // Product quantity edit
     $("#quantity_list").on('click', '.quantity_edit', function (event) {
         event.preventDefault();
         // cleanFields();
@@ -378,10 +569,74 @@ jQuery(document).ready(function () {
      |--------------------------------------------------------------------------
      |
      | The following javascript lines contain the code for deleting the entries of product blocks. It includes the edit functions for:
+     | - Ingredient group list
+     | - Ingredient quantity list
      | - Product quantity list
      | - Product ingredient list
      |
      */
+
+    // Ingredient group delete
+    $("#ingroup_list").on('click', '.ingroup_delete', function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        swal({
+                title: "Είσαστε σίγουρος;",
+                text: "Η ομάδα συστατικών θα διαγραφεί οριστικά!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ναι, προχώρα!",
+                cancelButtonText: "Άκυρο",
+                closeOnConfirm: false
+            },
+            function(){
+                $.ajax({
+                    url: '/backend/modules/catering/products/delete_ingroup',
+                    type: "post",
+                    data: {
+                        'ingroup_action_id': id,
+                        '_token': $('input[name=_token]').val()
+                    },
+                    success: function getcontent(data) {
+                        swal("Ενημέρωση", "Η ομάδα συστατικών διεγράφη!", "success");
+                        $('#form_ingroups_manage').trigger("reset");
+                        showingroupList($('#managed_product_id').val());
+                    }
+                });
+            });
+    });
+
+    // Ingredient group delete
+    $("#inquantity_list").on('click', '.inquantity_delete', function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        swal({
+                title: "Είσαστε σίγουρος;",
+                text: "Η ποσότητα συστατικού θα διαγραφεί οριστικά!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ναι, προχώρα!",
+                cancelButtonText: "Άκυρο",
+                closeOnConfirm: false
+            },
+            function(){
+                $.ajax({
+                    url: '/backend/modules/catering/products/delete_inquantity',
+                    type: "post",
+                    data: {
+                        'inquantity_action_id': id,
+                        '_token': $('input[name=_token]').val()
+                    },
+                    success: function getcontent(data) {
+                        swal("Ενημέρωση", "Η ποσότητα συστατικού διεγράφη!", "success");
+                        $('#form_inquantities_manage').trigger("reset");
+                        showinquantityList($('#managed_product_id').val());
+                    }
+                });
+            });
+    });
 
     // Product quantity delete
     $("#quantity_list").on('click', '.quantity_delete', function (event) {
@@ -409,6 +664,37 @@ jQuery(document).ready(function () {
                         swal("Ενημέρωση", "Η μονάδα μέτρησης διεγράφη!", "success");
                         $('#form_quantities_manage').trigger("reset");
                         showquantityList($('#managed_product_id').val());
+                    }
+                });
+            });
+    });
+
+    // Product quantity delete
+    $("#ingredient_list").on('click', '.ingredient_delete', function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        swal({
+                title: "Είσαστε σίγουρος;",
+                text: "Το συστατικό θα διαγραφεί οριστικά!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Ναι, προχώρα!",
+                cancelButtonText: "Άκυρο",
+                closeOnConfirm: false
+            },
+            function(){
+                $.ajax({
+                    url: '/backend/modules/catering/products/delete_ingredient',
+                    type: "post",
+                    data: {
+                        'ingredient_action_id': id,
+                        '_token': $('input[name=_token]').val()
+                    },
+                    success: function getcontent(data) {
+                        swal("Ενημέρωση", "Το συστατικό διεγράφη!", "success");
+                        $('#form_ingredients_manage').trigger("reset");
+                        showingredientList($('#managed_product_id').val());
                     }
                 });
             });
@@ -455,10 +741,36 @@ jQuery(document).ready(function () {
      |--------------------------------------------------------------------------
      |
      | The following javascript lines contain the code for retrieve the data of product lists. It includes the list functions for:
+     | - Ingredient group list
+     | - Ingredient quantity list
      | - Product quantity list
      | - Product ingredient list
      |
      */
+
+    // Populates Ingredient group List block
+    function showingroupList(product_id) {
+        $('#ingroup_list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+        jQuery.ajax({
+            url: "/backend/modules/catering/product/"+product_id+"/ingroup_list",
+            type: "GET",
+            success: function (data) {
+                $('#ingroup_list').html(data);
+            }
+        });
+    }
+
+    // Populates Ingredient quantity block
+    function showinquantityList(product_id) {
+        $('#inquantity_list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+        jQuery.ajax({
+            url: "/backend/modules/catering/product/"+product_id+"/inquantity_list",
+            type: "GET",
+            success: function (data) {
+                $('#inquantity_list').html(data);
+            }
+        });
+    }
 
     // Populates Quantity List block
     function showquantityList(product_id) {
@@ -522,7 +834,7 @@ jQuery(document).ready(function () {
         $('#form_ingredients_manage').trigger("reset");
         $("#ingredient_action_id").val("");
         var ingredient_manage_btn_txt = $('#ingredient-manage-btn-txt').val();
-        $('#quantity_manage_btn').html(ingredient_manage_btn_txt);
+        $('#ingredient_manage_btn').html(ingredient_manage_btn_txt);
         // $('#quantity_manage_btn').html(send_btn_txt);
         $('#ingredient_undo_btn').remove();
 

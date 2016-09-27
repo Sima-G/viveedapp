@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 // Viveed;
 
 use Input;
+use phpDocumentor\Reflection\Types\Null_;
 use Request;
 use Sentinel;
 use App\Ct_category;
@@ -23,8 +24,9 @@ class Ct_categoryController extends Controller
             $data = Input::all();
 
             $parent_category_id = Input::get('category_parent');
+
             if (empty($parent_category_id)){
-                $parent_category_id = Null;
+                $parent_category_id = null;
             }
 
             if(Input::has('category_action_id')){
@@ -46,7 +48,7 @@ class Ct_categoryController extends Controller
             } else {
                 $category = Ct_category::firstOrCreate(array(
                     'title'	        => Input::get('category_title'),
-                    'parent'	    => Input::get('category_parent'),
+                    'parent'	    => $parent_category_id,
                     'description'	=> Input::get('category_description'),
                     'status'	    => Input::get('category_status'),
                     'state'	        => Input::get('category_state'),

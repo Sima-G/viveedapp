@@ -46,13 +46,14 @@ class Prc_moduleController extends Controller
         $total_catalogues_cnt = 0;
         $new_catalogues_cnt = Prc_catalogue::where('status', '=', '1')->count();
         $enabled_catalogues_cnt = Prc_catalogue::where('state', '=', '1')->count();
-        $total_catalogues = Prc_catalogue::select('*')->get();
-        foreach ($total_catalogues AS $active_catalogue){
+        $total_catalogues_cnt = Prc_catalogue::select('*')->get()->where('active_catalogue', '4')->count();
+
+        /*foreach ($total_catalogues AS $active_catalogue){
             $total_catalogues_cnt++;
             if ($active_catalogue->active_catalogue = "active"){
                 $active_catalogues_cnt++;
             }
-        }
+        }*/
         return View('backend.partials.modules.pricing.catalogue_stats', compact('active_catalogues_cnt', 'new_catalogues_cnt', 'enabled_catalogues_cnt', 'total_catalogues_cnt'));
     }
 }
