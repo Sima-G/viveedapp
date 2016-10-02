@@ -16,6 +16,8 @@ jQuery(document).ready(function () {
         cleanFields();
         var id = $(this).attr('id');
 
+        categoryparentField(id);
+
         var category_parent_txt = $(this).closest("tr").find(".category_parent_txt").text();
         category_parent_txt = category_parent_txt.trim();
 
@@ -74,6 +76,9 @@ jQuery(document).ready(function () {
     $("#category-list").on('click', '.category_delete', function (event) {
         event.preventDefault();
         var id = $(this).attr('id');
+
+        categoryparentField(id);
+
         swal({
                 title: "Είσαστε σίγουρος;",
                 text: "Η κατηγορία θα διαγραφεί οριστικά!",
@@ -170,6 +175,7 @@ jQuery(document).ready(function () {
                             $('#category-list').html(data);
                             $('#content_loader').remove();
                             cleanFields();
+                            categoryparentField(0);
                         }
                     });
                 }
@@ -206,6 +212,17 @@ jQuery(document).ready(function () {
             type: "GET",
             success: function (data) {
                 $('#category-list').html(data);
+            }
+        });
+    }
+
+    function categoryparentField(category_id) {
+        jQuery.ajax({
+            url: "/backend/modules/catering/categories/"+category_id+"/category_parent_field",
+            type: "GET",
+            success: function (data) {
+                var select = $('#category_parent');
+                select.empty().append(data);
             }
         });
     }

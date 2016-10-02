@@ -31,4 +31,6 @@ class Ct_product extends Model
     {
         return $this->hasMany('App\Prc_product', 'product', 'id');
     }
+
+
 }

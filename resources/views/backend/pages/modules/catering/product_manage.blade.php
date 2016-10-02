@@ -70,14 +70,14 @@
         </div>
 
         <div class="row">
-            <div id="inquantity_manage_blocks" class="col-lg-6">
+            {{--<div id="inquantity_manage_blocks" class="col-lg-6">
             <!-- Add Quantity Block -->
                 @include('backend.partials.modules.catering.inquantity_manage_block')
                 @include('backend.partials.modules.catering.inquantity_view_block')
             <!-- END Add Quantity Block -->
-            </div>
+            </div>--}}
 
-            <div id="ingroup_manage_blocks" class="col-lg-6">
+            <div id="ingroup_manage_blocks" class="col-lg-12">
             <!-- Add Ingredient Block -->
                 @include('backend.partials.modules.catering.ingroup_manage_block')
                 @include('backend.partials.modules.catering.ingroup_view_block')

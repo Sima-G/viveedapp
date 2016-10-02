@@ -3,6 +3,7 @@
     <!-- Block Tabs Title -->
     <div class="block-title">
         <ul class="nav nav-tabs" data-toggle="tabs">
+                {{--<li class="active"><a href="#catalogue_{{ $catalogue->id }}">{{ $catalogue->title }}</a></li>--}}
             @foreach($catalogues as $key => $catalogue)
                 <li class="@if($key == 0) active @endif"><a href="#catalogue_{{ $catalogue->id }}">{{ $catalogue->title }}</a></li>
             @endforeach

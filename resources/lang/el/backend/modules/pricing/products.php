@@ -14,6 +14,7 @@ return [
     */
 
     'pricing'                           => 'Τιμολόγηση',
+    'catalogue_master'                  => 'Κύριος τιμοκατάλογος',
     'price'                             => 'Τιμή',
     'discount'                          => 'Έκπτωση',
     'unit_quantity'                     => 'Μονάδα μέτρησης',

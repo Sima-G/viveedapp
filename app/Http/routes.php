@@ -235,6 +235,7 @@ Route::group(array('prefix' => 'backend/'), function () {
             Route::group(array('prefix' => 'categories'), function () {
                 Route::get('/', array('as' => 'ct_categories', 'uses' => 'Ct_categoryController@show_categories'));
                 Route::get('/category_list', 'Ct_categoryController@category_list');
+                Route::get('/{category_id}/category_parent_field', 'Ct_categoryController@category_parent_field');
                 Route::post('/store', 'Ct_categoryController@store');
                 Route::post('/delete', 'Ct_categoryController@delete');
                 Route::get('/category_stats', 'Ct_moduleController@category_stats');

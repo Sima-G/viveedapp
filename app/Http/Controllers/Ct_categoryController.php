@@ -80,6 +80,13 @@ class Ct_categoryController extends Controller
         return View('backend.partials.modules.catering.category_list', compact('userRoles', 'categories'));
     }
 
+    public function category_parent_field($category_id)
+    {
+        // Getting all table data
+        $categories = Ct_category::select('*')->where('id', '!=', $category_id)->orderBy('id', 'ASC')->get();
+        return View('backend.partials.modules.catering.category_parent_field', compact('userRoles', 'categories'));
+    }
+
     public function delete()
     {
         if (Request::ajax()) {
