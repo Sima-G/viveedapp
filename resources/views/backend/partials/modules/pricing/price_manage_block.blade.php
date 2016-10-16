@@ -32,55 +32,69 @@
                     </div>
                 </div>
                 <!-- Product Universal Price -->
-                <div id="quantity_" class="row catalogue_{{ $catalogue->id }}">
-                {{--<div class="row">--}}
-                    <div class="col-md-3">
-                        <p class="form-control-static"><span id="quantity_" class=""> @lang('backend/modules/pricing/products.universal_unit_quantity')</span></p>
-                        {{--<input id="example-disabled-input" name="example-disabled-input" class="form-control" value="@lang('backend/modules/pricing/products.universal_unit_quantity')" disabled="" type="text">--}}
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <input id="" name="val_username" class="form-control" placeholder="Your username.." type="text" value="">
-                            <span class="input-group-addon"><i class="gi gi-euro"></i></span>
+                <div id="" class="row">
+                    <form id="qnt_0_ctl_{{ $catalogue->id }}" action="" enctype="multipart/form-data" method="post" class="ctl_{{ $catalogue->id }} price_manage_form" onsubmit="return false;">
+                    {{--<div class="row">--}}
+                        <div class="col-md-3">
+                            <p class="form-control-static"><span id="quantity_0" class=""> @lang('backend/modules/pricing/products.universal_unit_quantity')</span></p>
+                            <input type="hidden" name="product_action_id" value="{{ $master_product->id }}">
+                            <input type="hidden" name="product_quantity_id" value="0">
+                            <input type="hidden" name="product_catalogue_id" value="{{ $catalogue->id }}">
+                            <input type="hidden" name="product_init" value="0">
+                            <input type="hidden" name="product_status" value="1">
+                            <input type="hidden" name="product_state" value="1">
+
+
+                            {{--<input id="example-disabled-input" name="example-disabled-input" class="form-control" value="@lang('backend/modules/pricing/products.universal_unit_quantity')" disabled="" type="text">--}}
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <input id="val_username" name="val_username" class="form-control" placeholder="Your username.." type="text">
-                            <span class="input-group-addon"><i class="gi gi-star"></i></span>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input id="price_0" name="product_price" class="form-control" placeholder="@lang('backend/modules/pricing/products.price_help').." type="text" value="">
+                                <span class="input-group-addon"><i class="gi gi-euro"></i></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="input-group">
-                                <span class="input-group-btn">
-                                    {{--<button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-undo"></i></button>
-                                    <button type="button" class="btn btn-info"><i class="fa fa-save"></i></button>--}}
-                                    <button type="button" value="0" name="catalogue_{{ $catalogue->id }}" class="btn btn-primary price_edit"><i class="fa fa-edit"></i></button>
-                                    <button type="button" value="0" name="catalogue_{{ $catalogue->id }}" class="btn btn-default price_undo"><i class="fa fa-undo"></i></button>
-                                    <button type="button" value="0" name="catalogue_{{ $catalogue->id }}" class="btn btn-info price_save"><i class="fa fa-save"></i></button>
-                                    <button type="button" value="0" name="catalogue_{{ $catalogue->id }}" class="btn btn-danger price_delete"><i class="fa fa-times"></i></button>
-                                </span>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input id="discount_0" name="product_discount" class="form-control" placeholder="@lang('backend/modules/pricing/products.discount_help').." type="text">
+                                <span class="input-group-addon"><i class="gi gi-star"></i></span>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                    <span class="input-group-btn">
+                                        {{--<button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-default"><i class="fa fa-undo"></i></button>
+                                        <button type="button" class="btn btn-info"><i class="fa fa-save"></i></button>--}}
+                                        <button type="button" value="0" name="ctl_{{ $catalogue->id }}" class="btn btn-primary price_edit"><i class="fa fa-edit"></i></button>
+                                        <button type="button" value="0" name="ctl_{{ $catalogue->id }}" class="btn btn-default price_undo"><i class="fa fa-undo"></i></button>
+                                        <button type="button" value="0" name="ctl_{{ $catalogue->id }}" class="btn btn-info price_save"><i class="fa fa-save"></i></button>
+                                        {{--<button type="button" value="0" name="catalogue_{{ $catalogue->id }}" class="btn btn-danger price_delete"><i class="fa fa-times"></i></button>--}}
+                                    </span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 {{--{{ var_dump($master_product) }}--}}
                 <!-- Product Price/Quantity -->
                 @foreach($master_product->ct_quantities as $product_quantity)
                     <div id="" class="row">
-                        <form id="quantity_{{ $product_quantity->id }}" action="" enctype="multipart/form-data" method="post" class="catalogue_{{ $catalogue->id }} price_manage_form" onsubmit="return false;">
+                        <form id="qnt_{{ $product_quantity->id }}_ctl_{{ $catalogue->id }}" action="" enctype="multipart/form-data" method="post" class="ctl_{{ $catalogue->id }} price_manage_form" onsubmit="return false;">
                             <div class="col-md-3">
                                 <p class="form-control-static"><span id="quantity_{{ $product_quantity->id }}" class=""> {{ $product_quantity->quantity }} / {{ $product_quantity->unit }}</span></p>
-                                {{--<input type="hidden" name="product_action_id" value="{{ $product->id }}">--}}
-                                {{--<input type="hidden" name="product_quantity_id" value="{{ $product_quantity->id }}">--}}
-                                {{--<input type="hidden" name="product_catalogue_id" value="{{ $catalogue->id }}">--}}
+                                <input type="hidden" name="product_action_id" value="{{ $product_quantity->product }}">
+                                <input type="hidden" name="product_quantity_id" value="{{ $product_quantity->id }}">
+                                <input type="hidden" name="product_catalogue_id" value="{{ $catalogue->id }}">
+                                <input type="hidden" name="product_init" value="1">
+                                <input type="hidden" name="product_status" value="1">
+                                <input type="hidden" name="product_state" value="1">
 
                                 {{--<input id="quantity_{{ $product->id }}" name="example-disabled-input" class="form-control" value="{{ $product_quantity->quantity }} / {{ $product_quantity->unit }}"disabled="" type="text">--}}
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <input id="price_{{ $product_quantity->id }}" name="product_price" class="form-control" placeholder="Your username.." type="text" value="{{ $product_quantity->prc_products->where('catalogue', $catalogue) }}">
-                                    <input type="hidden" id="old_price_{{ $product_quantity->id }}" name="old_price">
+                                    <input id="price_{{ $product_quantity->id }}" name="product_price" class="form-control" placeholder="@lang('backend/modules/pricing/products.price_help').." type="text" value="@if (!empty($master_product->prc_products->where('quantity', $product_quantity->id)->where('catalogue', $catalogue->id)->first()->price)){{ $master_product->prc_products->where('quantity', $product_quantity->id)->where('catalogue', $catalogue->id)->first()->price }}@endif">
+                                    <input type="hidden" id="old_price_{{ $product_quantity->id }}" name="old_price" value="@if (!empty($master_product->prc_products->where('quantity', $product_quantity->id)->where('catalogue', $catalogue->id)->first()->price)){{ $master_product->prc_products->where('quantity', $product_quantity->id, 'catalogue', $catalogue->id)->first()->price }}@endif">
+                                    {{--{{ dd($master_product->prc_products) }}--}}
                                     <span class="input-group-addon"><i class="gi gi-euro"></i></span>
                                 </div>
                             </div>
@@ -88,18 +102,20 @@
                             {{--{{ var_dump($product_quantity) }}--}}
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <input id="discount_{{ $product_quantity->id }}" name="product_discount" class="form-control" placeholder="Your username.." type="text" value="">
-                                    <input type="hidden" id="old_discount_{{ $product_quantity->id }}" name="old_discount">
+                                    <input id="discount_{{ $product_quantity->id }}" name="product_discount" class="form-control" placeholder="@lang('backend/modules/pricing/products.discount_help').." type="text" value="@if (!empty($master_product->prc_products->where('quantity', $product_quantity->id)->where('catalogue', $catalogue->id)->first()->discount)){{ $master_product->prc_products->where('quantity', $product_quantity->id, 'catalogue', $catalogue->id)->first()->discount }}@endif">
+                                    <input type="hidden" id="old_discount_{{ $product_quantity->id }}" name="old_discount" value="@if (!empty($master_product->prc_products->where('quantity', $product_quantity->id)->where('catalogue', $catalogue->id)->first()->discount)){{ $master_product->prc_products->where('quantity', $product_quantity->id, 'catalogue', $catalogue->id)->first()->discount }}@endif">
                                     <span class="input-group-addon"><i class="gi gi-star"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button type="button" value="{{ $product_quantity->id }}" name="catalogue_{{ $catalogue->id }}" class="btn btn-primary price_edit"><i class="fa fa-edit"></i></button>
-                                        <button type="button" value="{{ $product_quantity->id }}" name="catalogue_{{ $catalogue->id }}" class="btn btn-default price_undo"><i class="fa fa-undo"></i></button>
-                                        <button type="button" value="{{ $product_quantity->id }}" name="catalogue_{{ $catalogue->id }}" class="btn btn-info price_save"><i class="fa fa-save"></i></button>
-                                        <button type="button" value="{{ $product_quantity->id }}" name="catalogue_{{ $catalogue->id }}" class="btn btn-danger price_delete"><i class="fa fa-times"></i></button>
+                                    <span id="input_group_qnt_{{ $product_quantity->id }}_ctl_{{ $catalogue->id }}" class="input-group-btn">
+                                        <button type="button" value="{{ $product_quantity->id }}" name="ctl_{{ $catalogue->id }}" class="btn btn-primary price_edit"><i class="fa fa-edit"></i></button>
+                                        <button type="button" value="{{ $product_quantity->id }}" name="ctl_{{ $catalogue->id }}" class="btn btn-default price_undo"><i class="fa fa-undo"></i></button>
+                                        <button type="button" value="{{ $product_quantity->id }}" name="ctl_{{ $catalogue->id }}" class="btn btn-info price_save"><i class="fa fa-save"></i></button>
+                                        {{--<button type="button" value="{{ $product_quantity->id }}" name="ctl_{{ $catalogue->id }}" class="btn btn-danger price_delete"><i class="fa fa-times"></i></button>--}}
+                                        {{--<button type="button" value="{{ $product_quantity->id }}" name="ctl_{{ $catalogue->id }}" class="btn "><i class="fa fa-times"></i></button>--}}
+                                        {{--<button type="button" class="btn btn-warning price_save"><i class="fa fa-exclamation-circle" data-toggle="tooltip" title="" data-original-title="View all"></i></button>--}}
                                     </span>
                                 </div>
                             </div>

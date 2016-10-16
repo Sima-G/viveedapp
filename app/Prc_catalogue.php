@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 // Viveed
 use Jenssegers\Date\Date;
-use phpDocumentor\Reflection\Types\Null_;
+//use phpDocumentor\Reflection\Types\Null_;
 
 class Prc_catalogue extends Model
 {
@@ -22,7 +22,7 @@ class Prc_catalogue extends Model
         return ($this->day) & date("d");
     }
 
-    public function getActiveCatalogueAttribute(){
+    /*public function getActiveCatalogueAttribute(){
 //        if ((($this->day) & date("d")) && ($this->start_date >= date("Y-m-d")) && ($this->end_date >= date("Y-m-d"))){
         if ( ((($this->day) & date("d")) > 0) || is_null($this->day)){
             $catalogue_active_day = 1;
@@ -59,7 +59,7 @@ class Prc_catalogue extends Model
 //        return($catalogue_active_day + $catalogue_active_start_date + $catalogue_active_end_date + $catalogue_active_start_hour + $catalogue_active_end_hour);
         return gettype(Date::createFromFormat('d/m/Y', $this->start_date));
 //        return ($this->day) & date("d");
-    }
+    }*/
 
     /*public function getCatalogueCountAttribute()
     {
@@ -76,22 +76,39 @@ class Prc_catalogue extends Model
     //Accessors used to format attributes for retrieving start and and date from the database.
     public function getStartDateAttribute($value)
     {
-        return Date::parse($value)->format('d/m/Y');
+        if (strlen($value)) {
+            return Date::parse($value)->format('d/m/Y');
+        } else {
+            return null;
+        }
     }
 
     public function getEndDateAttribute($value)
     {
-        return Date::parse($value)->format('d/m/Y');
+        if (strlen($value)) {
+            return Date::parse($value)->format('d/m/Y');
+        } else {
+            return null;
+        }
     }
 
     //Mutators used to format the attributes before saving them to the database.
     public function setStartDateAttribute($value)
     {
-        $this->attributes['start_date'] = Date::createFromFormat('d/m/Y', $value);
+        if (strlen($value)){
+            $this->attributes['start_date'] = Date::createFromFormat('d/m/Y', $value);
+        } else {
+            $this->attributes['start_date'] = null;
+        }
+
     }
 
     public function setEndDateAttribute($value)
     {
-        $this->attributes['end_date'] = Date::createFromFormat('d/m/Y', $value);
+        if (strlen($value)){
+            $this->attributes['end_date'] = Date::createFromFormat('d/m/Y', $value);
+        } else {
+            $this->attributes['end_date'] = null;
+        }
     }
 }

@@ -31,78 +31,80 @@
         <!-- END Quick Stats -->
 
         <!-- Main Row -->
-        {{--<div class="row">
-            <div id="" class="col-lg-12">
-            <div class="block">
-            <div class="wizard-steps">
-                <div class="row">
-                    <div class="col-xs-4 active">
-                        <span>1. Account</span>
-                    </div>
-                    <div class="col-xs-4">
-                        <span>2. Personal</span>
-                    </div>
-                    <div class="col-xs-4">
-                        <span>3. Extras</span>
-                    </div>
-                </div>
-            </div>
-            </div>
-                </div>
-        </div>--}}
+
         <!-- Customer Content -->
         <div class="row">
-            <div id="product_manage_blocks" class="col-lg-12">
-
+            <div id="product_manage_blocks" class="col-lg-4">
                 <!-- Customer Info Block -->
-                {{--@if($product_action == 1)
-                    @include('backend.partials.modules.catering.product_create_block')
-                @elseif($product_action == 2)
-                    @include('backend.partials.modules.catering.product_view_block')
-                @elseif($product_action == 3)
                     @include('backend.partials.modules.catering.product_manage_block')
-                @endif--}}
-
-            @include('backend.partials.modules.catering.product_manage_block')
                 <!-- END Customer Info Block -->
+            </div>
+            <div id="product_manage_tabs" class="col-lg-8">
+                <!-- Block Tabs -->
+                <div class="block full">
+                    <!-- Block Tabs Title -->
+                    <div class="block-title">
 
+                        <ul class="nav nav-tabs" data-toggle="tabs">
+                            <li class="active"><a href="#quantity_manage_blocks">@lang('backend/modules/catering/products.product_quantities')</a></li>
+                            <li><a href="#ingroup_manage_blocks">@lang('backend/modules/catering/products.ingredient_groups')</a></li>
+                            <li><a href="#ingredient_manage_blocks" data-toggle="tooltip" title="" data-original-title="Settings">@lang('backend/modules/catering/products.product_ingredients')</a></li>
+                        </ul>
+                    </div>
+                    <!-- END Block Tabs Title -->
+
+                    <!-- Tabs Content -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="quantity_manage_blocks">
+                            <!-- Add Quantity Block -->
+                            @include('backend.partials.modules.catering.quantity_manage_block')
+                            @include('backend.partials.modules.catering.quantity_view_block')
+                            <!-- END Add Quantity Block -->
+                        </div>
+                        <div class="tab-pane" id="ingroup_manage_blocks">
+                            <!-- Add Ingredient Block -->
+                            @include('backend.partials.modules.catering.ingroup_manage_block')
+                            @include('backend.partials.modules.catering.ingroup_view_block')
+                            <!-- END Add Ingredient Block -->
+                        </div>
+                        <div class="tab-pane" id="ingredient_manage_blocks">
+                            <!-- Add Ingredient Block -->
+                            @include('backend.partials.modules.catering.ingredient_manage_block')
+                            @include('backend.partials.modules.catering.ingredient_view_block')
+                            <!-- END Add Ingredient Block -->
+                        </div>
+                    </div>
+                    <!-- END Tabs Content -->
+                </div>
+                <!-- END Block Tabs -->
             </div>
         </div>
 
         <div class="row">
-            {{--<div id="inquantity_manage_blocks" class="col-lg-6">
-            <!-- Add Quantity Block -->
-                @include('backend.partials.modules.catering.inquantity_manage_block')
-                @include('backend.partials.modules.catering.inquantity_view_block')
-            <!-- END Add Quantity Block -->
-            </div>--}}
 
-            <div id="ingroup_manage_blocks" class="col-lg-12">
+            {{--<div id="ingroup_manage_blocks" class="col-lg-12">
             <!-- Add Ingredient Block -->
                 @include('backend.partials.modules.catering.ingroup_manage_block')
                 @include('backend.partials.modules.catering.ingroup_view_block')
             <!-- END Add Ingredient Block -->
-            </div>
+            </div>--}}
         </div>
 
         <div class="row">
-            <div id="quantity_manage_blocks" class="col-lg-6">
+            {{--<div id="quantity_manage_blocks" class="col-lg-6">
                 <!-- Add Quantity Block -->
                 @include('backend.partials.modules.catering.quantity_manage_block')
                 @include('backend.partials.modules.catering.quantity_view_block')
                 <!-- END Add Quantity Block -->
-            </div>
+            </div>--}}
 
-            <div id="ingredient_manage_blocks" class="col-lg-6">
-
+            {{--<div id="ingredient_manage_blocks" class="col-lg-6">
                 <!-- Add Ingredient Block -->
-                {{--@if(($product_action == 2) || ($product_action == 3))--}}
-                    @include('backend.partials.modules.catering.ingredient_manage_block')
-                    @include('backend.partials.modules.catering.ingredient_view_block')
-                {{--@endif--}}
+                @include('backend.partials.modules.catering.ingredient_manage_block')
+                @include('backend.partials.modules.catering.ingredient_view_block')
                 <!-- END Add Ingredient Block -->
 
-            </div>
+            </div>--}}
         </div>
         <!-- END Customer Content -->
         <!-- END Main Row -->

@@ -1,6 +1,16 @@
 <div id="product_manage_block" class="block ">
     <!-- Customer Info Title -->
     <div class="block-title">
+        <div class="block-options pull-right">
+            <div id="manage_product_block_actions" class="btn-group btn-group-sm">
+                <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default dropdown-toggle enable-tooltip" data-toggle="dropdown" title="" data-original-title="Options" aria-expanded="true"><span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                    <li>
+                        <a class="manage_product_block_anchor" href=""><i class="gi gi-euro pull-right"></i>@lang('backend/modules/catering/products.product_pricing')</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <h2><strong>@lang('backend/modules/catering/products.info')</strong> @lang('backend/modules/catering/products.of_product')</h2>
     </div>
     <!-- END Customer Info Title -->
@@ -15,18 +25,18 @@
 
 
         <div class="form-group">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
-                    <label class="col-xs-6 control-label" for="product_title">@lang('backend/modules/catering/products.title')
+                    <label class="col-xs-4 control-label" for="product_title">@lang('backend/modules/catering/products.title')
                         <span class="text-danger">*</span>
                     </label>
-                    <div class="col-xs-6">
+                    <div class="col-xs-8">
                         <input type="text" id="product_title" name="product_title" class="form-control" placeholder="@lang('backend/modules/catering/products.title_desc')">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label" for="product_status">@lang('backend/modules/catering/categories.status') <span class="text-danger">*</span></label>
-                    <div class="col-xs-6">
+                    <label class="col-xs-4 control-label" for="product_status">@lang('backend/modules/catering/categories.status') <span class="text-danger">*</span></label>
+                    <div class="col-xs-8">
                         <select id="product_status" name="product_status" class="form-control">
                             <option value="0">@lang('backend/modules/catering/products.status_unavailable')</option>
                             <option value="1" selected>@lang('backend/modules/catering/products.status_new')</option>
@@ -35,8 +45,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-6 control-label">@lang('backend/modules/catering/products.state') <span class="text-danger">*</span></label>
-                    <div class="col-xs-6">
+                    <label class="col-xs-4 control-label">@lang('backend/modules/catering/products.state') <span class="text-danger">*</span></label>
+                    <div class="col-xs-8">
                         <select id="product_state" name="product_state" class="form-control">
                             <option value="0">@lang('backend/modules/catering/products.state_disabled')</option>
                             <option value="1" selected>@lang('backend/modules/catering/products.state_enabled')</option>
@@ -44,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <div class="col-xs-12">
                         <textarea id="product_description" name="product_description" class="ckeditor"></textarea>

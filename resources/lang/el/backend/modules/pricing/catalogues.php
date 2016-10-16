@@ -63,10 +63,10 @@ return [
     'status_old'                        => 'παλιός',
     'state_enabled'                     => 'ενεργός',
     'state_disabled'                    => 'ανενεργός',
-    'quantity_new_save'                 => 'Αποθήκευση Νέας',
-    'quantity_change_save'              => 'Αποθήκευση Αλλαγών',
-    'quantity_action_undo'              => 'Αναίρεση και Νέο',
-    'empty_ingredient_list'             => 'Δεν υπάρχει καμία μονάδα μέτρησης',
+    'catalogue_new_save'                => 'Αποθήκευση Νέου',
+    'catalogue_change_save'             => 'Αποθήκευση Αλλαγών',
+    'catalogue_action_undo'             => 'Αναίρεση και Νέος',
+    'empty_catalogue_list'              => 'Δεν υπάρχει κανένας κατάλογος τιμών',
 
 
 ];

@@ -15,6 +15,7 @@
             @include('backend.partials.modules.catering.menu')
         <!-- END Catering Categories Header -->
 
+
         <!-- Quick Stats -->
         <div id="category-stats" class="row text-center"></div>
             <input type="hidden" name="manage_product_block_action_txt" id="manage_product_block_action_txt" value="@lang('backend/modules/catering/products.existing_product')">

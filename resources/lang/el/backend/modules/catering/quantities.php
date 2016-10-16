@@ -37,7 +37,7 @@ return [
     'quantity_new_save'                 => 'Αποθήκευση Νέας',
     'quantity_change_save'              => 'Αποθήκευση Αλλαγών',
     'quantity_action_undo'              => 'Αναίρεση και Νέο',
-    'empty_ingredient_list'             => 'Δεν υπάρχει καμία μονάδα μέτρησης',
+    'empty_quantity_list'               => 'Δεν υπάρχει καμία μονάδα μέτρησης',
 
 
 ];

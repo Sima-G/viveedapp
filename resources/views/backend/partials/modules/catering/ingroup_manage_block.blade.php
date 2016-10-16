@@ -25,7 +25,7 @@
                 <div class="col-xs-9">
                     <select id="ingroup_selection" name="ingroup_selection" class="form-control">
                         <option value="single">@lang('backend/modules/catering/ingroups.type_single')</option>
-                        <option value="multiple" selected>@lang('backend/modules/catering/ingroups.type_multi')</option>
+                        <option value="multiple" selected>@lang('backend/modules/catering/ingroups.type_multiple')</option>
                     </select>
                 </div>
             </div>

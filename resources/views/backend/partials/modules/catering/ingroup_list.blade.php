@@ -17,9 +17,9 @@
                 <td class="text-center" style="width: 100px;"><strong>{{ $key + 1 }}</strong></td>
                 <td class="hidden-xs ingroup_title_txt" style="width: 15%;">{{ $ingroup->title }}</td>
                 <td class="text-right hidden-xs ingroup_selection_txt" style="width: 10%;">
-                    @if($ingroup->selection = "single")
+                    @if($ingroup->selection == "single")
                         @lang('backend/modules/catering/ingroups.type_single')
-                    @elseif($ingroup->selection = "multiple")
+                    @elseif($ingroup->selection == "multiple")
                         @lang('backend/modules/catering/ingroups.type_multiple')
                     @endif
                 </td>

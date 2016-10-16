@@ -50,6 +50,9 @@ class Prc_productController extends Controller
                 $product->catalogue     =       Input::get('product_catalogue_id');
                 $product->price         =       Input::get('product_price');
                 $product->discount      =       Input::get('product_discount');
+                $product->init          =       Input::get('product_init');
+                $product->status        =       Input::get('product_status');
+                $product->state         =       Input::get('product_state');
 
                 // save to our database
                 $product->save();
@@ -61,6 +64,9 @@ class Prc_productController extends Controller
                     'catalogue'             => Input::get('product_catalogue_id'),
                     'price'	                => Input::get('product_price'),
                     'discount'	            => Input::get('product_discount'),
+                    'init'                  => Input::get('product_init'),
+                    'status'	            => Input::get('product_status'),
+                    'state'	                => Input::get('product_state'),
                 ));
                 $last_inserted_id = $product->id;
                 return $last_inserted_id;

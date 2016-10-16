@@ -27,10 +27,17 @@ class Ct_product extends Model
         return $this->hasMany('App\Ct_quantity', 'product', 'id');
     }
 
-    public function prc_products()
+    /*public function prc_products()
     {
         return $this->hasMany('App\Prc_product', 'product', 'id');
-    }
+    }*/
 
+    public function prc_products()
+    {
+        return $this->hasManyThrough(
+            'App\Prc_product', 'App\Ct_quantity',
+            'product', 'quantity', 'id'
+        );
+    }
 
 }

@@ -11,34 +11,89 @@
 |
 */
 
-
+Route::get('/', array('as' => 'home', function(){
+    return view('frontend.pages.home');
+}));
 
 # Frontend Regular Responses
-Route::group(array('prefix' => 'frontend'), function () {
+Route::group(array('prefix' => 'frontend/'), function () {
 
-    #Response for home
-    Route::get('/home', array('as' => 'home', function(){
-        return view('frontend.pages.home');
-    }));
-    #Response for timeline
-    Route::get('/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
-    #Response for timeline
-    Route::get('/sessions', array('as' => 'sessions', 'uses' => 'FrontendController@sessions'));
-    #Response for about section
-    Route::get('/about', array('as' => 'about', function () {
-        return view('frontend.pages.about');
-    }));
-    #Response for speaker_list
-    Route::get('/speaker_list', array('as' => 'speaker_list', function () {
-        return view('frontend.pages.speakers');
-    }));
 
+
+
+    # Frontend Conference Module
+    Route::group(array('prefix' => 'conference/{theme}'), function () {
+        # Frontend Conference Module (Material)
+        Route::group(array('prefix' => 'material/'), function () {
+            Route::get('/', array('as' => 'dashboard', function(){
+                return view('frontend.pages.home');
+            }));
+            Route::get('/', array('as' => 'preview', function () {
+                return view('frontend.pages.modules.conference.home');
+            }));
+            #Response for home
+            Route::get('/home', array('as' => 'home', function(){
+                return view('frontend.pages.modules.conference.material.home');
+            }));
+            #Response for timeline
+            Route::get('/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
+            #Response for timeline
+            Route::get('/sessions', array('as' => 'sessions', 'uses' => 'FrontendController@sessions'));
+            #Response for about section
+            Route::get('/about', array('as' => 'about', function () {
+                return view('frontend.pages.modules.conference.about');
+            }));
+            #Response for speaker_list
+            Route::get('/speaker_list', array('as' => 'speaker_list', function () {
+                return view('frontend.pages.speakers');
+            }));
+            Route::get('/session_list', array('as' => 'session_list', function () {
+                return view('frontend.pages.sessions');
+            }));
+        });
+        # Frontend Conference Module (Bootstrap)
+        Route::group(array('prefix' => 'boostrap/'), function () {
+            Route::get('/', array('as' => 'dashboard', function(){
+                return view('frontend.pages.home');
+            }));
+
+            Route::get('/', array('as' => 'preview', function () {
+                return view('frontend.pages.modules.conference.home');
+            }));
+
+            #Response for home
+            Route::get('/home', array('as' => 'home', function(){
+                return view('frontend.pages.home');
+            }));
+            #Response for timeline
+            Route::get('/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
+            #Response for timeline
+            Route::get('/sessions', array('as' => 'sessions', 'uses' => 'FrontendController@sessions'));
+            #Response for about section
+            Route::get('/about', array('as' => 'about', function () {
+                return view('frontend.pages.modules.conference.about');
+                //        return view('frontend.pages.about');
+            }));
+            #Response for speaker_list
+            Route::get('/speaker_list', array('as' => 'speaker_list', function () {
+                return view('frontend.pages.speakers');
+            }));
+            Route::get('/session_list', array('as' => 'session_list', function () {
+                return view('frontend.pages.sessions');
+            }));
+        });
+    });
 });
+
+
+
+
+
+
 
 
 # Frontend JSON Responses
 Route::group(array('prefix' => 'frontend/json'), function () {
-
     #Returns a list with sessions
     Route::get('/timeline_custom/{date}', array('as' => 'timeline_custom', 'uses' => 'FrontendController@timeline_custom'));
     #Returns a list with sessions
@@ -51,69 +106,14 @@ Route::group(array('prefix' => 'frontend/json'), function () {
     Route::get('/speakers_full', array('as' => 'speakers_full', 'uses' => 'FrontendController@speakers_full'));
     #Returns a lite list with only speakers name
     Route::get('/speakers_lite', array('as' => 'speakers_lite', 'uses' => 'FrontendController@speakers_lite'));
-
     #Returns a list with speakers with fullnames
     Route::get('/about_sessions', array('as' => 'about_sessions', 'uses' => 'FrontendController@about_sessions'));
-
     Route::get('/sessions_list', array('as' => 'sessions_list', 'uses' => 'FrontendController@sessions_list'));
 });
 
 
 
 
-
-
-
-
-
-
-
-
-Route::get('/frontend/session_list', array('as' => 'session_list', function () {
-    return view('frontend.pages.sessions');
-}));
-
-/*Route::get('frontend/timeline/{date}', function ($date) {
-    return view($name_view);
-});*/
-
-//Route::get('/frontend/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
-
-
-
-Route::get('/', array('as' => 'dashboard', function(){
-    return view('frontend.pages.home');
-}));
-
-/*# JSON Responses */
-
-
-
-
-/*# Regular Responses */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -122,9 +122,7 @@ Route::controllers([
 
 
 
-Route::get('/', array('as' => 'preview', function () {
-    return view('frontend.pages.home');
-}));
+
 
 
 
@@ -224,6 +222,15 @@ Route::group(array('prefix' => 'backend/'), function () {
 //                Route::post('/store', 'Prc_catalogueController@store');
 //                Route::post('/delete', 'Prc_catalogueController@delete');
 //                Route::get('/catalogue_stats', 'Prc_moduleController@catalogue_stats');
+            });
+            //Catalogue section
+            Route::group(array('prefix' => 'orders'), function () {
+                Route::get('/', array('as' => 'prc_orders', 'uses' => 'Prc_orderController@show_orders'));
+                Route::get('/order_list', array('as' => 'prc_order_list', 'uses' => 'Prc_orderController@order_list'));
+                Route::get('/make', array('as' => 'prc_ordering', 'uses' => 'Prc_orderController@make_orders'));
+                Route::post('/store', 'Prc_orderController@store');
+                Route::post('/delete', 'Prc_orderController@delete');
+                Route::get('/order_stats', 'Prc_moduleController@order_stats');
             });
         });
 

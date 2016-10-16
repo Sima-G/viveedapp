@@ -15,8 +15,12 @@ return [
 
     'pricing'                           => 'Τιμολόγηση',
     'catalogue_master'                  => 'Κύριος τιμοκατάλογος',
+    'product_manage'                    => 'Διαχείριση προϊόντος',
+    'product_list'                      => 'Λίστα προϊόντων',
     'price'                             => 'Τιμή',
     'discount'                          => 'Έκπτωση',
+    'price_help'                        => 'Εισάγετε τιμή',
+    'discount_help'                     => 'Εισάγετε έκπτωση',
     'unit_quantity'                     => 'Μονάδα μέτρησης',
     'universal_unit_quantity'           => 'Ενιαία μονάδα',
     'product'                           => 'Προϊόν',

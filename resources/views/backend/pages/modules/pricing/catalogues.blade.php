@@ -37,7 +37,7 @@
     <!-- END Quick Stats -->
 
         <!-- Quick Stats -->
-        <div id="catalogue_stats" class="row text-center"></div>
+        {{--<div id="catalogue_stats" class="row text-center"></div>--}}
         <!-- END Quick Stats -->
 
     <!-- Main Row -->
@@ -56,8 +56,8 @@
 
                     <!-- Responsive Full Content -->
                     {{--<p>The first way to make a table responsive, is to wrap it with <code>&lt;div class=&quot;table-responsive&quot;&gt;&lt;/div&gt;</code>. This way the table will be horizontally scrollable and all the data will be accessible on smaller screens (&lt; 768px). Try resizing your browser window to check it live!</p>--}}
-                    <div id="catalogue_list" class="table-responsive">
-                        <div id="category-list-loader"></div>
+                    <div id="catalogue_list" class="table-responsive catalogue-manage-list">
+                        <div id="category-list-loader" class=""></div>
                     </div>
                     <!-- END Responsive Full Content -->
                 </div>
@@ -70,5 +70,6 @@
 @stop
 
 @section('footer')
+    <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/pages/modules/pricing/catalogues/viveed.js') }}"></script>
 @stop

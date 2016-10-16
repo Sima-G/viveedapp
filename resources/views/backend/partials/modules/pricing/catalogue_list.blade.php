@@ -60,9 +60,9 @@
                 <h4 id="catalogue_title_{{ $catalogue->id }}" class="panel-title pull-left"><i class="fa fa-angle-right"></i> <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#pricing_catalogues" href="#catalogue_{{ $catalogue->id }}" aria-expanded="false">{{ $catalogue->title }}</a></h4>
                 {{--<button class="btn btn-default pull-right">New</button>--}}
                 <div class="btn-group btn-group-xs pull-right">
-                    <a href="#" id="{{ $catalogue->id }}" data-toggle="tooltip" title="@lang('backend/modules/catering/categories.category_edit')" class="btn btn-default catalogue_edit"><i class="fa fa-pencil"></i></a>
+                    <a href="#" id="{{ $catalogue->id }}" data-toggle="tooltip" title="@lang('backend/modules/catering/categories.category_edit')" class="btn btn-default catalogue_edit @if($catalogue->init == 0) disabled @endif"><i class="fa fa-pencil"></i></a>
                     {{--<a href="{{ route('ct_product_manage', $catalogue->id ) }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-eye"></i></a>--}}
-                    <a id="{{ $catalogue->id }}" href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger catalogue_delete" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a id="{{ $catalogue->id }}" href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger catalogue_delete @if($catalogue->init == 0) disabled @endif" data-original-title="Delete"><i class="fa fa-times"></i></a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -72,25 +72,25 @@
                 </div>
                 <dl class="dl-horizontal">
                     <dt>@lang('backend/modules/pricing/catalogues.start_date'):</dt>
-                    <dd id="catalogue_start_date_{{ $catalogue->id }}">{{ $catalogue->start_date }}</dd>
+                    <dd id="catalogue_start_date_{{ $catalogue->id }}">@if(is_null( $catalogue->start_date )) - @else {{ $catalogue->start_date }} @endif</dd>
                     <dt>@lang('backend/modules/pricing/catalogues.end_date'):</dt>
-                    <dd id="catalogue_end_date_{{ $catalogue->id }}">{{ $catalogue->end_date }}</dd>
+                    <dd id="catalogue_end_date_{{ $catalogue->id }}">@if(is_null($catalogue->end_date)) - @else {{ $catalogue->end_date }} @endif</dd>
                     {{--<dd>Donec id elit non mi porta gravida at eget metus.</dd>--}}
                     <dt>@lang('backend/modules/pricing/catalogues.days'):</dt>
-                    <dd>
-                        <span @if(($catalogue->day & 1) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.sun')</span>
-                        <span @if(($catalogue->day & 2) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.mon')</span>
-                        <span @if(($catalogue->day & 4) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.tue')</span>
-                        <span @if(($catalogue->day & 8) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.wed')</span>
-                        <span @if(($catalogue->day & 16) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.thu')</span>
-                        <span @if(($catalogue->day & 32) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.fri')</span>
-                        <span @if(($catalogue->day & 64) > 0 ) class="text-info" @else class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.sat')</span>
+                    <dd id="catalogue_days_{{ $catalogue->id }}" data-days="{{ $catalogue->day }}">
+                        <span id="catalogue_day_sun_{{ $catalogue->id }}" @if(($catalogue->day & 1) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.sun')</span>
+                        <span id="catalogue_day_mon_{{ $catalogue->id }}" @if(($catalogue->day & 2) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.mon')</span>
+                        <span id="catalogue_day_tue_{{ $catalogue->id }}" @if(($catalogue->day & 4) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.tue')</span>
+                        <span id="catalogue_day_wed_{{ $catalogue->id }}" @if(($catalogue->day & 8) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.wed')</span>
+                        <span id="catalogue_day_thu_{{ $catalogue->id }}" @if(($catalogue->day & 16) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.thu')</span>
+                        <span id="catalogue_day_fri_{{ $catalogue->id }}" @if(($catalogue->day & 32) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.fri')</span>
+                        <span id="catalogue_day_sat_{{ $catalogue->id }}" @if(($catalogue->day & 64) > 0 ) data-selected="1" class="text-info" @else data-selected="0" class="text-muted" @endif>@lang('backend/modules/pricing/catalogues.sat')</span>
                         {{--{{ $catalogue->day }}--}}
                     </dd>
                     <dt>@lang('backend/modules/pricing/catalogues.start_hour'):</dt>
-                    <dd id="catalogue_start_hour_{{ $catalogue->id }}">{{ $catalogue->start_hour }}</dd>
+                    <dd id="catalogue_start_hour_{{ $catalogue->id }}">@if(is_null( $catalogue->start_hour )) - @else {{ $catalogue->start_hour }} @endif</dd>
                     <dt>@lang('backend/modules/pricing/catalogues.end_hour'):</dt>
-                    <dd id="catalogue_end_hour_{{ $catalogue->id }}">{{ $catalogue->end_hour }}</dd>
+                    <dd id="catalogue_end_hour_{{ $catalogue->id }}">@if(is_null( $catalogue->end_hour )) - @else {{ $catalogue->end_hour }} @endif</dd>
                 </dl>
                 <div class="panel-body">
                     @if($catalogue->status == 0)

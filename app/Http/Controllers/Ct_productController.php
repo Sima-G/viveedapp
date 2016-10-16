@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use Request;
 use Sentinel;
+use Redirect;
 use App\Ct_product;
 
 class Ct_productController extends Controller

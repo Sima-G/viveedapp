@@ -27,7 +27,7 @@ return [
     'title_desc'                        => 'Τίτλος ομάδας',
     'type'                              => 'Τύπος',
     'type_single'                       => 'Μοναδική επιλογή',
-    'type_multi'                        => 'Πολλαπλή επιλογή',
+    'type_multiple'                     => 'Πολλαπλή επιλογή',
     'ingredient_description'            => 'Περιγραφή συστατικού',
     'ingredient_unit'                   => 'Μονάδα',
     'ingredient_unit_desc'              => 'Μονάδα μέτρησης',
