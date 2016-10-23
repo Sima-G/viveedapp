@@ -24,4 +24,25 @@ class Ct_category extends Model
     {
         return $this->belongsToMany('App\Ct_product', 'id', 'id');
     }
+
+
+
+
+
+
+
+    public function ctr_quantities()
+    {
+        return $this->belongsToMany('App\Ctr_quantity', 'ctr_quantity_ct_category')->withTimestamps();
+    }
+
+    public function ctr_groups()
+    {
+        return $this->belongsToMany('App\Ctr_group', 'ctr_group_ct_category')->withTimestamps();
+    }
+
+    public function ctr_products()
+    {
+        return $this->belongsToMany('App\Ctr_product', 'id', 'id');
+    }
 }

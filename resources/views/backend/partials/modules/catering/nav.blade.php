@@ -16,13 +16,17 @@
                         <a href="{{URL::route('ct_products')}}" @if(Route::current()->getName() == 'ct_products') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.ct_product_manage_desc')">@lang('master.ct_product_manage')</span></a>
                     </li>
                     <li>
-                        <a href="{{URL::route('ct_product_create')}}" @if(Route::current()->getName() == 'ct_product_create') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.ct_product_manage_desc')">@lang('master.ct_product_create')</span></a>
+                        <a href="{{URL::route('ctr_product_create')}}" @if(Route::current()->getName() == 'ct_product_create') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.ct_product_manage_desc')">@lang('master.ct_product_create')</span></a>
                     </li>
                 </ul>
             </li>
 
             <li>
                 <a href="{{URL::route('ct_categories')}}" @if(Route::current()->getName() == 'ct_categories') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_categories')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+            </li>
+
+            <li>
+                <a href="{{URL::route('ctr_quantities')}}" @if(Route::current()->getName() == 'ctr_quantities') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ctr_quantities')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
             </li>
         </ul>
     </li>

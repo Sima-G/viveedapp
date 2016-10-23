@@ -12,18 +12,15 @@ jQuery(document).ready(function () {
     switch(product_action) {
         case "create":
 
-            chosenField('quantity_list', 'quantity_unit');
-            chosenField('category_list', 'product_category');
-            chosenField('group_list', 'ingroup_title');
-            // $('#manage_product_block_actions').hide();
-            //
-            // $(".product-manage-btn").html($('#product-manage-btn-txt').val());
-            //
-            // $('#inquantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
-            // $('#ingroup_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
-            //
-            // $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
-            // $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#manage_product_block_actions').hide();
+
+            $(".product-manage-btn").html($('#product-manage-btn-txt').val());
+
+            $('#inquantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#ingroup_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+
+            $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
             break;
         case "view":
 
@@ -893,27 +890,5 @@ jQuery(document).ready(function () {
     /*function cleanFields(block_id) {
         $('#'+block_id).trigger("reset");
     }*/
-
-    function chosenField(field, target){
-        jQuery.ajax({
-            url: "/backend/modules/catering/product/"+field,
-            type: "GET",
-            success: function (data) {
-                $('#'+target).append(data);
-                var config = {
-                    '.chosen-container': {width: "100%" },
-                    '.chosen-select': {},
-                    '.chosen-select-deselect': {allow_single_deselect: true},
-                    '.chosen-select-no-single': {disable_search_threshold: 10},
-                    '.chosen-select-no-results': {no_results_text: 'Συγγνώμη, δεν βρέθηκαν κατηγορίες!'},
-                    '.chosen-select-width': {width: "100%"}
-                };
-                for (var selector in config) {
-                    $('#'+target).chosen(config[selector]);
-                }
-
-            }
-        });
-    }
 
 });

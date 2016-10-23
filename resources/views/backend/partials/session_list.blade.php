@@ -15,13 +15,14 @@
                                     <div id="end_time_{{ $session->id }}" style="display: none;">{{ $session->end_time }}</div>
                                     <div id="date_{{ $session->id }}" style="display: none;">{{ $dt->format("d/m/Y") }}</div>
                                     <div id="description_{{ $session->id }}" style="display: none;">{{ $session->description }}</div>
-                                    <div class="timeline-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-inverse fa-stack-1x">{{ abs(($end_time - $start_time)/60) }}</i></div>
+                                    {{--<div class="timeline-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-inverse fa-stack-1x">{{ abs(($end_time - $start_time)/60) }}</i></div>--}}
+                                    <div class="timeline-icon"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-inverse fa-stack-1x">{{ abs(($session->end_time - $session->start_time)/60) }}</i></div>
                                     <div class="timeline-time">{{ date('H:i', strtotime($session->start_time)) . "-" . date('H:i', strtotime($session->end_time)) }}</div>
                                     <div class="timeline-content">
                                         <h3 class="push-bit">{{ $session->title }}</h3>
-                                        <span class="push-bit">{{ $session->description }}</span>
+                                        <span class="push-bit">{!! $session->description !!}</span>
                                         <p class="push-bit"><strong>@lang('schedule/sessions.session_speakers'):</strong>
-                                            @foreach ($session->speakers as $key => $speaker) {
+                                            @foreach ($session->speakers as $key => $speaker)
                                                 @if ($key > 0)
                                                     {{ ", " }}
                                                 @endif

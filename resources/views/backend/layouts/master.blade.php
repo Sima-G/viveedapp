@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="{{ asset('assets/backend/css/themes/night.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/backend/css/viveed/sweetalert.css') }}">
+    @yield('viveed_css')
     <!-- END Stylesheets -->
 
     <script>

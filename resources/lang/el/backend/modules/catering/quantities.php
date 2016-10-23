@@ -22,7 +22,12 @@ return [
     'unit_desc'                         => 'Μονάδα μέτρησης',
     'quantity'                          => 'Ποσότητα',
     'quantity_desc'                     => 'Ποσότητα μονάδας',
+    'quantity_abbreviation'             => 'Σύντμηση',
+    'quantity_abbreviation_desc'        => 'Σύντμηση μονάδας',
+    'quantity_decimals'                 => 'Δεκαδικά',
     'of_product'                        => 'Προϊόντος',
+    'categories'                        => 'Κατηγορίες',
+    'categories_desc'                   => 'Κατηγορίες',
     'status'                            => 'Κατάσταση',
     'state'                             => 'Στάδιο',
     'actions'                           => 'Ενέργειες',
@@ -36,7 +41,7 @@ return [
     'state_disabled'                    => 'ανενεργή',
     'quantity_new_save'                 => 'Αποθήκευση Νέας',
     'quantity_change_save'              => 'Αποθήκευση Αλλαγών',
-    'quantity_action_undo'              => 'Αναίρεση και Νέο',
+    'quantity_action_undo'              => 'Αναίρεση και Νέα',
     'empty_quantity_list'               => 'Δεν υπάρχει καμία μονάδα μέτρησης',
 
 

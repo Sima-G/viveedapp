@@ -16,7 +16,9 @@
     <!-- END Catering Categories Header -->
 
         <!-- Quick Stats -->
-        <div id="category-stats" class="row text-center"></div>
+        <div id="category-stats" class="row text-center">
+            @include('backend.partials.modules.catering.stats.catering_stats')
+        </div>
         <!-- END Quick Stats -->
 
         <!-- Main Row -->

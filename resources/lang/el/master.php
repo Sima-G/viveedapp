@@ -41,6 +41,8 @@ return [
     'ct_product_manage_description'     => 'Διαχείριση προϊόντων',
     'ct_categories'                     => 'Κατηγορίες',
     'ct_categories_description'         => 'Διαχείριση κατηγοριών',
+    'ctr_quantities'                    => 'Μονάδες',
+    'ctr_quantities_description'        => 'Διαχείριση μονάδων μέτρησης',
 
     'prc_prices'                        => 'Τιμές',
     'prc_catalogues'                    => 'Τιμοκατάλογοι',

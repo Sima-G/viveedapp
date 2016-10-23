@@ -11,6 +11,12 @@
 |
 */
 
+# ======================================================================================================================
+# ================                       ===============================================================================
+# ================     Frontend Routes   ===============================================================================
+# ================                       ===============================================================================
+# ======================================================================================================================
+
 Route::get('/', array('as' => 'home', function(){
     return view('frontend.pages.home');
 }));
@@ -112,34 +118,49 @@ Route::group(array('prefix' => 'frontend/json'), function () {
 });
 
 
+# ======================================================================================================================
+# ======================================================================================================================
+# ======================================================================================================================
+# ======================================================================================================================
+# ======================================================================================================================
 
 
+# ======================================================================================================================
+# ================                       ===============================================================================
+# ================     Authenticate      ===============================================================================
+# ================                       ===============================================================================
+# ======================================================================================================================
 
+# Routes for authentications
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
 
+# ======================================================================================================================
+# ======================================================================================================================
+# ======================================================================================================================
+# ======================================================================================================================
+# ======================================================================================================================
 
 
 
 
 
-
-Route::get('/backend', array('as' => 'login', function () {
+/*Route::get('/backend', array('as' => 'login', function () {
     return view('backend.pages.login');
-}));
+}));*/
 
-Route::get('/backend/home', array('as' => 'home', 'uses' => 'BackendController@showhome'));
+//Route::get('/backend/home', array('as' => 'home', 'uses' => 'BackendController@showhome'));
 
 Route::post('/store', 'SessionController@store');
 
 Route::get('/data', 'SessionController@data');
 Route::post('/data', 'SessionController@data');
 
-Route::get('/backend/settings', function () {
+/*Route::get('/backend/settings', function () {
     return view('backend.pages.settings');
-});
+});*/
 
 
 
@@ -149,20 +170,20 @@ Route::get('/backend/settings', function () {
 
 
 //Routes for sessions
-Route::group(array('prefix' => 'backend/'), function () {
+/*Route::group(array('prefix' => 'backend/'), function () {
     Route::get('schedule/sessions/', array('as' => 'sessions', 'uses' => 'SessionController@show_sessions'));
     Route::post('schedule/sessions/store', 'SessionController@store');
     Route::post('schedule/sessions/delete', 'SessionController@delete');
     Route::get('schedule/sessions/speakers', 'SessionController@speakers');
     Route::get('schedule/sessions/session_list', 'SessionController@session_list');
     Route::get('schedule/sessions/speaker_list', 'SessionController@speaker_list');
-});
+});*/
 //--------------------
 
 
 
 //Routes for speakers
-Route::group(array('prefix' => 'backend/'), function () {
+/*Route::group(array('prefix' => 'backend/'), function () {
 
     //Dashboard section
     Route::get('schedule/dashboard/', array('as' => 'cnf_dashboard', 'uses' => 'Cnf_moduleController@show_dashboard'));
@@ -171,34 +192,75 @@ Route::group(array('prefix' => 'backend/'), function () {
     Route::get('schedule/speakers/speaker_list', 'SpeakerController@speaker_list');
     Route::post('schedule/speakers/store', 'SpeakerController@store');
     Route::post('schedule/speakers/delete', 'SpeakerController@delete');
-});
+});*/
 //--------------------
 
 
 
 //Routes for settings
-Route::group(array('prefix' => 'backend/'), function () {
+/*Route::group(array('prefix' => 'backend/'), function () {
     Route::get('schedule/settings/', array('as' => 'settings', 'uses' => 'SettingController@show'));
     Route::post('schedule/settings/store', 'SettingController@store');
     Route::post('schedule/settings/data', 'SettingController@data');
     //Route::get('schedule/settings/data', 'SettingController@data');
-});
+});*/
 //-------------------
 
 
 
 
 //Routes for settings
+
+# ======================================================================================================================
+# ================                       ===============================================================================
+# ================     Backend Routes    ===============================================================================
+# ================                       ===============================================================================
+# ======================================================================================================================
 Route::group(array('prefix' => 'backend/'), function () {
 
-
+    //Routes for admin
+    Route::get('', array('as' => 'login', function () {
+        return view('backend.pages.login');
+    }));
+    Route::get('home', array('as' => 'home', 'uses' => 'BackendController@showhome'));
+    Route::get('settings', function () {
+        return view('backend.pages.settings');
+    });
 
 
     //Routes for modules
     Route::group(array('prefix' => 'modules/'), function () {
 
 
+        //Routes for Conference module
+        Route::group(array('prefix' => 'schedule/'), function () {
+            //Dashboard section
+            Route::get('dashboard/', array('as' => 'cnf_dashboard', 'uses' => 'Cnf_moduleController@show_dashboard'));
 
+
+            Route::group(array('prefix' => 'sessions'), function () {
+                Route::get('/', array('as' => 'sessions', 'uses' => 'SessionController@show_sessions'));
+                Route::post('/store', 'SessionController@store');
+                Route::post('/delete', 'SessionController@delete');
+                Route::get('/speakers', 'SessionController@speakers');
+                Route::get('/session_list', 'SessionController@session_list');
+                Route::get('/speaker_list', 'SessionController@speaker_list');
+            });
+
+            //Speakers section
+            Route::group(array('prefix' => 'speakers'), function () {
+                Route::get('/', array('as' => 'speakers', 'uses' => 'SpeakerController@show_speakers'));
+                Route::get('/speaker_list', 'SpeakerController@speaker_list');
+                Route::post('/store', 'SpeakerController@store');
+                Route::post('/delete', 'SpeakerController@delete');
+            });
+            //Settings section
+            Route::group(array('prefix' => 'settings'), function () {
+                Route::get('/', array('as' => 'settings', 'uses' => 'SettingController@show'));
+                Route::post('/store', 'SettingController@store');
+                Route::post('/data', 'SettingController@data');
+            });
+        });
 
 
         //Routes for Pricing module
@@ -238,6 +300,16 @@ Route::group(array('prefix' => 'backend/'), function () {
         Route::group(array('prefix' => 'catering/'), function () {
             //Dashboard section
             Route::get('dashboard/', array('as' => 'ct_dashboard', 'uses' => 'Ct_moduleController@show_dashboard'));
+
+            //Product section
+            Route::group(array('prefix' => 'product'), function () {
+                Route::get('/manage', array('as' => 'ctr_product_create', 'uses' => 'Ctr_productController@product_create'));
+                Route::get('/category_list', 'Ctr_productController@category_list');
+                Route::get('/quantity_list', 'Ctr_productController@quantity_list');
+                Route::get('/group_list', 'Ctr_productController@group_list');
+                Route::get('/ingredient_list', 'Ctr_productController@ingredient_list');
+            });
+
             //Category section
             Route::group(array('prefix' => 'categories'), function () {
                 Route::get('/', array('as' => 'ct_categories', 'uses' => 'Ct_categoryController@show_categories'));
@@ -247,7 +319,36 @@ Route::group(array('prefix' => 'backend/'), function () {
                 Route::post('/delete', 'Ct_categoryController@delete');
                 Route::get('/category_stats', 'Ct_moduleController@category_stats');
             });
-
+            //Quantity section
+            Route::group(array('prefix' => 'quantities'), function () {
+                Route::get('/', array('as' => 'ctr_quantities', 'uses' => 'Ctr_quantityController@show_quantities'));
+                Route::get('/category_list', 'Ctr_quantityController@category_list');
+                Route::get('/quantity_list', 'Ctr_quantityController@quantity_list');
+                Route::get('/{quantity_id}/quantity_parent_field', 'Ctr_quantityController@quantity_parent_field');
+                Route::post('/store', 'Ctr_quantityController@store');
+                Route::post('/delete', 'Ctr_quantityController@delete');
+                Route::get('/quantity_stats', 'Ct_moduleController@quantity_stats');
+            });
+            //Group section
+            Route::group(array('prefix' => 'groups'), function () {
+                Route::get('/', array('as' => 'ctr_groups', 'uses' => 'Ctr_groupController@show_groups'));
+                Route::get('/category_list', 'Ctr_groupController@category_list');
+                Route::get('/group_list', 'Ctr_groupController@group_list');
+                Route::get('/{group_id}/group_parent_field', 'Ctr_groupController@group_parent_field');
+                Route::post('/store', 'Ctr_groupController@store');
+                Route::post('/delete', 'Ctr_groupController@delete');
+                Route::get('/group_stats', 'Ct_moduleController@group_stats');
+            });
+            //Ingredient section
+            Route::group(array('prefix' => 'ingredients'), function () {
+                Route::get('/', array('as' => 'ctr_ingredients', 'uses' => 'Ctr_ingredientController@show_ingredients'));
+                Route::get('/group_list', 'Ctr_ingredientController@group_list');
+                Route::get('/ingredient_list', 'Ctr_ingredientController@ingredient_list');
+                Route::get('/{ingredient_id}/ingredient_parent_field', 'Ctr_ingredientController@ingredient_parent_field');
+                Route::post('/store', 'Ctr_ingredientController@store');
+                Route::post('/delete', 'Ctr_ingredientController@delete');
+                Route::get('/ingredient_stats', 'Ct_moduleController@ingredient_stats');
+            });
         });
 
     });
@@ -278,7 +379,8 @@ Route::group(array('prefix' => 'backend/'), function () {
 
 
 //    Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_manage'));
-    Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_create'));
+   // Ct_product
+//    Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_create'));
     Route::get('modules/catering/products/show', array('as' => 'ct_products', 'uses' => 'Ct_productController@show_products'));
     Route::get('modules/catering/products/product_list', array('as' => 'ct_product_list', 'uses' => 'Ct_productController@product_list'));
 
