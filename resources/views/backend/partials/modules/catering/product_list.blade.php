@@ -35,7 +35,7 @@
             <td class="text-center">
                 <div class="btn-group btn-group-xs">
                     <a href="{{ route('prc_product_manage', $product->id ) }}" data-toggle="tooltip" title="Pricing" class="btn btn-info"><i class="fa fa-eur"></i></a>
-                    <a href="{{ route('ct_product_manage', $product->id ) }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                    <a href="{{ route('ctr_product_manage', $product->id ) }}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-eye"></i></a>
                     <a id="{{ $product->id }}" href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-xs btn-danger product_delete" data-original-title="Delete"><i class="fa fa-times"></i></a>
                 </div>
             </td>

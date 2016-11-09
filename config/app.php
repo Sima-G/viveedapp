@@ -147,6 +147,11 @@ return [
         App\Providers\ViewComposerServiceProvider::class,
 
         /*
+         * Debugbar Providers...
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        /*
          * Viveed Sentinel Providers...
          */
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
@@ -202,6 +207,10 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        /*
+         * Debugbar Aliases...
+         */
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
         /*
          * Viveed Sentinel Aliases...
          */

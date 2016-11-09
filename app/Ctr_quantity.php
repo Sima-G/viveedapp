@@ -23,6 +23,13 @@ class Ctr_quantity extends Model
     public function ct_categories()
     {
         return $this->belongsToMany('App\Ct_category', 'ctr_quantity_ct_category')->withTimestamps();
+//        return $this->belongsToMany('App\Ct_category', 'ctr_quantity_ct_category')->withPivot('quantity', 'status', 'state')->withTimestamps();
+    }
+
+    // Relationship between Ctr_quantities and Prc_catalogue table (Many-to-Many)
+    public function prc_catalogues()
+    {
+        return $this->belongsToMany('App\Prc_catalogue', 'prc_product')->withPivot('product', 'price', 'discount', 'init', 'status', 'state')->withTimestamps();
     }
 
 }

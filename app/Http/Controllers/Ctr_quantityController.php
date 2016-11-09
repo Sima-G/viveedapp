@@ -83,14 +83,16 @@ class Ctr_quantityController extends Controller
     public function quantity_list()
     {
         // Getting all table data
-        $quantities = Ctr_quantity::select('*')->orderBy('id', 'ASC')->get();
+        $quantities = Ctr_quantity::select('*')->with('ct_categories')->orderBy('id', 'ASC')->get();
         return View('backend.partials.modules.catering.lists.quantity_list', compact('quantities'));
     }
 
     public function category_list()
     {
+        $source_type = "object";
+        $target_selection = "multiple";
         $categories = Ct_category::select('*')->get();
-        return View('backend.partials.modules.catering.fields.category_field', compact('categories'));
+        return View('backend.partials.modules.catering.fields.category_field', compact('categories', 'source_type', 'target_selection'));
 
     }
 }

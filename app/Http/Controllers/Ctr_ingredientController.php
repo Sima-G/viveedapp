@@ -91,11 +91,11 @@ class Ctr_ingredientController extends Controller
 
     public function group_list()
     {
-        $source_type = "collection";
-        $category_selection = "single";
+        $source_type = "object";
+        $target_selection = "multiple";
 //        $groups = Ctr_group::select('*')->get();
-        $categories = Ct_category::select('*')->get();
-        return View('backend.partials.modules.catering.fields.group_field', compact('categories', 'source_type', 'category_selection'));
+        $groups = Ctr_group::select('*')->get();
+        return View('backend.partials.modules.catering.fields.group_field', compact('groups', 'source_type', 'target_selection'));
 
     }
 }

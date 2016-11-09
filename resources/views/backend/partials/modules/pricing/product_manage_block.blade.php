@@ -1,3 +1,4 @@
+{{--{{ dd($master_product) }}--}}
 <div id="product_manage_block" class="block ">
     <!-- Customer Info Title -->
     <div class="block-title">
@@ -6,11 +7,11 @@
                 <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default dropdown-toggle enable-tooltip" data-toggle="dropdown" title="" data-original-title="Options" aria-expanded="true"><span class="caret"></span></a>
                 <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                     <li>
-                        <a href="{{URL::route('ct_product_manage', $master_product->id)}}"><i class="gi gi-shopping_bag pull-right"></i>@lang('backend/modules/pricing/products.product_manage')</a>
+                        <a href="{{URL::route('ctr_product_manage', $master_product->id)}}"><i class="gi gi-shopping_bag pull-right"></i>@lang('backend/modules/pricing/products.product_manage')</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="{{URL::route('ct_products')}}"><i class="gi gi-shop_window fa-fw pull-right"></i>@lang('backend/modules/pricing/products.product_list')</a>
+                        <a href="{{URL::route('ctr_products')}}"><i class="gi gi-shop_window fa-fw pull-right"></i>@lang('backend/modules/pricing/products.product_list')</a>
                     </li>
                 </ul>
             </div>

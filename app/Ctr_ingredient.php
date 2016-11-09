@@ -25,4 +25,9 @@ class Ctr_ingredient extends Model
         return $this->belongsToMany('App\Ctr_group', 'ctr_ingredient_ctr_group')->withTimestamps();
     }
 
+    public function ctr_products()
+    {
+        return $this->belongsToMany('App\Ctr_product', 'ctr_product_ctr_ingredient')->withPivot('description', 'quantity', 'status', 'state')->withTimestamps();
+    }
+
 }

@@ -22,6 +22,19 @@ class Prc_catalogue extends Model
         return ($this->day) & date("d");
     }
 
+
+    // Relationship between Ctr_products and Prc_catalogue table (Many-to-Many)
+    public function ctr_products()
+    {
+        return $this->belongsToMany('App\Ctr_product', 'prc_products', 'product', 'id')->withPivot('quantity', 'price', 'discount', 'init', 'status', 'state')->withTimestamps();
+    }
+
+    // Relationship between Ctr_quantities and Prc_catalogue table (Many-to-Many)
+    public function ctr_quantities()
+    {
+        return $this->belongsToMany('App\Ctr_quantity', 'prc_products')->withPivot('product', 'price', 'discount', 'init', 'status', 'state')->withTimestamps();
+    }
+
     /*public function getActiveCatalogueAttribute(){
 //        if ((($this->day) & date("d")) && ($this->start_date >= date("Y-m-d")) && ($this->end_date >= date("Y-m-d"))){
         if ( ((($this->day) & date("d")) > 0) || is_null($this->day)){

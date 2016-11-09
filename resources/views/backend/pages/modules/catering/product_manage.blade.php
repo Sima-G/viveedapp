@@ -14,7 +14,8 @@
         <!-- Catering Categories Header -->
             @include('backend.partials.modules.catering.menu')
         <!-- END Catering Categories Header -->
-
+        {{--{{ $product->first()->category }}--}}
+    {{--{{ dd($product) }}--}}
         <!-- Quick Stats -->
         <div id="category-stats" class="row text-center"></div>
         <input type="hidden" name="product_action" id="product_action" value="{{ $product_action }}">
@@ -23,14 +24,26 @@
         @elseif($product_action == "edit")
             <input type="hidden" name="manage_product_block_action_txt" id="manage_product_block_action_txt" value="@lang('backend/modules/catering/products.existing_product')">
             <input type="hidden" name="managed_product_title" id="managed_product_title" value="{{ $product->title }}">
+            <input type="hidden" name="managed_product_category" id="managed_product_category" value="{{ $product->category }}">
+            <input type="hidden" name="managed_product_category" id="managed_product_category" value="{{ $product->category }}">
             <input type="hidden" name="managed_product_status" id="managed_product_status" value="{{ $product->status }}">
             <input type="hidden" name="managed_product_state" id="managed_product_state" value="{{ $product->state }}">
             <input type="hidden" name="managed_product_description" id="managed_product_description" value="{{ $product->description }}">
             <input type="hidden" name="managed_product_id" id="managed_product_id" value="{{ $product->id }}">
+
+        <input type="hidden" name="product_action" id="product_action" value="{{ $product_action }}">
+        <input type="hidden" name="product_category_selected" id="product_category_selected" value="@if(empty($product->category)) 0 @else 1 @endif">
+        <input type="hidden" name="product_quantity_selected" id="product_quantity_selected" value="@if($product->ctr_groups->count() == 0) 0 @else 1 @endif">
+        <input type="hidden" name="product_group_selected" id="product_group_selected" value="@if($product->ctr_groups->count() == 0) 0 @else 1 @endif">
+        <input type="hidden" name="product_ingredient_selected" id="product_ingredient_selected" value="@if($product->ctr_ingredients->count() == 0) 0 @else 1 @endif">
         @endif
         <!-- END Quick Stats -->
 
         <!-- Main Row -->
+
+        {{--{{ dd($product) }}--}}
+        {{--{{ $product->ctr_ingredients->count() }}--}}
+        {{--@if($product->ctr_groups->count())sasa @endif--}}
 
         <!-- Customer Content -->
         <div class="row">
@@ -46,9 +59,9 @@
                     <div class="block-title">
 
                         <ul class="nav nav-tabs" data-toggle="tabs">
-                            <li class="active"><a href="#quantity_manage_blocks">@lang('backend/modules/catering/products.product_quantities')</a></li>
-                            <li><a href="#ingroup_manage_blocks">@lang('backend/modules/catering/products.ingredient_groups')</a></li>
-                            <li><a href="#ingredient_manage_blocks" data-toggle="tooltip" title="" data-original-title="Settings">@lang('backend/modules/catering/products.product_ingredients')</a></li>
+                            <li class="active"><a href="#quantity_manage_blocks">@lang('backend/modules/catering/products.product_quantities') <span id="quantity_manage_tab_text"></span></a></li>
+                            <li><a href="#ingroup_manage_blocks">@lang('backend/modules/catering/products.ingredient_groups') <span id="ingroup_manage_tab_text"></span></a></li>
+                            <li><a href="#ingredient_manage_blocks" data-toggle="tooltip" title="" data-original-title="@lang('backend/modules/catering/products.product_ingredients')">@lang('backend/modules/catering/products.product_ingredients') <span id="ingredient_manage_tab_text"></span></a></li>
                         </ul>
                     </div>
                     <!-- END Block Tabs Title -->

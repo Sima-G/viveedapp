@@ -43,6 +43,8 @@ return [
     'quantity_change_save'              => 'Αποθήκευση Αλλαγών',
     'quantity_action_undo'              => 'Αναίρεση και Νέα',
     'empty_quantity_list'               => 'Δεν υπάρχει καμία μονάδα μέτρησης',
+    'info_message'                      => 'Ενημέρωση',
+    'product_quantities_init_message'   => 'Η περιοχή αυτή ενεργοποιείται αφότου έχει αποθηκευτεί το προϊόν.',
 
 
 ];

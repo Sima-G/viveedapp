@@ -88,8 +88,10 @@ class Ctr_groupController extends Controller
 
     public function category_list()
     {
+        $source_type = "object";
+        $target_selection = "multiple";
         $categories = Ct_category::select('*')->get();
-        return View('backend.partials.modules.catering.fields.category_field', compact('categories'));
+        return View('backend.partials.modules.catering.fields.category_field', compact('categories', 'source_type', 'target_selection'));
 
     }
 }

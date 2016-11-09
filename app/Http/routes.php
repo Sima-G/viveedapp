@@ -299,15 +299,36 @@ Route::group(array('prefix' => 'backend/'), function () {
         //Routes for Catering module
         Route::group(array('prefix' => 'catering/'), function () {
             //Dashboard section
-            Route::get('dashboard/', array('as' => 'ct_dashboard', 'uses' => 'Ct_moduleController@show_dashboard'));
+            Route::get('dashboard/', array('as' => 'ctr_dashboard', 'uses' => 'Ctr_moduleController@show_dashboard'));
+            Route::get('catering_stats/', array('as' => 'ct_dashboard', 'uses' => 'Ctr_moduleController@catering_stats'));
 
             //Product section
-            Route::group(array('prefix' => 'product'), function () {
+            Route::group(array('prefix' => 'products'), function () {
+                // Product creation section
                 Route::get('/manage', array('as' => 'ctr_product_create', 'uses' => 'Ctr_productController@product_create'));
+                Route::post('/store_product', 'Ctr_productController@store_product');
+                //Product overview section
+                Route::get('/show', array('as' => 'ctr_products', 'uses' => 'Ctr_productController@show_products'));
+                Route::get('/product_list', array('as' => 'ctr_product_list', 'uses' => 'Ctr_productController@product_list'));
+                // Product management section
+                Route::get('/{id}/manage', array('as' => 'ctr_product_manage', 'uses' => 'Ctr_productController@product_manage'));
+                Route::get('/{id}/show', array('as' => 'ctr_product_show', 'uses' => 'Ctr_productController@product_show'));
+                Route::post('/delete', 'Ctr_productController@delete');
                 Route::get('/category_list', 'Ctr_productController@category_list');
-                Route::get('/quantity_list', 'Ctr_productController@quantity_list');
-                Route::get('/group_list', 'Ctr_productController@group_list');
-                Route::get('/ingredient_list', 'Ctr_productController@ingredient_list');
+                // Product quantity section
+                Route::post('/store_quantity', 'Ctr_productController@store_quantity');
+                Route::post('/delete_quantity', 'Ctr_productController@delete_quantity');
+                Route::get('/{id}/quantity_list', 'Ctr_productController@quantity_list');
+                Route::get('/{id}/product_quantity_list', array('as' => 'ctr_product_quantity_list', 'uses' => 'Ctr_productController@product_quantity_list'));
+
+                // Product group section
+                Route::post('/store_group', 'Ctr_productController@store_group');
+                Route::get('/{id}/group_list', 'Ctr_productController@group_list');
+                Route::get('/{id}/product_group_list', 'Ctr_productController@product_group_list');
+                // Product ingredient section
+                Route::post('/store_ingredient', 'Ctr_productController@store_ingredient');
+                Route::get('/{id}/ingredient_list', 'Ctr_productController@ingredient_list');
+                Route::get('/{id}/product_ingredient_list', 'Ctr_productController@product_ingredient_list');
             });
 
             //Category section
@@ -354,26 +375,19 @@ Route::group(array('prefix' => 'backend/'), function () {
     });
 
 
-    //Product section
-
-    //Product block
-
-    //Quantity block
-
-    //Ingredient block
 
 
     //Product
     Route::get('modules/catering/products/product_stats', 'Ct_moduleController@product_stats');
-    Route::get('modules/catering/product/{id}/manage', array('as' => 'ct_product_manage', 'uses' => 'Ct_productController@product_manage'));
-    Route::get('modules/catering/product/{id}/show', array('as' => 'ct_product_show', 'uses' => 'Ct_productController@product_show'));
-    Route::post('modules/catering/product/delete', 'Ct_productController@delete');
+//    Route::get('modules/catering/product/{id}/manage', array('as' => 'ct_product_manage', 'uses' => 'Ct_productController@product_manage'));
+//    Route::get('modules/catering/product/{id}/show', array('as' => 'ct_product_show', 'uses' => 'Ct_productController@product_show'));
+//    Route::post('modules/catering/product/delete', 'Ct_productController@delete');
 
 
     //Product block lists
     Route::get('modules/catering/product/{id}/inquantity_list', array('as' => 'ct_inquantity_list', 'uses' => 'Ct_inquantityController@inquantity_list'));
     Route::get('modules/catering/product/{id}/ingroup_list', array('as' => 'ct_ingroup_list', 'uses' => 'Ct_ingroupController@ingroup_list'));
-    Route::get('modules/catering/product/{id}/quantity_list', array('as' => 'ct_quantity_list', 'uses' => 'Ct_quantityController@quantity_list'));
+//    Route::get('modules/catering/product/{id}/quantity_list', array('as' => 'ct_quantity_list', 'uses' => 'Ct_quantityController@quantity_list'));
     Route::get('modules/catering/product/{id}/ingredient_list', array('as' => 'ct_ingredient_list', 'uses' => 'Ct_ingredientController@ingredient_list'));
     //-------------------
 
@@ -381,22 +395,22 @@ Route::group(array('prefix' => 'backend/'), function () {
 //    Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_manage'));
    // Ct_product
 //    Route::get('modules/catering/product/manage', array('as' => 'ct_product_create', 'uses' => 'Ct_productController@product_create'));
-    Route::get('modules/catering/products/show', array('as' => 'ct_products', 'uses' => 'Ct_productController@show_products'));
-    Route::get('modules/catering/products/product_list', array('as' => 'ct_product_list', 'uses' => 'Ct_productController@product_list'));
+//    Route::get('modules/catering/products/show', array('as' => 'ct_products', 'uses' => 'Ct_productController@show_products'));
+//    Route::get('modules/catering/products/product_list', array('as' => 'ct_product_list', 'uses' => 'Ct_productController@product_list'));
 
 
     //Product block store
-    Route::post('modules/catering/products/store_product', 'Ct_productController@store_product');
+//    Route::post('modules/catering/products/store_product', 'Ct_productController@store_product');
     Route::post('modules/catering/products/store_ingroup', 'Ct_ingroupController@store');
     Route::post('modules/catering/products/store_inquantity', 'Ct_inquantityController@store');
-    Route::post('modules/catering/products/store_ingredient', 'Ct_ingredientController@store');
-    Route::post('modules/catering/products/store_quantity', 'Ct_quantityController@store');
+//    Route::post('modules/catering/products/store_ingredient', 'Ct_ingredientController@store');
+//    Route::post('modules/catering/products/store_quantity', 'Ct_quantityController@store');
 
 
     //Product block delete
     Route::post('modules/catering/products/delete_ingroup', 'Ct_ingroupController@delete');
     Route::post('modules/catering/products/delete_inquantity', 'Ct_inquantityController@delete');
-    Route::post('modules/catering/products/delete_quantity', 'Ct_quantityController@delete');
+//    Route::post('modules/catering/products/delete_quantity', 'Ct_quantityController@delete');
     Route::post('modules/catering/products/delete_ingredient', 'Ct_ingredientController@delete');
 
 

@@ -2,6 +2,8 @@ jQuery(document).ready(function () {
 
 
     var product_action = $('input[name=product_action]').val();
+    var managed_product_category = $('input[name=managed_product_category]').val();
+    var managed_product_id = $('input[name=managed_product_id]').val();
 
     $('#manage_product_block_action').html($('#manage_product_block_action_txt').val());
 
@@ -12,19 +14,21 @@ jQuery(document).ready(function () {
     switch(product_action) {
         case "create":
 
-            chosenField('quantity_list', 'quantity_unit');
-            chosenField('category_list', 'product_category');
-            chosenField('group_list', 'ingroup_title');
-            // $('#manage_product_block_actions').hide();
-            //
-            // $(".product-manage-btn").html($('#product-manage-btn-txt').val());
-            //
-            // $('#inquantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
-            // $('#ingroup_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
-            //
-            // $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
-            // $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+            // chosenField('quantity_list', 'quantity_unit');
+            chosenField('category_list', 'product_category', '0');
+            // chosenField('group_list', 'ingroup_title');
+            $('#manage_product_block_actions').hide();
+
+            $(".product-manage-btn").html($('#product-manage-btn-txt').val());
+
+            $('#inquantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#ingroup_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
+
+            $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
+            $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
             break;
+
+
         case "view":
 
             $('.manage_product_block_anchor').attr('href', '/backend/modules/pricing/products/'+$('#managed_product_id').val()+'/manage');
@@ -44,14 +48,29 @@ jQuery(document).ready(function () {
             $('#quantity_manage_block').find('input, textarea, button, select').attr('disabled','disabled');
             $('#ingredient_manage_blocks').find('input, textarea, button, select').attr('disabled','disabled');
             break;
+
+
         case "edit":
+
+            chosenField('category_list', 'product_category', '0');
+            chosenField('quantity_list', 'quantity_unit', managed_product_category);
+            chosenField('group_list', 'ingroup_title', managed_product_category);
+
+            chosenField('ingredient_list', 'ingredient_title', '1');
+
+            // $('#quantity_category_selected').val($('input[name=quantity_quantity]').val());
+
+            // $('#quantity_quantity').mask('99.999');
 
             $('.manage_product_block_anchor').attr('href', '/backend/modules/pricing/products/'+$('#managed_product_id').val()+'/manage');
 
-            showingroupList($('#managed_product_id').val());
+            // showingroupList($('#managed_product_id').val());
             showinquantityList($('#managed_product_id').val());
 
             showquantityList($('#managed_product_id').val());
+
+            showgroupList($('#managed_product_id').val());
+
             showingredientList($('#managed_product_id').val());
 
             $('#product_action_id').val($('#managed_product_id').val());
@@ -79,6 +98,9 @@ jQuery(document).ready(function () {
             $('#ingroup_manage_blocks').find('input, textarea, button, select').removeAttr('disabled');
     }
 
+    $('#quantity_unit').on('change', function() {
+        $('#quantity_category_selected').val(1);
+    });
 
     /*
      |--------------------------------------------------------------------------
@@ -124,6 +146,7 @@ jQuery(document).ready(function () {
                 type: "post",
                 data: {
                     'product_title': $('input[name=product_title]').val(),
+                    'product_category': $('#product_category').val(),
                     'product_status': $("[name = 'product_status']").val(),
                     'product_state': $('#product_state').val(),
                     'product_description': CKEDITOR.instances.product_description.getData(),
@@ -157,7 +180,7 @@ jQuery(document).ready(function () {
 
                     // $('.manage_product_block_anchor').attr("href", '/backend/modules/pricing/products/'+new_product_id+'/manage');
 
-                    $(location).attr('href', '/backend/modules/catering/product/'+new_product_id+'/manage');
+                    $(location).attr('href', '/backend/modules/catering/products/'+new_product_id+'/manage');
                     // $('#manage_product_block_anchor').prop("href", '/backend/modules/pricing/products/'+new_product_id+'/manage');
 
                     $('#manage_product_block_actions').show();
@@ -215,12 +238,12 @@ jQuery(document).ready(function () {
 
         submitHandler: function(form) {
             $.ajax({
-                url: '/backend/modules/catering/products/store_ingroup',
+                url: '/backend/modules/catering/products/store_group',
                 type: "post",
                 data: {
                     'product_action_id': $('input[name=product_action_id]').val(),
                     'ingroup_action_id': $('input[name=ingroup_action_id]').val(),
-                    'ingroup_title': $('input[name=ingroup_title]').val(),
+                    'ingroup_id': $('[name=ingroup_title]').val(),
                     'ingroup_selection': $('#ingroup_selection').val(),
                     'ingroup_status': $("[name = 'ingroup_status']").val(),
                     'ingroup_state': $('#ingroup_state').val(),
@@ -318,6 +341,7 @@ jQuery(document).ready(function () {
         }
     });
 
+
     // Quantity manage block
     $('#form_quantities_manage').validate({
         ignore: [],
@@ -349,7 +373,7 @@ jQuery(document).ready(function () {
                 url: '/backend/modules/catering/products/store_quantity',
                 type: "post",
                 data: {
-                    'quantity_unit': $('input[name=quantity_unit]').val(),
+                    'quantity_id': $('[name=quantity_unit]').val(),
                     'quantity_quantity': $('input[name=quantity_quantity]').val(),
                     'quantity_status': $("[name = 'quantity_status']").val(),
                     'quantity_state': $('#quantity_state').val(),
@@ -419,9 +443,9 @@ jQuery(document).ready(function () {
                 url: '/backend/modules/catering/products/store_ingredient',
                 type: "post",
                 data: {
-                    'ingredient_title': $('input[name=ingredient_title]').val(),
+                    'ingredient_title': $('[name=ingredient_title]').val(),
                     'ingredient_description': $('[name=ingredient_description]').val(),
-                    'ingredient_unit': $('input[name=ingredient_unit]').val(),
+                    // 'ingredient_unit': $('input[name=ingredient_unit]').val(),
                     'ingredient_quantity': $('input[name=ingredient_quantity]').val(),
                     'ingredient_status': $("[name = 'ingredient_status']").val(),
                     'ingredient_state': $('#ingredient_state').val(),
@@ -504,11 +528,8 @@ jQuery(document).ready(function () {
     // Product quantity edit
     $("#quantity_list").on('click', '.quantity_edit', function (event) {
         event.preventDefault();
-        // cleanFields();
-        // cleanFields(quantity_manage_block);
-        $('#form_quantities_manage').trigger("reset");
 
-        // $('#form_quantities_manage').find('select').val('1');
+        $('#form_quantities_manage').trigger("reset");
 
         var quantity_manage_btn_txt_alt = $('#quantity-manage-btn-txt-alt').val();
         $('#quantity_manage_btn').html(quantity_manage_btn_txt_alt);
@@ -519,25 +540,29 @@ jQuery(document).ready(function () {
 
         var id = $(this).attr('id');
 
-        var quantity_unit_txt = $(this).closest('tr').children('td.quantity_unit_txt').html();
+        var quantity_unit_id = $(this).closest("tr").find(".quantity_title_id").data("value");
+        var quantity_unit_txt = $(this).closest("tr").find(".quantity_title_id").text();
+        quantity_unit_txt = quantity_unit_txt.trim();
 
-        var quantity_quantity_txt = $(this).closest('tr').children('td.quantity_quantity_txt').html();
+        $('#quantity_unit option[value="' + quantity_unit_id + '"]').remove();
+        $('#quantity_unit').append('<option value="' + quantity_unit_id + '" selected="selected">' + quantity_unit_txt + '</option>');
 
+        $("#quantity_unit").trigger("chosen:updated");
+
+
+        $('#quantity_category_selected').val(1);
+
+
+        var quantity_quantity = $(this).closest("tr").find(".quantity_quantity").text();
+        quantity_quantity = quantity_quantity.trim();
         var quantity_status_txt = $(this).closest("tr").find(".quantity_status_txt").text();
         quantity_status_txt = quantity_status_txt.trim();
         var quantity_state_txt = $(this).closest("tr").find(".quantity_state_txt").text();
         quantity_state_txt = quantity_state_txt.trim();
 
-
         $('#quantity_action_id').val(id);
 
-        $('#quantity_unit').val(quantity_unit_txt);
-
-        $('#quantity_quantity').val(quantity_quantity_txt);
-
-        /*$("#category_parent option").filter(function() {
-            return this.text == category_parent_txt;
-        }).prop('selected', true);*/
+        $('#quantity_quantity').val(quantity_quantity);
 
         $("#quantity_status option").filter(function() {
             return this.text == quantity_status_txt;
@@ -695,7 +720,8 @@ jQuery(document).ready(function () {
                     url: '/backend/modules/catering/products/delete_quantity',
                     type: "post",
                     data: {
-                        'ct_quantity_action_id': id,
+                        'product_action_id': managed_product_id,
+                        'quantity_action_id': id,
                         '_token': $('input[name=_token]').val()
                     },
                     success: function getcontent(data) {
@@ -806,6 +832,22 @@ jQuery(document).ready(function () {
             type: "GET",
             success: function (data) {
                 $('#inquantity_list').html(data);
+
+            }
+        });
+    }
+
+    // Populates Ingredient group List block
+    function showgroupList(product_id) {
+        $('#ingroup_list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
+        jQuery.ajax({
+            url: "/backend/modules/catering/products/"+product_id+"/product_group_list",
+            type: "GET",
+            success: function (data) {
+                $('#ingroup_list').html(data);
+
+                tablerowsList('product_catering_groups', 'ingroup_manage_tab_text');
+
             }
         });
     }
@@ -814,10 +856,18 @@ jQuery(document).ready(function () {
     function showquantityList(product_id) {
         $('#quantity_list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
         jQuery.ajax({
-            url: "/backend/modules/catering/product/"+product_id+"/quantity_list",
+            url: "/backend/modules/catering/products/"+product_id+"/product_quantity_list",
             type: "GET",
             success: function (data) {
                 $('#quantity_list').html(data);
+
+                // console.log($('#product_catering_quantities').data('count'));
+
+                // var product_catering_quantities = $(data).find('#product_catering_quantities').data('count');
+                // console.log(product_catering_quantities);
+                // alert(product_catering_quantities);
+
+                tablerowsList('product_catering_quantities', 'quantity_manage_tab_text');
                 // showingredientviewBlock();
             }
         });
@@ -827,10 +877,12 @@ jQuery(document).ready(function () {
     function showingredientList(product_id) {
         $('#ingredient_list').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i></div>');
         jQuery.ajax({
-            url: "/backend/modules/catering/product/"+product_id+"/ingredient_list",
+            url: "/backend/modules/catering/products/"+product_id+"/product_ingredient_list",
             type: "GET",
             success: function (data) {
                 $('#ingredient_list').html(data);
+
+                tablerowsList('product_catering_ingredients', 'ingredient_manage_tab_text');
             }
         });
     }
@@ -894,9 +946,12 @@ jQuery(document).ready(function () {
         $('#'+block_id).trigger("reset");
     }*/
 
-    function chosenField(field, target){
+    function chosenField(field, target, product_id){
+        if(product_id > 0){
+            field = product_id+'/'+field;
+        }
         jQuery.ajax({
-            url: "/backend/modules/catering/product/"+field,
+            url: "/backend/modules/catering/products/"+field,
             type: "GET",
             success: function (data) {
                 $('#'+target).append(data);
@@ -914,6 +969,31 @@ jQuery(document).ready(function () {
 
             }
         });
+    }
+
+    function choseninitField(field, target, product_id){
+                $('#'+target).append(data);
+                var config = {
+                    '.chosen-container': {width: "100%" },
+                    '.chosen-select': {},
+                    '.chosen-select-deselect': {allow_single_deselect: true},
+                    '.chosen-select-no-single': {disable_search_threshold: 10},
+                    '.chosen-select-width': {width: "100%"}
+                };
+                for (var selector in config) {
+                    $('#'+target).chosen(config[selector]);
+                }
+    }
+
+    function tablerowsList(table, target) {
+        // var rowCount = $('#'+table+' tr').length;
+        // var tab_message = "("+$('#'+table).data("count")+")";
+
+        var data = $('#'+table).data('count');
+        var tab_message = "("+data+")";
+        // alert($('#product_catering_quantities').data('count'));
+        $("#"+target).text(tab_message);
+
     }
 
 });

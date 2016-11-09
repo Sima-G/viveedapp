@@ -27,4 +27,6 @@ class Prc_product extends Model
     {
         return $this->belongsTo('App\Ct_product', 'product', 'id');
     }
+
+
 }

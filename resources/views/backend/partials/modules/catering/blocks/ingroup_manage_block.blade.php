@@ -5,8 +5,15 @@
     </div>
     <!-- END Add Contact Title -->
 
+    <div id="info_ingroups_manage" class="row" @if($product_action == "edit")style="display: none;"@endif>
+        <div class="col-md-12">
+            <h1 class="text-success"><i class="fa fa-info-circle"></i> @lang('backend/modules/catering/ingroups.info_message'):</h1>
+            <p class="lead">@lang('backend/modules/catering/ingroups.product_ingroups_init_message')</p>
+        </div>
+    </div>
+
     <!-- Add Contact Content -->
-    <form id="form_ingroups_manage" enctype="multipart/form-data" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+    <form id="form_ingroups_manage" enctype="multipart/form-data" method="post" class="form-horizontal form-bordered" onsubmit="return false;" @if($product_action == "create")style="display: none;"@endif>
 
         <div class="form-group">
 

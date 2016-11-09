@@ -5,20 +5,43 @@
     </div>
     <!-- END Add Contact Title -->
 
+    <div id="info_quantities_manage" class="row" @if($product_action == "edit")style="display: none;"@endif>
+        <div class="col-md-12">
+            <h1 class="text-success"><i class="fa fa-info-circle"></i> @lang('backend/modules/catering/ingredients.info_message'):</h1>
+            <p class="lead">@lang('backend/modules/catering/ingredients.product_ingredients_init_message')</p>
+        </div>
+    </div>
+
+    <div id="notice_quantities_manage" class="row" @if(($product_action == "create") || ($product->ctr_groups->count() > 0))style="display: none;"@endif>
+        <div class="col-md-12">
+            <h1 class="text-notice"><i class="fa fa-check-circle"></i> @lang('backend/modules/catering/ingredients.notice_message'):</h1>
+            <p class="lead">@lang('backend/modules/catering/ingredients.ingredient_no_group_message')</p>
+        </div>
+    </div>
+
     <!-- Add Contact Content -->
-    <form id="form_ingredients_manage" enctype="multipart/form-data" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+    <form id="form_ingredients_manage" enctype="multipart/form-data" method="post" class="form-horizontal form-bordered" onsubmit="return false;" @if(($product_action == "create") || $product->ctr_groups->count() == 0)style="display: none;"@endif>
 
         <div class="form-group">
 
         <div class="col-md-6">
+
             <div class="form-group">
-                <label class="col-xs-3 control-label" for="ingredient_title">@lang('backend/modules/catering/ingredients.title')
-                    <span class="text-danger">*</span>
-                </label>
+                <label class="col-xs-3 control-label" for="ingredient_title">@lang('backend/modules/catering/ingredients.title') <span class="text-danger">*</span></label>
                 <div class="col-xs-9">
-                    <input type="text" id="ingredient_title" name="ingredient_title" class="form-control" placeholder="@lang('backend/modules/catering/ingredients.title_desc')">
+                    <select id="ingredient_title" name="ingredient_title" class="chosen-select chosen-select-width chosen-select-no-results quantity-control" style="width: 100%;" data-placeholder="@lang('backend/modules/catering/ingredients.title_desc')" style="width: 250px;">
+                    </select>
                 </div>
             </div>
+
+            {{--<div class="form-group">--}}
+                {{--<label class="col-xs-3 control-label" for="ingredient_title">@lang('backend/modules/catering/ingredients.title')--}}
+                    {{--<span class="text-danger">*</span>--}}
+                {{--</label>--}}
+                {{--<div class="col-xs-9">--}}
+                    {{--<input type="text" id="ingredient_title" name="ingredient_title" class="form-control" placeholder="@lang('backend/modules/catering/ingredients.title_desc')">--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <div class="form-group">
                 <label class="col-xs-3 control-label" for="ingredient_description">@lang('backend/modules/catering/ingredients.description')</label>
@@ -27,14 +50,14 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            {{--<div class="form-group">
                 <label class="col-xs-3 control-label" for="ingredient_unit">@lang('backend/modules/catering/ingredients.ingredient_unit')
                     <span class="text-danger">*</span>
                 </label>
                 <div class="col-xs-9">
                     <input type="text" id="ingredient_unit" name="ingredient_unit" class="form-control" placeholder="@lang('backend/modules/catering/ingredients.ingredient_unit_desc')">
                 </div>
-            </div>
+            </div>--}}
         </div>
 
 

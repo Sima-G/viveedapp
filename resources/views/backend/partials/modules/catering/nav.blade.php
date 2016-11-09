@@ -11,9 +11,9 @@
 
             <li>
                 <a href="#" class="sidebar-nav-submenu"><i class="fa fa-angle-left sidebar-nav-indicator"></i>@lang('master.ct_products')</a>
-                <ul @if(Route::current()->getName() == 'ct_product_manage') style="display: block;" @else style="display: none;" @endif >
+                <ul @if(Route::current()->getName() == 'ctr_product_manage') style="display: block;" @else style="display: none;" @endif >
                     <li>
-                        <a href="{{URL::route('ct_products')}}" @if(Route::current()->getName() == 'ct_products') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.ct_product_manage_desc')">@lang('master.ct_product_manage')</span></a>
+                        <a href="{{URL::route('ctr_products')}}" @if(Route::current()->getName() == 'ctr_products') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.ct_product_manage_desc')">@lang('master.ct_product_manage')</span></a>
                     </li>
                     <li>
                         <a href="{{URL::route('ctr_product_create')}}" @if(Route::current()->getName() == 'ct_product_create') class="active" @endif ><span id="sessions_nav_span" title="@lang('master.ct_product_manage_desc')">@lang('master.ct_product_create')</span></a>

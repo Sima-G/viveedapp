@@ -53,6 +53,8 @@ return [
     'ingroup_edit'                      => 'Επεξεργασία ομάδας',
     'ingroup_delete'                    => 'Διαγραφή ομάδας',
     'empty_ingroup_list'                => 'Δεν υπάρχει καμία ομάδας',
+    'info_message'                      => 'Ενημέρωση',
+    'product_ingroups_init_message'     => 'Η περιοχή αυτή ενεργοποιείται αφότου έχει αποθηκευτεί το προϊόν.',
 
 
 ];

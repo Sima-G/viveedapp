@@ -16,6 +16,7 @@ return [
     'category'                          => 'Κατηγορία',
     'subcategory'                       => 'Υποκατηγορία',
     'categories'                        => 'Κατηγορίες',
+    'category_desc'                     => 'Κατηγορία προϊόντος',
     'subcategories'                     => 'Υποκατηγορίες',
     'manage'                            => 'Διαχείριση',
     'of_categories'                     => 'Κατηγοριών',
