@@ -22,14 +22,19 @@
     <span class="sidebar-header-title">@lang('master.MODULES')</span>
 </div>
 
-@include('backend.partials.modules.schedule.nav')
+@if(Config::get('app.program') == "conference")
+    @include('backend.partials.modules.conference.nav')
+@endif
 
 {{--{{ Route::current()->getPrefix() }}--}}
 
 {{ substr(Route::current()->getName(), 0, 4) }}
 
-@include('backend.partials.modules.catering.nav')
+@if(Config::get('app.program') == "erp")
+    @include('backend.partials.modules.catering.nav')
+    @include('backend.partials.modules.pricing.nav')
+@endif
 
-@include('backend.partials.modules.pricing.nav')
-
-@include('backend.partials.modules.schedule.nav_info')
+@if(Config::get('app.program') == "conference")
+    @include('backend.partials.modules.conference.nav_info')
+@endif

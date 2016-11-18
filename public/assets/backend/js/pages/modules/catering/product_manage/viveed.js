@@ -8,7 +8,8 @@ jQuery(document).ready(function () {
     $('#manage_product_block_action').html($('#manage_product_block_action_txt').val());
 
     CKEDITOR.replace('product_description', {
-        customConfig: "../../pages/speakers/ckeditor-config.js"
+        // customConfig: "../../pages/speakers/ckeditor-config.js"
+        customConfig: "../../pages/modules/catering/product_manage/ckeditor-config.js"
     });
 
     switch(product_action) {
@@ -402,6 +403,7 @@ jQuery(document).ready(function () {
                     // $('#product_id').val(new_product_id);
                     showquantityList($('#managed_product_id').val());
                     $('#form_quantities_manage').trigger("reset");
+                    $('#quantity_action_id').val("");
                     $('#quantity_manage_btn').html($('#quantity-manage-btn-txt-alt').val());
                     $('#quantity_undo_btn').remove();
                     $('#content_loader').remove();
@@ -848,6 +850,8 @@ jQuery(document).ready(function () {
 
                 tablerowsList('product_catering_groups', 'ingroup_manage_tab_text');
 
+                chosenavailableField('group_title_id', 'ingroup_title');
+
             }
         });
     }
@@ -883,6 +887,8 @@ jQuery(document).ready(function () {
                 $('#ingredient_list').html(data);
 
                 tablerowsList('product_catering_ingredients', 'ingredient_manage_tab_text');
+
+                chosenavailableField('ingredient_title_id', 'ingredient_title');
             }
         });
     }
@@ -967,8 +973,40 @@ jQuery(document).ready(function () {
                     $('#'+target).chosen(config[selector]);
                 }
 
+                if (target == "product_category"){
+                    var managed_product_category_id = $('input[name=managed_product_category]').val();
+                    var managed_product_category_title = $('input[name=managed_product_category_title]').val();
+                    $('#product_category option[value="' + managed_product_category_id + '"]').remove();
+                    $('#product_category').append('<option value="' + managed_product_category_id + '" selected="selected">' + managed_product_category_title + '</option>');
+                    $("#product_category").trigger("chosen:updated");
+                }
+
             }
         });
+    }
+
+    function chosenavailableField(field, target){
+
+        // var list_data = 'category_' + id;
+        $('.' + field).each(function () {
+            // alert(field);
+            var selection_id = $(this).data('value');
+            var selection_value = $(this).text();
+            selection_value = selection_value.trim();
+
+            // alert(selection_id);
+            // var category_id = $(this).attr('id');
+            // var category_title = $(this).text();
+            // category_title = category_title.trim();
+
+            // $('#'+target+' option[value="' + selection_id + '"]').remove();
+
+            $('#'+target+' option[value="' + selection_id + '"]').attr("disabled", true);
+
+            // $('#'+target).append('<option value="' + selection_id + '" selected="selected">' + selection_value + '</option>');
+            $("#"+target).trigger("chosen:updated");
+        });
+
     }
 
     function choseninitField(field, target, product_id){

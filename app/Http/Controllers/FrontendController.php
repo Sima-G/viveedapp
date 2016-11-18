@@ -8,10 +8,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 //Viveed
-use App\Speaker;
-use App\Session;
-use App\Setting;
+use App\Cnf_speaker;
+use App\Cnf_session;
+use App\Cnf_setting;
 use View;
+
+use DateTime;
+use DateInterval;
+use DatePeriod;
 
 class FrontendController extends Controller
 {
@@ -19,7 +23,7 @@ class FrontendController extends Controller
     public function sessions_formated()
     {
         /*$sessions = Speaker::select('*')->get();*/
-        $sessions = Session::select('*')->orderBy('start_time', 'ASC')->get();
+        $sessions = Cnf_session::select('*')->orderBy('start_time', 'ASC')->get();
         $sessarray = array();
 
         foreach($sessions AS $session){
@@ -38,7 +42,7 @@ class FrontendController extends Controller
 
     public function sessions_simple()
     {
-        $sessions = Session::select('*')->with('speakers')->orderBy('start_time', 'ASC')->get();
+        $sessions = Cnf_session::select('*')->with('speakers')->orderBy('start_time', 'ASC')->get();
         return json_encode($sessions);
     }
 
@@ -47,7 +51,7 @@ class FrontendController extends Controller
 
     public function speakers_simple()
     {
-        $speakers = Speaker::select('*')->get();
+        $speakers = Cnf_speaker::select('*')->get();
         $speakarray = array();
         foreach($speakers AS $speaker){
             $speakarray[] = array('id'=>$speaker->id, 'full_name'=>$speaker->full_name, 'email'=>$speaker->email, 'text'=>$speaker->description);
@@ -57,39 +61,47 @@ class FrontendController extends Controller
 
     public function speakers_full()
     {
-        $speakers = Speaker::select('*')->get();
+        $speakers = Cnf_speaker::select('*')->get();
         return json_encode($speakers);
     }
 
     public function speakers_lite()
     {
-        $speakers = Speaker::all()->lists('full_name', 'id');
+        $speakers = Cnf_speaker::all()->lists('full_name', 'id');
         return json_encode($speakers);
     }
 
     public function timeline($date = ''){
         if ($date) {
-            $sessions = Session::where('date', '=', $date)->orderBy('start_time', 'ASC')->get();
+            $sessions = Cnf_session::where('date', '=', $date)->orderBy('start_time', 'ASC')->get();
             $sessions_cnt = $sessions->count();
 //            return View::make('frontend/partials.timeline', $sessions);
-            return View::make('frontend/partials.timeline', compact('sessions', 'date', 'sessions_cnt'));
+            return View::make('frontend/partials/modules/conference/'.\Config::get('app.template').'.timeline', compact('sessions', 'date', 'sessions_cnt'));
         }
     }
 
     public function about_sessions()
     {
-        $sessions = Setting::where('type', '=', 'schedule')->first();
+        $sessions = Cnf_setting::where('type', '=', 'schedule')->first();
         return json_encode($sessions);
     }
 
     public function sessions(){
-        $sessions = Session::Select('*')->orderBy('start_time', 'ASC')->get();
+        $sessions = Cnf_session::Select('*')->orderBy('start_time', 'ASC')->get();
         $sessions_cnt = $sessions->count();
-        return View::make('frontend/partials.sessionlist', compact('sessions', 'sessions_cnt'));
+
+        $settings = Cnf_setting::where('type', '=', 'schedule')->firstOrFail();
+        $begin = new DateTime($settings->start_date);
+        $end = new DateTime($settings->end_date);
+        $end->modify('+1 day');
+        $interval = DateInterval::createFromDateString('1 day');
+        $period = new DatePeriod($begin, $interval, $end);
+
+        return View::make('frontend/partials/modules/conference/'.\Config::get('app.template').'.sessionlist', compact('sessions', 'sessions_cnt', 'period'));
     }
 
     public function sessions_list(){
-            $sessions = Session::Select('*')->orderBy('start_time', 'ASC')->get();
+            $sessions = Cnf_session::Select('*')->orderBy('start_time', 'ASC')->get();
             return json_encode($sessions);
     }
 

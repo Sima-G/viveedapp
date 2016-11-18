@@ -135,5 +135,5 @@
         <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
         <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
     @endif
-    <script src="{{ asset('assets/backend/js/pages/speakers/viveed.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/pages/modules/conference/speakers/viveed.js') }}"></script>
 @stop

@@ -43,6 +43,10 @@ return [
     'ct_categories_description'         => 'Διαχείριση κατηγοριών',
     'ctr_quantities'                    => 'Μονάδες',
     'ctr_quantities_description'        => 'Διαχείριση μονάδων μέτρησης',
+    'ctr_groups'                        => 'Ομάδες',
+    'ctr_groups_description'            => 'Διαχείριση ομάδων συστατικών',
+    'ctr_ingredients'                   => 'Συστατικά',
+    'ctr_ingredients_description'       => 'Διαχείριση συστατικών προϊόντος',
 
     'prc_prices'                        => 'Τιμές',
     'prc_catalogues'                    => 'Τιμοκατάλογοι',

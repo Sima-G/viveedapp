@@ -28,7 +28,7 @@ class Ctr_productController extends Controller
 //            $product = Ctr_product::find($product_id);
 //            $product = Ctr_product::find($product_id)->with('ctr_groups')->get();
 //            $product = Ctr_product::find($product_id)->ctr_groups()->first();
-            $product = Ctr_product::find($product_id)->with('ctr_quantities')->with('ctr_groups')->with('ctr_ingredients')->first();
+            $product = Ctr_product::find($product_id)->with('ctr_categories')->with('ctr_quantities')->with('ctr_groups')->with('ctr_ingredients')->first();
 
 
             if ( ! empty($product_id)){

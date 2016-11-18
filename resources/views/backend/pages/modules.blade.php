@@ -42,6 +42,8 @@
                             <thead>
                             <tr>
                                 <th style="width: 150px;" class="text-center">@lang('modules.type')</th>
+                                <th>@lang('modules.description')</th>
+                                <th>@lang('modules.prefix')</th>
                                 <th>@lang('modules.created_at')</th>
                                 <th>@lang('modules.updated_at')</th>
                                 <th>@lang('modules.status')</th>
@@ -51,14 +53,17 @@
                             <tbody>
                             @foreach($modules as $module)
                                 <tr class="@if($module->init == '0') active @elseif($module->init == '1') success @else info @endif">
-                                    <td class="text-center">{{ trans('modules.' . $module->type) }}</td>
-                                    <td>{{ Date::parse($module->created_at)->diffForHumans() }}</td>
-                                    <td>{{ Date::parse($module->updated_at)->diffForHumans() }}</td>
+                                    <td class="text-center">@lang('modules.'. $module->title )</td>
+                                    <td>{{ $module->description }}</td>
+                                    <td>{{ $module->prefix }}</td>
+                                    <td>{{ Date::parse($module->start_date)->diffForHumans() }}</td>
+                                    <td>{{ Date::parse($module->expiration_date)->diffForHumans() }}</td>
                                     <td>
                                         @if($module->status == '1')
-                                            <a href="javascript:void(0)" class="label label-success">@lang('modules.active')</a>
+                                            {{--<a href="javascript:void(0)" class="label label-success">@lang('modules.active')</a>--}}
+                                            <span class="label label-success">@lang('modules.active')</span>
                                         @else
-                                            <a href="javascript:void(0)" class="label label-primary">@lang('modules.inactive')</a>
+                                            <span class="label label-primary">@lang('modules.inactive')</span>
                                         @endif
                                     </td>
                                     <td class="text-center">

@@ -6,7 +6,8 @@ function startTime() {
             m = checkTime(m);
             s = checkTime(s);
             document.getElementById('vvd_time').innerHTML =
-                    "<strong>" + h + ":" + m + ":" + s + "</strong>";
+                    "<h3>" + h + ":" + m + ":" + s + "</h3>";
+                    // "<strong>" + h + ":" + m + ":" + s + "</strong>";
             var t = setTimeout(startTime, 500);
         }
         function checkTime(i) {

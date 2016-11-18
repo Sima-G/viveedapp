@@ -5,9 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 //Viveed
-use App\Setting;
-use App\Session;
-use App\Speaker;
+use App\Cnf_setting;
+use App\Cnf_session;
+use App\Cnf_speaker;
 use App\User;
 use Sentinel;
 use Schema;
@@ -27,13 +27,13 @@ class ViewComposerServiceProvider extends ServiceProvider
 //                    -> with('session_count', Session::count())
 //                    -> with('speaker_count', Speaker::count());
 //        });
-        if(Schema::hasTable('settings')){
-            if (Setting::where('type', '=', 'schedule')->exists()) {
-                view()->share('session_count', Session::count());
-                view()->share('speaker_count', Speaker::count());
-                view()->share('config', Setting::where('type', '=', 'schedule')->first());
-                view()->share('schedule_config', Setting::where('type', '=', 'schedule')->first());
-                view()->share('speakers', Speaker::get());
+        if(Schema::hasTable('cnf_settings')){
+            if (Cnf_setting::where('type', '=', 'schedule')->exists()) {
+                view()->share('session_count', Cnf_session::count());
+                view()->share('speaker_count', Cnf_speaker::count());
+                view()->share('config', Cnf_setting::where('type', '=', 'schedule')->first());
+                view()->share('schedule_config', Cnf_setting::where('type', '=', 'schedule')->first());
+                view()->share('speakers', Cnf_speaker::get());
             }
         }
 

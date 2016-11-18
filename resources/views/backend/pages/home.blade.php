@@ -27,15 +27,19 @@
             <li class="active">
                 <a href="{{URL::route('home')}}"><i class="gi gi-home"></i> @lang('home.home')</a>
             </li>
+        @if(Config::get('app.program') == "conference")
             <li class="">
                 <a href="{{URL::route('cnf_dashboard')}}"><i class="fa fa-microphone"></i> @lang('home.conference')</a>
             </li>
+        @endif
+        @if(Config::get('app.program') == "erp")
             <li class="">
                 <a href="{{URL::route('ct_dashboard')}}"><i class="gi gi-fast_food"></i> @lang('home.catering')</a>
             </li>
             <li class="">
                 <a href="{{URL::route('prc_dashboard')}}"><i class="gi gi-coins"></i> @lang('home.pricing')</a>
             </li>
+         @endif
         </ul>
     </div>
     <!-- END Dashboard 2 Header -->

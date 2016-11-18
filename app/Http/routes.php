@@ -28,37 +28,42 @@ Route::group(array('prefix' => 'frontend/'), function () {
 
 
     # Frontend Conference Module
-    Route::group(array('prefix' => 'conference/{theme}'), function () {
+    Route::group(array('prefix' => 'conference/'), function () {
         # Frontend Conference Module (Material)
-        Route::group(array('prefix' => 'material/'), function () {
+//        Route::group(array('prefix' => Config::get('app.theme')), function () {
+
             Route::get('/', array('as' => 'dashboard', function(){
-                return view('frontend.pages.home');
+                return view('frontend.pages.modules.conference.'.Config::get('app.template').'.home');
             }));
             Route::get('/', array('as' => 'preview', function () {
-                return view('frontend.pages.modules.conference.home');
+                return view('frontend.pages.modules.conference.'.Config::get('app.template').'.home');
+//                return view('frontend.pages.modules.conference.home');
             }));
             #Response for home
             Route::get('/home', array('as' => 'home', function(){
-                return view('frontend.pages.modules.conference.material.home');
+                return view('frontend.pages.modules.conference.'.Config::get('app.template').'.home');
             }));
             #Response for timeline
             Route::get('/timeline/{date}', array('as' => 'timeline', 'uses' => 'FrontendController@timeline'));
+
             #Response for timeline
             Route::get('/sessions', array('as' => 'sessions', 'uses' => 'FrontendController@sessions'));
+
             #Response for about section
             Route::get('/about', array('as' => 'about', function () {
-                return view('frontend.pages.modules.conference.about');
+                return view('frontend.pages.modules.conference.'.Config::get('app.template').'.about');
             }));
             #Response for speaker_list
             Route::get('/speaker_list', array('as' => 'speaker_list', function () {
-                return view('frontend.pages.speakers');
+                return view('frontend.pages.modules.conference.'.Config::get('app.template').'.speakers');
             }));
             Route::get('/session_list', array('as' => 'session_list', function () {
-                return view('frontend.pages.sessions');
+                return view('frontend.pages.modules.conference.'.Config::get('app.template').'.sessions');
             }));
-        });
+//        });
+
         # Frontend Conference Module (Bootstrap)
-        Route::group(array('prefix' => 'boostrap/'), function () {
+        /*Route::group(array('prefix' => 'boostrap/'), function () {
             Route::get('/', array('as' => 'dashboard', function(){
                 return view('frontend.pages.home');
             }));
@@ -87,7 +92,7 @@ Route::group(array('prefix' => 'frontend/'), function () {
             Route::get('/session_list', array('as' => 'session_list', function () {
                 return view('frontend.pages.sessions');
             }));
-        });
+        });*/
     });
 });
 
@@ -153,10 +158,10 @@ Route::controllers([
 
 //Route::get('/backend/home', array('as' => 'home', 'uses' => 'BackendController@showhome'));
 
-Route::post('/store', 'SessionController@store');
+Route::post('/store', 'Cnf_sessionController@store');
 
-Route::get('/data', 'SessionController@data');
-Route::post('/data', 'SessionController@data');
+Route::get('/data', 'Cnf_sessionController@data');
+Route::post('/data', 'Cnf_sessionController@data');
 
 /*Route::get('/backend/settings', function () {
     return view('backend.pages.settings');
@@ -233,32 +238,32 @@ Route::group(array('prefix' => 'backend/'), function () {
 
 
         //Routes for Conference module
-        Route::group(array('prefix' => 'schedule/'), function () {
+        Route::group(array('prefix' => 'conference/'), function () {
             //Dashboard section
             Route::get('dashboard/', array('as' => 'cnf_dashboard', 'uses' => 'Cnf_moduleController@show_dashboard'));
 
 
             Route::group(array('prefix' => 'sessions'), function () {
-                Route::get('/', array('as' => 'sessions', 'uses' => 'SessionController@show_sessions'));
-                Route::post('/store', 'SessionController@store');
-                Route::post('/delete', 'SessionController@delete');
-                Route::get('/speakers', 'SessionController@speakers');
-                Route::get('/session_list', 'SessionController@session_list');
-                Route::get('/speaker_list', 'SessionController@speaker_list');
+                Route::get('/', array('as' => 'sessions', 'uses' => 'Cnf_sessionController@show_sessions'));
+                Route::post('/store', 'Cnf_sessionController@store');
+                Route::post('/delete', 'Cnf_sessionController@delete');
+                Route::get('/speakers', 'Cnf_sessionController@speakers');
+                Route::get('/session_list', 'Cnf_sessionController@session_list');
+                Route::get('/speaker_list', 'Cnf_sessionController@speaker_list');
             });
 
             //Speakers section
             Route::group(array('prefix' => 'speakers'), function () {
-                Route::get('/', array('as' => 'speakers', 'uses' => 'SpeakerController@show_speakers'));
-                Route::get('/speaker_list', 'SpeakerController@speaker_list');
-                Route::post('/store', 'SpeakerController@store');
-                Route::post('/delete', 'SpeakerController@delete');
+                Route::get('/', array('as' => 'speakers', 'uses' => 'Cnf_speakerController@show_speakers'));
+                Route::get('/speaker_list', 'Cnf_speakerController@speaker_list');
+                Route::post('/store', 'Cnf_speakerController@store');
+                Route::post('/delete', 'Cnf_speakerController@delete');
             });
             //Settings section
             Route::group(array('prefix' => 'settings'), function () {
-                Route::get('/', array('as' => 'settings', 'uses' => 'SettingController@show'));
-                Route::post('/store', 'SettingController@store');
-                Route::post('/data', 'SettingController@data');
+                Route::get('/', array('as' => 'settings', 'uses' => 'Cnf_settingController@show'));
+                Route::post('/store', 'Cnf_settingController@store');
+                Route::post('/data', 'Cnf_settingController@data');
             });
         });
 

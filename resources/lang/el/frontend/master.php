@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'conference'                 => 'ΣΥΝΕΔΡΙΟ',
     'home'                       => 'Αρχική',
     'speakers'                   => 'Ομιλητές',
     'sessions'                   => 'Ομιλίες',

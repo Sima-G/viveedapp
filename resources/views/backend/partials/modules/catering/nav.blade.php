@@ -1,12 +1,12 @@
 {{--@if( ! empty($schedule_config))--}}
 <ul class="sidebar-nav">
 
-    <li @if(substr(Route::current()->getName(), 0, 3) == "ct_")  class="active" @endif>
+    <li @if(substr(Route::current()->getName(), 0, 4) == "ctr_")  class="active" @endif>
         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-fast_food sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.catering')</span></a>
         <ul>
 
             <li>
-                <a href="{{URL::route('ct_dashboard')}}" @if(Route::current()->getName() == 'ct_dashboard') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('ctr_dashboard')}}" @if(Route::current()->getName() == 'ctr_dashboard') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span></a>
             </li>
 
             <li>
@@ -22,12 +22,21 @@
             </li>
 
             <li>
-                <a href="{{URL::route('ct_categories')}}" @if(Route::current()->getName() == 'ct_categories') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_categories')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('ct_categories')}}" @if(Route::current()->getName() == 'ct_categories') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_categories')</span></a>
             </li>
 
             <li>
-                <a href="{{URL::route('ctr_quantities')}}" @if(Route::current()->getName() == 'ctr_quantities') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ctr_quantities')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('ctr_quantities')}}" @if(Route::current()->getName() == 'ctr_quantities') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ctr_quantities')</span></a>
             </li>
+
+            <li>
+                <a href="{{URL::route('ctr_groups')}}" @if(Route::current()->getName() == 'ctr_groups') class="active" @endif><span id="ctr_groups_nav_span" title="@lang('master.ctr_groups_description')">@lang('master.ctr_groups')</span></a>
+            </li>
+
+            <li>
+                <a href="{{URL::route('ctr_ingredients')}}" @if(Route::current()->getName() == 'ctr_ingredients') class="active" @endif><span id="ctr_ingredients_nav_span" title="@lang('master.ctr_ingredients_description')">@lang('master.ctr_ingredients')</span></a>
+            </li>
+
         </ul>
     </li>
 </ul>

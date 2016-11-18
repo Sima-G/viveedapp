@@ -15,7 +15,11 @@
         @foreach($products->first()->ctr_ingredients as $key => $ingredient)
             <tr class="clickable" data-toggle="collapse" id="row_{{ $key }}" data-target=".row_{{ $key }}">
                 <td class="text-center"><strong>{{ $key+1 }}</strong></td>
-                <td class="ingredient_title">{{ $ingredient->title }}</td>
+                <td class="ingredient_title">
+                    <span class="ingredient_title_id" data-value="{{ $ingredient->id }}">
+                        {{ $ingredient->title }}
+                    </span>
+                </td>
 
                 <td class="hidden-xs ingredient_description">
                     {{ $ingredient->description }}

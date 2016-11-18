@@ -1,7 +1,8 @@
 jQuery(document).ready(function () {
 
     CKEDITOR.replace('category_description', {
-        customConfig: "../../pages/speakers/ckeditor-config.js"
+        // customConfig: "../../pages/speakers/ckeditor-config.js"
+        customConfig: "../../pages/modules/catering/ckeditor-config.js"
     });
 
     $('#category-list-loader').html('<div class="text-center"><i class="fa fa-spinner fa-4x fa-spin"></i><br/><br/></div>');

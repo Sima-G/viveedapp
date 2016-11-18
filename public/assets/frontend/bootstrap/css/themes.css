@@ -37,6 +37,12 @@ THEME DEFAULT
 }
 
 /*
+.timeline-list:after {
+    background-color: #394263 !important;
+}
+*/
+
+/*
 =================================================================
 THEME NIGHT
 =================================================================
@@ -65,6 +71,16 @@ THEME NIGHT
 .themed-background-dark-night {
     background-color: #333333 !important;
 }
+
+/*
+.timeline-list:after {
+    background-color: #464646 !important;
+}
+
+.timeline-botom {
+	border-bottom: 2px solid #464646 !important;
+}
+*/
 
 /*
 =================================================================

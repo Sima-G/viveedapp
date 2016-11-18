@@ -15,7 +15,11 @@
         @foreach($products->first()->ctr_groups as $key => $group)
             <tr class="clickable" data-toggle="collapse" id="row_{{ $key }}" data-target=".row_{{ $key }}">
                 <td class="text-center"><strong>{{ $key+1 }}</strong></td>
-                <td class="group_title">{{ $group->title }}</td>
+                <td class="group_title">
+                    <span class="group_title_id" data-value="{{ $group->id }}">
+                        {{ $group->title }}
+                    </span>
+                </td>
 
                 <td class="hidden-xs group_description">
                     {{ $group->description }}

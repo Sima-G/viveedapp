@@ -22,7 +22,7 @@ class Ct_category extends Model
 
     public function ct_products()
     {
-        return $this->belongsToMany('App\Ct_product', 'id', 'id');
+        return $this->belongsToMany('App\Ct_product', 'category');
     }
 
 

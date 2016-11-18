@@ -4,10 +4,10 @@
         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-coins sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.prc_prices')</span></a>
         <ul>
             <li>
-                <a href="{{URL::route('prc_dashboard')}}" @if(Route::current()->getName() == 'prc_dashboard') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('prc_dashboard')}}" @if(Route::current()->getName() == 'prc_dashboard') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span></a>
             </li>
             <li>
-                <a href="{{URL::route('prc_catalogues')}}" @if(Route::current()->getName() == 'prc_catalogues') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.settings_desc')">@lang('master.prc_catalogues')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('prc_catalogues')}}" @if(Route::current()->getName() == 'prc_catalogues') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.settings_desc')">@lang('master.prc_catalogues')</span></a>
             </li>
         </ul>
     </li>
@@ -18,10 +18,10 @@
         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-list sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">@lang('master.prc_prices')</span></a>
         <ul>
             <li>
-                <a href="{{URL::route('prc_ordering')}}" @if(Route::current()->getName() == 'prc_dashboard') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('prc_ordering')}}" @if(Route::current()->getName() == 'prc_dashboard') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.ct_categories_description')">@lang('master.ct_dashboard')</span></a>
             </li>
             <li>
-                <a href="{{URL::route('prc_catalogues')}}" @if(Route::current()->getName() == 'prc_catalogues') class="active notice_init_tooltip" @endif @if($schedule_config->init == 0) data-toggle="tooltip" data-original-title="@lang('master.msg_setting_init')" @endif ><span id="settings_nav_span" title="@lang('master.settings_desc')">@lang('master.prc_catalogues')</span> @if($schedule_config->init == 0) <i class="fa fa-exclamation-circle notice_init"></i> @endif</a>
+                <a href="{{URL::route('prc_catalogues')}}" @if(Route::current()->getName() == 'prc_catalogues') class="active notice_init_tooltip" @endif><span id="settings_nav_span" title="@lang('master.settings_desc')">@lang('master.prc_catalogues')</span></a>
             </li>
         </ul>
     </li>

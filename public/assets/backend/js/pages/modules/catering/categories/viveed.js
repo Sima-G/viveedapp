@@ -1,7 +1,8 @@
 jQuery(document).ready(function () {
 
     CKEDITOR.replace('category_description', {
-        customConfig: "../../pages/speakers/ckeditor-config.js"
+        // customConfig: "../../pages/speakers/ckeditor-config.js"
+        customConfig: "../../pages/modules/catering/categories/ckeditor-config.js"
     });
 
     categorylistLoader();

@@ -19,8 +19,8 @@
 
 @section('footer')
     <script src="{{ asset('assets/frontend/material/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/material/js/pages/sessions/viveed.js') }}"></script>
-    <script src="{{ asset('assets/frontend/material/js/pages/sessions/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/material/js/pages/modules/conference/sessions/viveed.js') }}"></script>
+    <script src="{{ asset('assets/frontend/material/js/pages/modules/conference/sessions/sweetalert.min.js') }}"></script>
     <script>
         jQuery(document).ready(function () {
             $(document).on('click', '.speaker_of_session', function () {

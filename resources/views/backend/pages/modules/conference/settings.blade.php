@@ -187,7 +187,7 @@
     <!-- ckeditor.js, load it only in the page you would like to use CKEditor (it's a heavy plugin to include it with the others!) -->
     @if((head($userRoles) == 'Admin') || head($userRoles) == 'Editor')
         <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/pages/settings/viveed.js') }}"></script>
+        <script src="{{ asset('assets/backend/js/pages/modules/conference/settings/viveed.js') }}"></script>
     @endif
     {{--@if( Lang::locale() === 'el' )--}}
     {{--<script src="{{ asset('assets/backend/js/viveed/datepicker-el.js') }}"></script>--}}

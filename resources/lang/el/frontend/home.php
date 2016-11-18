@@ -17,5 +17,7 @@ return [
     'desc_alt_text_session_title'                   => 'Τίτλος συνεδρίου',
     'desc_alt_text_session_date'                    => 'Ημερομηνίες συνεδρίου',
     'desc_running_session_date'                     => 'Τρέχουσα ημέρα συνεδρίου',
+    'schedule'                                      => 'Πρόγραμμα',
+    'no_session_results'                            => 'Δεν βρέθηκαν ομιλίες για την συγκεκριμένη ημέρα',
 
 ];

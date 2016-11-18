@@ -20,6 +20,7 @@ return [
     'of_modules'                      => 'Πρόσθετων',
     'type'                            => 'Τύπος',
     'status'                          => 'Κατάσταση',
+    'state'                           => 'Στάδιο',
     'created_at'                      => 'Δημιουργήθηκε',
     'updated_at'                      => 'Επεξεργάστηκε',
     'actions'                         => 'Ενέργειες',
@@ -28,6 +29,12 @@ return [
     'active'                          => 'Ενεργό',
     'inactive'                        => 'Ανενεργό',
     'schedule'                        => 'Ομιλίες',
+    'conference'                      => 'Ομιλίες',
+    'catering'                        => 'Εστίαση',
+    'pricing'                         => 'Τιμολόγηση',
+    'administration'                  => 'Διαχείριση',
+    'description'                     => 'Περιγραφή',
+    'prefix'                          => 'Πρόθεμα',
 
 
 ];

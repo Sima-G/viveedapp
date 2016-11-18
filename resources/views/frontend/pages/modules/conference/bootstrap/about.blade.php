@@ -1,10 +1,14 @@
-@extends('frontend.layouts.master')
+@extends('frontend.layouts.bootstrap.master')
+
+@section('title')
+    @lang("frontend/master.about")
+@stop
 
 @section('content')
     <!-- About Header -->
-    <ul class="breadcrumb breadcrumb-top">
+    {{--<ul class="breadcrumb breadcrumb-top">
         <li><i class="gi gi-circle_info"></i> @lang("frontend/master.about")</li>
-    </ul>
+    </ul>--}}
     <!-- END About Header -->
 
     <!-- About Content -->

@@ -38,9 +38,9 @@
 
 @section('footer')
     <script src="{{ asset('assets/frontend/material/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/material/js/pages/home/viveed.js') }}"></script>
+    <script src="{{ asset('assets/frontend/material/js/pages/modules/conference/home/viveed.js') }}"></script>
     @if( ! empty($speakers))
-        <script src="{{ asset('assets/frontend/material/js/pages/home/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('assets/frontend/material/js/pages/modules/conference/home/sweetalert.min.js') }}"></script>
         <script>
             jQuery(document).ready(function () {
                 $(document).on('click', '.speaker_of_session', function (e) {

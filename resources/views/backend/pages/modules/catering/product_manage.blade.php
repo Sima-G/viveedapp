@@ -25,7 +25,7 @@
             <input type="hidden" name="manage_product_block_action_txt" id="manage_product_block_action_txt" value="@lang('backend/modules/catering/products.existing_product')">
             <input type="hidden" name="managed_product_title" id="managed_product_title" value="{{ $product->title }}">
             <input type="hidden" name="managed_product_category" id="managed_product_category" value="{{ $product->category }}">
-            <input type="hidden" name="managed_product_category" id="managed_product_category" value="{{ $product->category }}">
+            <input type="hidden" name="managed_product_category_title" id="managed_product_category_title" value="{{ $product->ctr_categories->title }}">
             <input type="hidden" name="managed_product_status" id="managed_product_status" value="{{ $product->status }}">
             <input type="hidden" name="managed_product_state" id="managed_product_state" value="{{ $product->state }}">
             <input type="hidden" name="managed_product_description" id="managed_product_description" value="{{ $product->description }}">
@@ -107,7 +107,7 @@
 @stop
 
 @section('footer')
-        <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
-        <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/helpers/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/viveed/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/pages/modules/catering/product_manage/viveed.js') }}"></script>
 @stop

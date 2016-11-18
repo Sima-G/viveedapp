@@ -15,7 +15,7 @@ class Ctr_product extends Model
 
     public function ctr_categories()
     {
-        return $this->hasOne('App\Ct_category', 'id', 'id');
+        return $this->hasOne('App\Ct_category', 'id', 'category');
     }
 
     public function ctr_groups()

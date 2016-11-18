@@ -3,7 +3,7 @@
         <i style="width:24px; height: 24px;" class="material-icons">info</i>
     </div>
     <div style="margin: 0 auto;" class="mdl-color-text--grey-600">
-        <h4>Δεν βρέθηκαν ομιλίες..</h4>
+        <h4>@lang('frontend/home.no_session_results')..</h4>
     </div>
 @else
     @foreach($sessions AS $session)

@@ -25,43 +25,43 @@
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="{{ asset('assets/frontend/images/android-desktop.png') }}">
+    <link rel="icon" sizes="192x192" href="{{ asset('assets/frontend/material/images/android-desktop.png') }}">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Viveed">
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/frontend/images/ios-desktop.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/frontend/material/images/ios-desktop.png') }}">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage"
-          content="{{ asset('assets/frontend/images/touch/ms-touch-icon-144x144-precomposed.png') }}">
+          content="{{ asset('assets/frontend/material/images/touch/ms-touch-icon-144x144-precomposed.png') }}">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-<!-- <link rel="shortcut icon" href="{{ asset('assets/frontend/images/favicon.png') }}"> -->
-<!-- <link rel="shortcut icon" href="{{ asset('assets/frontend/images/logo/Favicon.png') }}"> -->
+<!-- <link rel="shortcut icon" href="{{ asset('assets/frontend/material/images/favicon.png') }}"> -->
+<!-- <link rel="shortcut icon" href="{{ asset('assets/frontend/material/images/logo/Favicon.png') }}"> -->
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/frontend/images/icon/apple-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/frontend/images/icon/apple-icon-60x60.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/frontend/images/icon/apple-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/frontend/images/icon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/frontend/material/images/icon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/frontend/material/images/icon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/frontend/material/images/icon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/frontend/material/images/icon/apple-icon-76x76.png') }}">
     <link rel="apple-touch-icon" sizes="114x114"
-          href="{{ asset('assets/frontend/images/icon/apple-icon-114x114.png') }}">
+          href="{{ asset('assets/frontend/material/images/icon/apple-icon-114x114.png') }}">
     <link rel="apple-touch-icon" sizes="120x120"
-          href="{{ asset('assets/frontend/images/icon/apple-icon-120x120.png') }}">
+          href="{{ asset('assets/frontend/material/images/icon/apple-icon-120x120.png') }}">
     <link rel="apple-touch-icon" sizes="144x144"
-          href="{{ asset('assets/frontend/images/icon/apple-icon-144x144.png') }}">
+          href="{{ asset('assets/frontend/material/images/icon/apple-icon-144x144.png') }}">
     <link rel="apple-touch-icon" sizes="152x152"
-          href="{{ asset('assets/frontend/images/icon/apple-icon-152x152.png') }}">
+          href="{{ asset('assets/frontend/material/images/icon/apple-icon-152x152.png') }}">
     <link rel="apple-touch-icon" sizes="180x180"
-          href="{{ asset('assets/frontend/images/icon/apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/frontend//android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/frontend/images/icon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/frontend/images/icon/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/frontend/images/icon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/frontend/images/icon/manifest.json') }}">
+          href="{{ asset('assets/frontend/material/images/icon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/frontend/material//android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/frontend/material/images/icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/frontend/material/images/icon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/frontend/material/images/icon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/frontend/material/images/icon/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('assets/frontend/images/icon/ms-icon-144x144.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('assets/frontend/material/images/icon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
@@ -72,13 +72,13 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/material.cyan-light_blue.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/modules.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/timeline.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/viveed.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/sweetalert.css') }}">
-    <script src="{{ asset('assets/frontend/js/datetime.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/frontend/material/css/material.cyan-light_blue.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/material/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/material/css/modules.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/material/css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/material/css/viveed.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/material/css/sweetalert.css') }}">
+    <script src="{{ asset('assets/frontend/material/js/datetime.js') }}"></script>
 </head>
 <body onload="startTime(); viveed_date();">
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -122,7 +122,7 @@
     </main>
 </div>
 
-<script src="{{ asset('assets/frontend/js/material.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/material/js/material.min.js') }}"></script>
 @yield('footer')
 </body>
 </html>

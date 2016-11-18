@@ -37,15 +37,21 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/main.css') }}">
 
     <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+    {{--<link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/themes/night.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/themes/'.Config::get('app.theme').'.css') }}">
 
     <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/themes/night.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/bootstrap/css/themes.css') }}">
     <!-- END Stylesheets -->
 
     <!-- Modernizr (browser feature detection library) & Respond.js (enables responsive CSS code on browsers that don't support it, eg IE8) -->
     <script src="{{ asset('assets/frontend/bootstrap/js/vendor/modernizr-respond.min.js') }}"></script>
+
+    <!-- Viveed scripts -->
+    <script src="{{ asset('assets/frontend/bootstrap/js/viveed/datetime.js') }}"></script>
 </head>
-<body>
+{{--<body>--}}
+<body onload="startTime(); viveed_date();">
 <!-- Page Wrapper -->
 <!-- In the PHP version you can set the following options from inc/config file -->
 <!--
@@ -117,7 +123,11 @@
 
 
                     <!-- Sidebar Navigation -->
-                    @yield('navigation')
+                    {{--@yield('navigation')--}}
+
+                    @include('frontend.partials.modules.conference.bootstrap.nav')
+
+
                     <!-- END Sidebar Navigation -->
 
                     <!-- Sidebar Notifications -->
@@ -181,6 +191,7 @@
                         </ul>
                     </li>--}}
                     <!-- END Template Options -->
+                    <li><div class="col-md-12"><h3 class="text-muted">Let's have some <strong>vice verca feed</strong>!!!</h3></div></li>
                 </ul>
                 <!-- END Left Header Navigation -->
 
@@ -196,10 +207,10 @@
             <!-- Footer -->
             <footer class="clearfix">
                 <div class="pull-right">
-                    Crafted with <i class="fa fa-heart text-danger"></i> by <a href="http://goo.gl/vNS3I" target="_blank">pixelcave</a>
+                    Crafted by AegeanTech
                 </div>
                 <div class="pull-left">
-                    <span id="year-copy"></span> &copy; <a href="http://goo.gl/TDOSuC" target="_blank">ProUI 3.3</a>
+                    <span id="year-copy"></span> &copy; Viveed 1.0
                 </div>
             </footer>
             <!-- END Footer -->
@@ -224,10 +235,12 @@
 <script src="{{ asset('assets/frontend/bootstrap/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/frontend/bootstrap/js/app.js') }}"></script>
 
-<script src="{{ asset('assets/frontend/bootstrap/js/viveed/datetime.js') }}"></script>
+{{--<script src="{{ asset('assets/frontend/bootstrap/js/viveed/datetime.js') }}"></script>--}}
 
 <!-- Load and execute javascript code used only in this page -->
-<script src="js/pages/index.js"></script>
-<script>$(function(){ Index.init(); });</script>
+{{--<script src="js/pages/index.js"></script>
+<script>$(function(){ Index.init(); });</script>--}}
+
+@yield('footer')
 </body>
 </html>
